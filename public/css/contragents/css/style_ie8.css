@@ -1,0 +1,9 @@
+
+.user_face_in_breadcrumbs img, .redactor_face_img img
+{
+	border-radius: 100px;
+	border: 0;
+}
+.md-overlay {
+	background: #000;
+}

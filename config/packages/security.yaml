@@ -1,0 +1,33 @@
+# d:/OSPanel/domains/portal_plus/config/packages/security.yaml
+# config/packages/security.yaml
+security:
+    role_hierarchy:
+        # ROLE_ADMIN:       [ ROLE_USER1, ROLE_USER2 ]
+        # ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    encoders:
+      App\Entity\User:
+        algorithm: bcrypt
+    firewalls:
+        dev:
+           pattern: ^/(_(profiler|wdt)|css|images|js)/
+           security: false
+        main:
+            anonymous: lazy
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: app_homepage
+
+    providers:
+            users:
+                entity:
+                    class: 'App\Entity\SysUser'
+                    property: 'email'
+
+#    access_control:
+#        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+#        - { path: ^/admin, roles: ROLE_ADMIN }
+

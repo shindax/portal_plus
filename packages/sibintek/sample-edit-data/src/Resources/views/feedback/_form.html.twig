@@ -1,0 +1,50 @@
+{#{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('action.tosend' | trans) }}</button>
+{{ form_end(form) }}#}
+
+<script>
+    $(document).ready(function() {
+        $('.select2-multiple').select2();
+    });
+</script>
+<table class="table-2" cellspacing=0 border="0">
+    <thead>
+    <tr>
+        <th class="kandUserAdd" colspan="3">
+            <button type="submit" class="save" data-tooltip="Отправить" data-tooltip-location="right" form="feedback"></button>
+            <h1 class="add-k">{{ 'feedback.new' | trans }}</h1>
+            <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href= '{{ path('feedback_index') }}'"></button>
+            {#<button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>#}
+        </th>
+    </tr>
+    </thead>
+    <tbody id="User2">
+    {{ form_start(form, {'attr': {'id': 'feedback'}}) }}
+    <tr>
+        <td class="F-famili" scope="row" width="26%">{{ form.emailaddress.vars.label | trans }}</td>
+        <td colspan="2" style="padding-top: 14px;">
+            {{ form_widget(form.emailaddress) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="N-name" scope="row" width="26%">{{ form.subject.vars.label | trans }}</td>
+        <td colspan="2">
+            {{ form_widget(form.subject) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="O-otch" scope="row" width="26%">{{ form.body.vars.label | trans }}</td>
+        <td colspan="2">
+            {{ form_widget(form.body) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="DOB-k" scope="row" colspan="2" width="26%">{{ form.fileupload.vars.label | trans }}</td>
+        <td>
+            {{ form_widget(form.fileupload) }}
+        </td>
+    </tr>
+     </tbody>
+    {{ form_end(form) }}
+</table>

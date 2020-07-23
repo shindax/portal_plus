@@ -1,0 +1,137 @@
+/* Изменить размер картинки */
+.infosys{
+    background: url(/images/IS.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+  }
+  
+  .infosys:hover{
+    background: url(/images/IS2.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+  }
+  
+  .phonesprav{
+    background: url(/images/phone_spav.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+  }
+  
+  .phonesprav:hover{
+    background: url(/images/phone_spav2.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+  }
+  
+  .edinnumber{
+    background: url(/images/Edin_number.png);
+    background-size: 100% 100%;
+    height: 100px;
+    width: 99.8%;
+    cursor: pointer;
+  }
+  
+  .edinnumber:hover{
+    background: url(/images/Edin_number2.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+    width: 99.8%;
+  }
+  
+  .smart-sv{
+    background: url(/images/smart_sv.png);
+    background-size: 100% 100%;
+    height: 100px;
+    width: 100.3%;
+    cursor: pointer;
+  }
+  
+  .smart-sv:hover{
+    background: url(/images/smart_sv2.png);
+    background-size: 100% 100%;
+    height: 100px;
+    width: 100.3%;
+    cursor: pointer;
+  }
+  
+  .conf-zal{
+    background: url(/images/conf_zal.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+  }
+  
+  .conf-zal:hover{
+    background: url(/images/conf_zal2.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+  }
+
+  /* Выравнивание тексты */
+
+  .st1 {
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 40px;
+    padding-left: 84px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+  }
+
+  .st2 {
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 40px;
+    padding-left: 140px;
+    padding-right: 30px;
+    margin-top: 0;
+    /* word-break: break-all; */
+  }
+
+  .st3 {
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 26px;
+    padding-left: 135px;
+    margin-top: 0;
+    /* word-break: break-all; */
+  }
+
+  .st4 {
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 36px;
+    padding-left: 177px;
+    margin-top: 0;
+    /* word-break: break-all; */
+  }
+
+  .st5 {
+    font-size: 20px;
+    /* font-weight: bold; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 40px;
+    padding-left: 140px;
+    margin-top: 0;
+    /* word-break: break-all; */
+  }

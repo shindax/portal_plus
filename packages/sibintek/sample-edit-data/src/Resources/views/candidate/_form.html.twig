@@ -1,0 +1,78 @@
+{% if candidate.id %}
+{{ include('@ConsentPersData/candidate/_delete_form.html.twig') }}
+{% endif %}
+
+    {#{{ form_widget(form) }}#}
+{#{% block form_row %}#}
+    {#{% spaceless %}#}
+    <script>
+        $(document).ready(function() {
+            $('.select2-multiple').select2();
+        });
+    </script>
+    <table class="table-2" cellspacing=0 border="0">
+        <thead>
+        <tr>
+            <th class="kandUserAdd" colspan="3">
+                <button type="submit" class="save" data-tooltip="Сохранить" data-tooltip-location="right" form="candidate"></button>
+                <h1 class="add-k">Кандидат</h1>
+                <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href= '{{ path('candidate_index') }}'"></button>
+                <button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>
+            </th>
+        </tr>
+        </thead>
+        <tbody id="User2">
+        {{ form_start(form, {'attr': {'id': 'candidate'}}) }}
+        <tr>
+            <td class="F-famili" scope="row" width="26%">{{ form.lastName.vars.label | trans }}</td>
+            <td colspan="2" style="padding-top: 14px;">
+                {{ form_widget(form.lastName) }}
+            </td>
+        </tr>
+        <tr>
+            <td class="N-name" scope="row" width="26%">{{ form.firstName.vars.label | trans }}</td>
+            <td colspan="2">
+                {{ form_widget(form.firstName) }}
+            </td>
+        </tr>
+        <tr>
+            <td class="O-otch" scope="row" width="26%">{{ form.patronymic.vars.label | trans }}</td>
+            <td colspan="2">
+                {{ form_widget(form.patronymic) }}
+            </td>
+        </tr>
+        <tr>
+            <td class="DOB-k" scope="row" colspan="2" width="26%">{{ form.birthday.vars.label | trans }}</td>
+            <td>
+                {{ form_widget(form.birthday) }}
+            </td>
+        </tr>
+        <tr>
+            <td class="N-name" scope="row" colspan="2" width="26%">{{ form.emailaddress.vars.label | trans }}</td>
+            <td>
+                {{ form_widget(form.emailaddress) }}
+            </td>
+        </tr>
+        <tr>
+            <td class="N-name" scope="row" colspan="2" width="26%">{{ form.isconsent.vars.label | trans }}</td>
+            <td>
+                {{ form_widget(form.isconsent) }}
+            </td>
+        </tr>
+        </tbody>
+        {{ form_end(form) }}
+    </table>
+
+        {#<div class="form_row">#}
+            {#{{ form_label(form) }}#}
+            {#{{ form_errors(form) }}#}
+            {#{{ form_widget(form) }}#}
+        {#</div>#}
+    {#{% endspaceless %}#}
+{#{% endblock form_row %}#}
+    {#<button class="btn">{{ button_label|default('action.save_short' | trans) }}</button>#}
+
+
+
+
+

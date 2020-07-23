@@ -1,0 +1,85 @@
+{% block search %}
+{#    <form action="{{ path('message_email_index') }}" method="get">
+        <div class="form-group">
+            <input name="subject"
+                   class="form-control search-field"
+                   placeholder="{{ 'messageemail.subject'|trans }}"
+                   autocomplete="off"
+                   autofocus
+                   value="{{ find.subject }}"
+            >
+            <input name="body"
+                   class="form-control search-field"
+                   placeholder="{{ 'messageemail.body'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.body }}"
+            >
+            <input name="sender"
+                   class="form-control search-field"
+                   placeholder="{{ 'messageemail.sender'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.sender }}"
+            >
+        </div>
+        <div>
+            {{ 'form.from'|trans }}
+            <input name="fdatereceipt"
+                   type="datetime"
+                   class="form-control search-field"
+                   placeholder="{{ 'messageemail.datereceipt'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.fdatereceipt }}"
+            >
+            {{ 'form.to'|trans }}
+            <input name="ldatereceipt"
+                   type="datetime"
+                   class="form-control search-field"
+                   placeholder="{{ 'messageemail.datereceipt'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.ldatereceipt }}"
+            >
+        </div>
+        <div>
+            {{ 'form.from'|trans }}
+            <input name="fdatesent"
+                   type="datetime"
+                   class="form-control search-field"
+                   placeholder="{{ 'messageemail.datesent'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.fdatesent }}"
+            >
+            {{ 'form.to'|trans }}
+            <input name="ldatesent"
+                   type="datetime"
+                   class="form-control search-field"
+                   placeholder="{{ 'messageemail.datesent'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.ldatesent }}"
+            >
+        </div>
+        <button class="btn">{{ button_label|default('action.find' | trans) }}</button>
+    </form>#}
+    <form action="{{ path('message_email_index') }}">
+        <input name="subject" class="search-line-3" type="search" placeholder="{{ 'messageemail.subject'|trans }}" value="{{ find.subject }}">
+        <input name="body" class="search-line-3" type="search" placeholder="{{ 'messageemail.body'|trans }}" value="{{ find.body }}">
+        <input name="sender" class="search-line-3" type="search" placeholder="{{ 'messageemail.sender'|trans }}" value="{{ find.sender }}">
+        {#<label class="search">Поиск...</label>#}
+        <button type="submit" class="search"></button>
+        <span class="search-bar"></span>
+        <span class="cal">
+            <p class="text1">{{ 'messageemail.datereceipt'|trans }} {{ 'form.from'|trans }}</p>
+            <input name="fdatereceipt" class="date-line cal1" type="date" value="{{ find.fdatereceipt }}">
+            <p class="text1">{{ 'form.to'|trans }}</p>
+            <input name="ldatereceipt" class="date-line cal1" type="date" value="{{ find.ldatereceipt }}">
+        </span>
+        <span class="search-bar"></span>
+        <span class="cal">
+            <p class="text1">{{ 'messageemail.datesent'|trans }} {{ 'form.from'|trans }}</p>
+            <input name="fdatesent" class="date-line cal1" type="date" value="{{ find.fdatesent }}">
+            <p class="text1">{{ 'form.to'|trans }}</p>
+            <input name="ldatesent" class="date-line cal1" type="date" value="{{ find.ldatesent }}">
+        </span>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,964 @@
+/*======== Контент =======*/
+
+@media (min-width: 1200px) {
+  .wrapper {
+    width: 750px;
+  }
+}
+
+.cpd-wrapper{
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+}
+
+/*===== Поле поиска ======*/
+
+.cpd-form {
+  position: relative;
+  width: 570px;
+  margin: 0 auto;
+}
+
+.cpd-input, button {
+    border: none;
+    outline: none;
+    /* border-radius: 3px; */
+}
+
+input.search-line {
+  font-family: 'Ubuntu';
+    font-size: 16px;
+    padding: 10px;
+    /*display: block;*/
+    width: 90%;
+    border: none;
+    border-bottom: 1.5px solid #F9BD27;
+}
+
+input.search-line:focus {
+    outline: none;
+}
+
+input.search-line-3 {
+  font-family: 'Ubuntu';
+  font-size: 16px;
+  padding: 10px;
+  /*display: block;*/
+  width: 30%;
+  border: none;
+  border-bottom: 1.5px solid #F9BD27;
+}
+
+input.search-line-3:focus {
+  outline: none;
+}
+
+
+input.text-line {
+    font-family: 'Ubuntu';
+    font-size: 16.8px;
+    display: block;
+    width: 96.3%;
+    border: none;
+    border-bottom: 1.5px solid #F9BD27;
+    padding-left: 5px;
+    color: #3D464A;
+}
+
+input.text-line:focus {
+    outline: none;
+}
+
+
+label.search {
+    color: #999;
+    font-family: 'NotoSans-Italic';
+    font-size: 16px;
+    /*position: absolute;*/
+    pointer-events: none;
+    left: 0px;
+    top: 19px;
+  /*margin-top: -36px;*/
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+
+input.search-line:focus ~ label.search, input.search-line:valid ~ label.search {
+    top: -15px;
+    /*margin-top: -56px;*/
+    font-size: 14px;
+    color: #6985AF;
+  }
+
+span.search-bar{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.search-bar:before, .search-bar:after {
+    content: "";
+    height: 2px;
+    width: 0;
+    bottom: 0;
+    /*position: absolute;*/
+    background: #6985AF;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+  .search-bar:before {
+    left: 50%;
+  }
+  .search-bar:after {
+    right: 50%;
+  }
+
+input.search-line:focus ~ .search-bar:before,
+input.search-line:focus ~ .search-bar:after {
+  width: 50%;
+}
+
+button.user{
+    position:relative;
+    right: 28px;
+    background: url(../images/icons/cpd/iconki-search.png);
+    padding: 12px 12px;
+    cursor: pointer;
+    border: none;
+}
+
+button.search{
+  position:relative;
+  right: 28px;
+  background: url(../images/icons/cpd/wpf_search.png);
+  padding: 12px 12px;
+  cursor: pointer;
+  border: none;
+}
+
+button.save{
+  position:relative;
+  /*position: absolute;*/
+  top: 8px;
+  left: 1em;
+  background: url(../images/icons/cpd/save.png) no-repeat;
+  padding: 15px 15px;
+  cursor: pointer;
+  border: none;
+  float: left;
+  background-size: contain;
+}
+
+button.delete{
+  position:relative;
+  /*position: absolute;*/
+  bottom: 32px;
+  left: 30em;
+  background: url(../images/icons/cpd/del.png) no-repeat;
+  padding: 15px 15px;
+  cursor: pointer;
+  border: none;
+  background-size: contain;
+}
+
+button.back{
+  /*position: absolute;*/
+  bottom: 32px;
+  left: 30em;
+  background: url(../images/icons/cpd/back.png) no-repeat;
+  padding: 15px 15px;
+  cursor: pointer;
+  border: none;
+  background-size: 90% 95%;
+  width: 35px;
+}
+
+
+  /*====== Поле календарь =======*/
+
+  input.date-line {
+    display: block;
+    font-family: 'NotoSans-Italic';
+    font-size: 16px;
+    border: none;
+    border-bottom: 1.5px solid #F9BD27;
+    /* padding: 10px; */
+    /* width: 96%; */
+}
+
+input.date-line-2 {
+  display: block;
+  font-family: 'Ubuntu';
+  font-size: 16.8px;
+  border: none;
+  border-bottom: 1.5px solid #F9BD27;
+  width: 31%;
+}
+
+input.date-line-3 {
+  position: relative;
+  font-family: 'Ubuntu';
+  font-size: 17.5px;
+  border: none;
+  left: 6.9em;
+}
+
+input.date-line:focus {
+    outline: none;
+  }
+
+td input.date-line-2{
+  color: #3D464A;
+  margin-left: 7px;
+  padding-left: 8px;
+}
+
+  input.cal1[type=date]{
+    text-align: center;
+    color: #999;
+  }
+
+  .cal1::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+  }
+
+  .cal1::-webkit-datetime-edit {
+    /* padding-left: -15px;  */
+    margin-right: -12px;
+  }
+
+  .cal1::-webkit-inner-spin-button { display: none; }
+
+  .cal1::-webkit-calendar-picker-indicator {
+    color: transparent;
+    opacity: 1;
+    background: url(../images/icons/cpd/el_calendar-sign.png) no-repeat;
+    padding: 6px 6px;
+    cursor: pointer;
+  }
+
+
+
+  input.cal2[type=date]{
+    text-align: center;
+    color: #999;
+
+  }
+
+  .cal2::-webkit-calendar-picker-indicator {
+
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+  }
+
+  .cal2::-webkit-datetime-edit {
+    /* padding-left: -15px;  */
+    margin-right: -12px;
+  }
+
+  .cal2::-webkit-inner-spin-button { display: none; }
+
+  .cal2::-webkit-calendar-picker-indicator {
+    color: transparent;
+    opacity: 1;
+    background: url(../images/icons/cpd/el_calendar-sign.png) no-repeat;
+    padding: 6px 6px;
+    cursor: pointer;
+  }
+
+
+  input.cal3[type=date]{
+    text-align: right;
+    color: #3d464a;
+
+  }
+
+input.cal3::-webkit-calendar-picker-indicator {
+
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+  }
+
+input.cal3::-webkit-datetime-edit {
+    /* padding-left: -15px;  */
+    /* margin-right: -12px; */
+  }
+
+input.cal3::-webkit-inner-spin-button { display: none; }
+
+input.cal3::-webkit-calendar-picker-indicator {
+    color: transparent;
+    opacity: 1;
+    background: url(../images/icons/cpd/el_calendar-sign2.png) no-repeat;
+    padding: 6px 6px;
+    cursor: pointer;
+  }
+
+span.cal{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    flex-flow: nowrap;
+    padding-right: 36px;
+}
+
+p.text1{
+  font-family: 'Ubuntu';
+  font-size: 14px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin: 0;
+  padding-top: 9px;
+}
+
+
+/* =====================          =====================
+  ===================== ТАБЛИЦА =====================
+ =====================         =====================
+*/
+
+
+table.table-1{
+    /* padding-right: 30px; */
+    /* padding-left: 30px; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    border: 2px solid rgb(249, 189, 39);
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table.table-2{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  padding-bottom: 25px;
+  border: 2px solid rgb(249, 189, 39);
+  border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;;
+  /*border-collapse: separate;*/
+  /*border-spacing: 0;*/
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+table.table-3{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  border: 2px solid rgb(249, 189, 39);
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* .table-2 td{
+  font-family: Ubuntu-MediumItalic;
+  font-size: 16px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+} */
+
+
+tbody{
+  color: #3d464a;
+}
+
+tbody#User2{
+  color: #6B6B6B;
+  line-height: 40px;
+}
+
+tbody#Id3{
+  color: #3D464A;
+  line-height: 14px;
+}
+
+th.kand{
+  display: table-cell;
+  vertical-align: middle;
+  background-color: rgb(249, 189, 39);
+  height: 5vh;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+th.kandUserAdd{
+  display: table-cell;
+  vertical-align: middle;
+  background-color: rgb(249, 189, 39);
+  height: 0vh;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+td.kandUserAdd{
+  display: table-cell;
+  vertical-align: middle;
+  background-color: rgb(249, 189, 39);
+  height: 0vh;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+th.ID-user{
+  display: table-cell;
+  vertical-align: middle;
+  background-color: rgb(249, 189, 39);
+  height: 0vh;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+th.ID{
+  padding: 10.2px;
+  font-family: Ubuntu;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: right;
+}
+
+th.Famili{
+  /* padding: 10.2px; */
+  font-family: Ubuntu;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: left;
+}
+
+th.Name{
+  font-family: Ubuntu;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 16px;
+  padding-right: 5px;
+}
+
+th.Otchestvo{
+  /* padding: 10.2px; */
+  font-family: Ubuntu;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: right;
+}
+
+th.DOB{
+  font-family: Ubuntu;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: center;
+  padding-left: 30px;
+}
+
+th.Email{
+  padding: 10.2px;
+  font-family: Ubuntu;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+th.Edit{
+  padding: 10.2px;
+  font-family: Ubuntu;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+td {
+  font-family: 'Ubuntu';
+  font-size: 16px;
+  /* padding: 10px; */
+}
+
+td.name-left{
+  padding-left: 10px;
+}
+
+td.otch-right{
+  text-align: right;
+}
+
+td.DOB-center{
+  text-align: center;
+  padding-left: 30px;
+}
+
+td.email-center{
+  text-align: center;
+  padding-left: 15px;
+}
+
+td.F-famili{
+  font-size: 18px;
+  font-family: 'Ubuntu';
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 10px;
+  padding-top: 13px;
+}
+
+td.N-name{
+  font-size: 18px;
+  font-family: 'Ubuntu';
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 10px;
+}
+
+td.O-otch{
+  font-size: 18px;
+  font-family: 'Ubuntu';
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 10px;
+}
+
+td.DOB-k{
+  font-size: 18px;
+  font-family: 'Ubuntu';
+  font-weight: 400;
+  font-style: italic;
+  padding-left: 10px;
+  /* padding-top: 15px; */
+}
+
+
+td.Nummber-Edit{
+  font-family: 'Ubuntu';
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 15px;
+  padding-left: 13px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.Nummber-right{
+  font-family: 'Ubuntu';
+  font-size: 17.5px;
+  color: #3d464a;
+  text-align: right;
+  padding-top: 20px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.Family-Edit{
+  font-family: 'Ubuntu';
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-left: 13px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.Family-right{
+  font-family: 'Ubuntu';
+  font-size: 17.5px;
+  color: #3d464a;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.Name-Edit{
+  font-family: 'Ubuntu';
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-left: 13px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.Name-right{
+  font-family: 'Ubuntu';
+  font-size: 17.5px;
+  color: #3d464a;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.Otch-Edit{
+  font-family: 'Ubuntu';
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-left: 13px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.Otch-right{
+  font-family: 'Ubuntu';
+  font-size: 17.5px;
+  color: #3d464a;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+td.DOB-Edit{
+  font-family: 'Ubuntu';
+  font-size: 18px;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-left: 13px;
+  padding-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+
+
+
+a.Email-link{
+  text-decoration: none;
+  color: #6985AF;
+}
+
+a.Email-link:hover{
+  text-decoration: none;
+  color: #475B79;
+}
+
+a.back-link{
+  text-decoration: none;
+  position: absolute;
+  top: 0px;
+  right: 3em;
+}
+
+h1.text-k{
+  font-family: 'NotoSans';
+  font-size: 145%;
+  color: white;
+  padding-left: 65px;
+  padding-right: 65px;
+  letter-spacing: 0.03em;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+h1.add-k{
+  font-family: 'NotoSans';
+  font-size: 160%;
+  color: white;
+  padding-left: 65px;
+  padding-right: 65px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  letter-spacing: 0.03em;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+tr.stroka1{
+  height: 5.2vh;
+  color: #3D464A;
+}
+
+tr.stroka2{
+  font-family: 'Ubuntu';
+  font-size: 16px;
+  height: 4vh;
+  background: rgb(249, 189, 39, 0.5);
+}
+
+tr.stroka3{
+  font-family: 'Ubuntu';
+  font-size: 16px;
+  height: 4vh;
+  background: rgb(249, 189, 39, 0.5);
+}
+
+.id-nubmer{
+  text-align: center;
+  padding: 10px;
+}
+
+img.icoEdit{
+  /*display: block;*/
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+img.icoUserAdd{
+  width: 30px;
+  height: 30px;
+  float: right;
+  padding-right: 35px;
+  padding-top: 18px;
+}
+
+img.icoBack{
+  width: 30px;
+  height: 29px;
+  padding-top: 8px;
+}
+
+
+/* Блок flex */
+
+.cpd-BlockK0 {
+  flex-flow: row wrap;
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  padding-top: 0em;
+  /*border: 1px solid black;*/
+}
+
+.cpd-Block1 {
+  max-width: 30%;
+  float: left;
+  padding-right: 9.5em;
+  /*border: 1px solid black;*/
+}
+
+.cpd-Block2 {
+  max-width: 70%;
+  float: left;
+  padding-right: 0em;
+  /*border: 1px solid black;*/
+}
+
+
+/*===== Form select =====*/
+
+.cpd-font-label {
+  /*font-family: 'Ubuntu';*/
+  font-size: 16px;
+  display: inline;
+}
+
+.cpd-styled-select select {
+  /* font-family: 'Ubuntu'; */
+  /*font-size: 16px;*/
+  /*margin-top: 15px;*/
+  /*background: url(../images/select-arrow.png) no-repeat;*/
+  width: 90px;
+  /*-webkit-appearance: none;*/
+  /*background-position: 66px;*/
+  /*border: 2px solid #f9bd27;*/
+  /*border-radius: 2px;*/
+  padding-left: 21px;
+  /*padding-right: 35px;*/
+  /*margin-left: 2px;*/
+  /*margin-right: 2px;*/
+  outline: none;
+}
+
+
+/* ===== Pagination ====== */
+
+.cpd-pagination{
+  font-family: Ubuntu;
+  font-size: 16px;
+  float: right;
+  margin-top: 15px;
+  margin-right: 0;
+  padding-right: 0px;
+  cursor: pointer;
+}
+
+.cpd-pagination a {
+  color: #999;
+  /* float: left; */
+  padding: 3px 6px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.cpd-pagination a.active {
+  background-color: rgb(249, 189, 39);;
+  color: white;
+}
+
+.cpd-pagination a:hover:not(.active) {
+  background-color: rgb(249, 189, 39);
+  color: white;
+}
+
+
+.cpd-pagination .previous {
+  color: #3D464A;
+}
+
+.cpd-pagination .next{
+  color: #3D464A;
+}
+
+
+
+/* Всплывающая подсказка Tooltip */
+
+[data-tooltip] {
+  position: relative;
+  z-index: 10;
+  font-weight: 100;
+}
+
+
+[data-tooltip]:before,
+[data-tooltip]:after {
+  font-family: 'Ubuntu';
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  left: 50%;
+  bottom: calc(100% + 5px);
+  pointer-events: none;
+  transition: 0.2s;
+  will-change: transform;
+}
+
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  padding: 10px 18px;
+  min-width: 50px;
+  max-width: 300px;
+  width: max-content;
+  width: -moz-max-content;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: rgba(61, 70, 74, 0.9);
+  background-image: linear-gradient(30deg,
+    rgba(59, 72, 80, 0.44),
+    rgba(59, 68, 75, 0.44),
+    rgba(60, 82, 88, 0.44));
+  box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-align: center;
+  white-space: pre-wrap;
+  transform: translate(-50%, -5px) scale(0.5);
+}
+
+
+[data-tooltip]:after {
+  content: '';
+  border-style: solid;
+  border-width: 5px 5px 0px 5px;
+  border-color: rgba(61, 70, 74, 0.9) transparent transparent transparent;
+  transition-duration: 0s;
+  transform-origin: top;
+  transform: translateX(-50%) scaleY(0);
+}
+
+
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  opacity: 1;
+}
+
+[data-tooltip]:hover:before {
+  transition-delay: 0.3s;
+  transform: translate(-50%, -5px) scale(1);
+}
+
+[data-tooltip]:hover:after {
+  transition-delay: 0.5s;
+  transition-duration: 0.2s;
+  transform: translateX(-50%) scaleY(1);
+}
+
+
+/* LEFT */
+/* Tooltip + arrow */
+[data-tooltip-location="left"]:before,
+[data-tooltip-location="left"]:after {
+  left: auto;
+  right: calc(100% + 5px);
+  bottom: 50%;
+}
+
+/* Tooltip */
+[data-tooltip-location="left"]:before {
+  transform: translate(-5px, 50%) scale(0.5);
+}
+[data-tooltip-location="left"]:hover:before {
+  transform: translate(-5px, 50%) scale(1);
+}
+
+/* Arrow */
+[data-tooltip-location="left"]:after {
+  border-width: 5px 0px 5px 5px;
+  border-color: transparent transparent transparent rgba(61, 70, 74, 0.9);
+  transform-origin: left;
+  transform: translateY(50%) scaleX(0);
+}
+[data-tooltip-location="left"]:hover:after {
+  transform: translateY(50%) scaleX(1);
+}
+
+
+/* RIGHT */
+[data-tooltip-location="right"]:before,
+[data-tooltip-location="right"]:after {
+  left: calc(100% + 5px);
+  bottom: 50%;
+}
+
+[data-tooltip-location="right"]:before {
+  transform: translate(5px, 50%) scale(0.5);
+}
+[data-tooltip-location="right"]:hover:before {
+  transform: translate(5px, 50%) scale(1);
+}
+
+[data-tooltip-location="right"]:after {
+  border-width: 5px 5px 5px 0px;
+  border-color: transparent rgba(61, 70, 74, 0.9) transparent transparent;
+  transform-origin: right;
+  transform: translateY(50%) scaleX(0);
+}
+[data-tooltip-location="right"]:hover:after {
+  transform: translateY(50%) scaleX(1);
+}
+
+
+/* BOTTOM */
+[data-tooltip-location="bottom"]:before,
+[data-tooltip-location="bottom"]:after {
+  top: calc(100% + 5px);
+  bottom: auto;
+}
+
+[data-tooltip-location="bottom"]:before {
+  transform: translate(-50%, 5px) scale(0.5);
+}
+[data-tooltip-location="bottom"]:hover:before {
+  transform: translate(-50%, 5px) scale(1);
+}
+
+[data-tooltip-location="bottom"]:after {
+  border-width: 0px 5px 5px 5px;
+  border-color: transparent transparent rgba(61, 70, 74, 0.9) transparent;
+  transform-origin: bottom;
+}

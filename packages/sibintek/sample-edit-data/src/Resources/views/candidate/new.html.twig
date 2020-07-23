@@ -1,0 +1,12 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{#{% block title %}{{ 'candidate.new' | trans }}{% endblock %}#}
+
+{% block body %}
+
+    {#<h1>{{ 'candidate.new' | trans }}</h1>#}
+
+    {{ include('@ConsentPersData/candidate/_form.html.twig') }}
+
+    {#<a href="{{ path('candidate_index') }}">{{ 'navigation.return_list' | trans }}</a>#}
+{% endblock %}

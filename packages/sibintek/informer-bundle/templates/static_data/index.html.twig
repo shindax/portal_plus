@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StaticData index{% endblock %}
+
+{% block body %}
+    <h1>StaticData index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Frequency</th>
+                <th>Updated</th>
+                <th>Value</th>
+                <th>Success</th>
+                <th>LastValue</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for static_datum in static_datas %}
+            <tr>
+                <td>{{ static_datum.type }}</td>
+                <td>{{ static_datum.frequency }}</td>
+                <td>{{ static_datum.updated ? static_datum.updated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ static_datum.value }}</td>
+                <td>{{ static_datum.success }}</td>
+                <td>{{ static_datum.lastValue }}</td>
+                <td>
+                    <a href="{{ path('static_data_show', {'type': static_datum.type}) }}">show</a>
+                    <a href="{{ path('static_data_edit', {'type': static_datum.type}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('static_data_new') }}">Create new</a>
+{% endblock %}

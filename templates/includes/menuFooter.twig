@@ -1,0 +1,71 @@
+{# нижнее меню #}
+<div class="layout_footerBlock layout_footerBlock_menu">
+    {{ render(controller('App\\Controller\\MenuController::downMenuAction')) }}
+{#
+          <ul class="menu">
+            <li class="menu-title"><a href="{{ server_base }}/About">Об обществе!!!!!!!!!!!</a></li>
+            <li><a href="{{ server_base }}/Direction">Руководство</a></li>
+            <li><a href="{{ server_base }}/Direction/Secretary">Секретари руководителей</a></li>
+            <li><a href="{{ server_base }}/Search_employee/Company/">Структура ООО «РН-Ванкор»</a></li>
+            <li><a href="{{ server_base }}/HallOfFame">Доска почета</a></li>
+            <li><a href="{{ server_base }}/MS">Молодые специалисты </a></li>
+          </ul>
+          <ul class="menu">
+            <li class="menu-title"><a href="{{ server_base }}/Press">Пресс-центр</a></li>
+            <li><a href="{{ server_base }}/Press/Vankortoday">Ванкорнефть сегодня</a></li>
+            <li><a href="{{ server_base }}/Magazine">Газета «Ванкор»</a></li>
+            <li><a href="{{ server_base }}/Press/Video">Видеоархив</a></li>
+            <li><a href="{{ server_base }}/Gallery">Фотоархив</a></li>
+            <li><a href="{{ server_base }}/Press/Dailyphoto">Фото недели</a></li>
+            <li><a href="{{ server_base }}/Manofmonth">Наши люди</a></li>
+          </ul>
+          <ul class="menu">
+            <li class="menu-title"><a href="{{ server_base }}/ITIS">ИТ и связь</a></li>
+            <li><a href="{{ server_base }}/itis/services">Информационные системы </a></li>
+            <li><a href="{{ server_base }}/catalog.php">Телефонный справочник</a></li>
+            <li><a href="{{ server_base }}/itis/dialingrules">Правила набора номеров корпоративной телефонной сети</a></li>
+            <li><a href="{{ server_base }}/itis/numberingplan">План нумерации</a></li>
+            <li><a href="{{ server_base }}/itis/cellular">Сотовая связь</a></li>
+          </ul>
+          <ul class="menu">
+            <li class="menu-title"><a href="{{ server_base }}/airlift">АВИАЦИОННЫЙ ТРАНСПОРТ</a></li>
+            <li class="menu-title"><a href="{{ server_base }}/Flights/Bus">СЛУЖЕБНЫЕ АВТОБУСЫ</a></li>
+          </ul>
+          <ul class="menu menu_bold">
+            <li><a href="{{ server_base }}/News">новости</a></li>
+            <li><a href="{{ server_base }}/Infocenter">Информационный центр</a></li>
+            <li><a href="{{ server_base }}/News/View/849">Горячая линия безопасности</a></li>
+            #}
+{#{% if adUserLevel1Id == 19663 or ACCESS_TO_AUDITORS %}#}{#
+
+                #}
+{#<li><a href="http://vn-kius02-new/sites/ProcessFlowArchive/default.aspx" target="_blank">Архив технологических схем</a></li>#}{#
+
+            #}
+{#{% endif %}#}{#
+
+             <li id="serenalinkbottom"><!--Грузится через Ajax в templates\header--></li>                
+          </ul>
+#}
+</div>
+ <div class="layout_footerBlock layout_footerBlock_quick">
+          <div class="cols">
+            <div class="col col_4"><a href="{{ server_base }}/Vacancy" class="quick-item">
+                <div class="icon icon_lk"></div>
+                <div class="quick-content">Вакансии</div></a></div>
+            <div class="col col_4"><a href="{{ server_base }}/blockPbotos" class="quick-item">
+                <div class="icon icon_book"></div>
+                <div class="quick-content">Блок ПБОТОС</div></a></div>
+            <div class="col col_4"><a href="{{ server_base }}/Information" class="quick-item">
+                <div class="icon icon_paper"></div>
+                <div class="quick-content">Информационный бюллетень </div></a></div>
+            <div class="col col_4">              
+              <a href="http://vn-www.rosneft.ru/portalASP/SecurityScreen" class="quick-item">
+                  <div class="icon icon_lk2"></div>
+                  <div class="quick-content">Экран безопасности</span> </div>
+              </a>                
+            </div>          
+          </div>
+       </div>
+<div class="layout_footerBlock layout_footerBlock_copy">© 2012&minus;{{ "now"|date("Y") }} гг. <br> ООО «РН-Ванкор»</div>
+</div>

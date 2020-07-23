@@ -1,0 +1,171 @@
+{#<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>#}
+{% set server_base = "http://localhost:8081" %}
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Корпоративный портал ООО &laquo;РН-Ванкор&raquo;</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css{#?{{filemtimeMainCss}}#}">
+    <link href="/css/fonts/fonts1.css" rel="stylesheet" type="text/css">
+    <link href="/css/fonts/fonts2.css" rel="stylesheet" type="text/css">
+    <link href="/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    {#<link href="/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />#}
+    <link rel="stylesheet" href="/Extension/fontawesome-free-5.0.6/css/fontawesome-all.min.css">
+    <script src="/js/jquery.min.js"></script>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<div class="portalWorkNotice">
+    Ведутся технические работы, сервисы корпоративного портала могут быть частично недоступны.
+    <a class="portalWorkNotice__close" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
+</div>
+<div class="layout_main-wrap">
+    <div class="layout_main-c">
+        <header class="layout_header">
+            <div class="layout_header_container">
+                <div class="layout_headerBlock layout_headerBlock_logo"><a href="{{ server_base }}/" class="logo"></a></div>
+                <div class="layout_headerBlock layout_headerBlock_date"  style="line-height: 1.4; padding-top: 50px; max-width: 200px;">{#{{today_date}}{{today_month}}, {{today_day}} {{today_time}}#}
+                     {#<br />Рабочее расписание: #}{#{{ weekNumber}}#}{# неделя#}
+                </div>
+
+                {#<div class="layout_headerBlock layout_headerBlock_weather">#}
+                    {#<div class="weather-item"  id = "krskWeather"><img src="/images/weather1.png" alt="">#}{#{{weather_current}}#}{#<span>красноярск</span></div>#}
+                  {#<div class="weather-item"  id = "vankorWeather"><img src="/images/weather1.png" alt="">#}{#{{weather_remote}}#}{#<span>ванкор</span></div>#}
+                {#</div>#}
+                <div class="layout_headerBlock layout_headerBlock_weather">
+                    <div class="weather-item"  id = "krskWeather"><img src="/images/weather1.png" alt="">
+                        <span id="static_data_weather_current">
+                      {#{{weather.get('krasnoyarsk').Temperature }}#}
+                            {{  render(controller('Sibintek\\InformerBundle\\Controller\\WeatherController::getTemp', {'param': 'красноярск'})) }}
+                  </span><span class="weather-city">красноярск</span></div>
+                    <div class="weather-item"  id = "vankorWeather"><img src="/images/weather1.png" alt="">
+                        <span id="static_data_weather_remote">
+                      {#{{weather.get('vpu').Temperature}}#}
+                            {{  render(controller('Sibintek\\InformerBundle\\Controller\\WeatherController::getTemp', {'param': 'vpu'})) }}
+                </span><span class="weather-city">ванкор</span></div>
+                    <div class="weather-svodka-link" id="weather-svodka-link">Сводка по погоде</div>
+                </div>
+                {% include('includes/weatherSvodka.twig') %}
+
+
+                <div class="layout_headerBlock layout_headerBlock_kurs">
+                    <div class="kurs-item"><b>USD</b> <span id="currencyUSD">{#{{ currency_usd [:5] }}#}
+                            {{  render(controller('Sibintek\\InformerBundle\\Controller\\StaticDataController::getCurrency', {'param': 'USD'})) }}
+                        </span></div>
+                    <div class="kurs-item"><b>EUR</b> <span id="currencyEUR">{#{{ currency_euro [:5] }}#}
+                            {{  render(controller('Sibintek\\InformerBundle\\Controller\\StaticDataController::getCurrency', {'param': 'EUR'})) }}
+                        </span></div>
+                </div>
+
+                <div class="layout_headerBlock layout_headerBlock_lk layout_headerBlock_au">
+                    <a href="{{ server_base }}/auction" class="uk au-pic">
+                        <img src="/images/au.gif" alt=""/>
+                    </a>
+                    <a href="{{ server_base }}/auction" class="au-desc-link" id="au-desc-link">
+                        Аукционы
+                    </a>
+                </div>
+
+                <div class="layout_headerBlock layout_headerBlock_lk layout_headerBlock_lk_in">
+                    <a href="#/Itis/Statistics" class="lk"  >
+                        <div class="liningProfile">
+                            {#<img src="{{currentUser.getPhoto}}" alt="" />#}
+                        </div>
+                        {#<span>{{ currentUser.name }}</span></a>#}
+                    </a>
+                </div>
+            </div>
+            <div class="layout_headerMiddle_container">
+                <div class="layout_headerMiddleBlock layout_headerMiddleBlock_search">
+                    <div class="icon icon_search"></div><span>поиск сотрудника</span>
+                    <form  id ="employee_search" action="
+{#{{site_url}}#}
+                    search_employee/search/">
+                        <input type="text" class="search-input employee" id="employee"  name="employee">
+                        <button type="submit" class="search-btn">НАЙТИ</button>
+                    </form>
+                </div>
+                <div class="layout_headerMiddleBlock layout_headerMiddleBlock_tel">
+                    <div class="icon icon_tel"></div><span>Телефоны диспетчерской службы СИБИНТЕК:</span><b>50000</b>
+                    <div class="sep">     </div>+7 (391) <b>200-88-00</b>
+                </div>
+            </div>
+            {% include('includes/menuHeader.twig') %}
+        </header>
+        {% block layoutContainer %}
+            <div class="layout_content clearfix">
+                <div class="layout_contentRight_container">
+                    <div class="layout_contentRightBlock">
+                        {% block sideMenu %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="layout_contentLeft_container">
+                    {% block topContainer %}
+                    {% endblock %}
+
+
+                    <div class="layout_contentLeftBlock layout_contentLeftBlock_bordered">
+                        {% block pageTitle %}
+                            <h1 class="title">
+                                {#{{ title }}#}
+                                {% block pageTitleIcon %} {% endblock %}
+                            </h1>
+                        {% endblock %}
+                        {#{% if subTitle %}#}
+                            {#<h2 class="title"><span>{{subTitle}}</span></h2>#}
+                        {#{% endif %}#}
+
+                        {#{% block main %}#}
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+    <footer class="layout_footer">
+        <div class="layout_footer_container">
+            {% include('includes/menuFooter.twig') %}
+        </div>
+    </footer>
+    {% block Scripts %}
+        <script>
+            $(function(){
+                $("a[href$=xls]").append('&nbsp;<div class="icon icon_doc">XLS</div>');
+                $("a[href$=XLS]").append('&nbsp;<div class="icon icon_doc">XLS</div>');
+                $("a[href$=xlsx]").append('&nbsp;<div class="icon icon_doc">XLSX</div>');
+                $("a[href$=doc]").append('&nbsp;<div class="icon icon_doc">DOC</div>');
+                $("a[href$=rtf]").append('&nbsp;<div class="icon icon_doc">RTF</div>');
+                $("a[href$=docx]").append('&nbsp;<div class="icon icon_doc">DOCX</div>');
+                $("a[href$=pdf]").append('&nbsp;<div class="icon icon_doc">PDF</div>');
+                $("a[href$=ppt]").append('&nbsp;<div class="icon icon_doc">PPT</div>');
+                $("a[href$=pptx]").append('&nbsp;<div class="icon icon_doc">PPTX</div>');
+                $("a[href$=ppsx]").append('&nbsp;<div class="icon icon_doc">PPSX</div>');
+                $("a[href$=zip]").append('&nbsp;<div class="icon icon_doc">ZIP</div>');
+                $("a[href$=rar]").append('&nbsp;<div class="icon icon_doc">RAR</div>');
+            });
+        </script>
+        {% include('includes/scripts.twig') %}
+    {% endblock %}
+
+      {% block jsInclude %}
+      {% endblock %}
+</body>
+</html>

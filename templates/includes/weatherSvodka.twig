@@ -1,0 +1,73 @@
+{# Сводка по погоде #}
+
+<div class="weather-svodka">
+	<div class="weather-svodka-title">Объекты Ванкорского кластера</div>
+	<div class="clearfix"></div>
+			<div class="weather-item weather-item-svodka"  id = "suzunWeather">    	 
+			  <img src="/images/weather1.png" alt="">
+			  {#<span class="temp" id="static_data_weather_remote1"> {{weather.get('vpu').Temperature }} </span>#}
+			  <br />
+			  <span class="weather-item-speed-wind" id="static_data_speed_wind_vpu">
+				{#{{weather.get('vpu').WindDirection}} {{weather.get('vpu').WindPower }} <span>м/с</span>#}
+				</span>			 
+			  <br/><span class="label">ВПУ</span>
+			</div>			
+
+			<div class="weather-item weather-item-svodka"  id = "nps1Weather">							
+			  <img src="/images/weather1.png" alt="">
+			  {#<span class="temp" id="static_data_weather_nps1">{{weather.get('nps1').Temperature}}</span>			 #}
+			 	<br />
+				<span class="weather-item-speed-wind">
+					{#{{weather.get('nps1').WindDirection}} {{weather.get('nps1').WindPower }} <span>м/с</span>#}
+				</span>					
+			  <br/><span class="label">НПС-1</span>
+			</div>			
+			<div class="weather-item weather-item-svodka"  id = "nps2Weather">
+			  <img src="/images/weather1.png" alt="">
+			  {#<span class="temp" id="static_data_weather_nps2">{{weather.get('nps2').Temperature }}</span>#}
+			  <br />
+			  <br/><span class="label">НПС-2</span>
+			</div>
+			<div class="weather-item weather-item-svodka"  id = "knpsWeather">
+			  <img src="/images/weather1.png" alt="">
+			  {#<span class="temp" id="static_data_weather_knps">{{weather.get('knps').Temperature }}</span>#}
+			  <br />
+				<span class="weather-item-speed-wind">
+				{#{{weather.get('knps').WindDirection}} {{weather.get('knps').WindPower }} <span>м/с</span>#}
+				</span>
+				<br/><span class="label">КНПС</span>
+			</div>
+			<div class="weather-item weather-item-svodka"  id = "suzunWeather">
+			  <img src="/images/weather1.png" alt="">
+			  {#<span class="temp" id="static_data_weather_suzun">{{weather.get('spu').Temperature }}</span>#}
+			 	<br />
+			  <span class="weather-item-speed-wind">
+					{#{{weather.get('spu').WindDirection}} {{weather.get('spu').WindPower }} <span>м/с</span>#}
+				</span>	
+			  <br/><span class="label">Сузун</span>
+			</div>
+			<div class="weather-item weather-item-svodka"  id = "suzunWeather">
+			  <img src="/images/weather1.png" alt="">
+			  {#<span class="temp" id="static_data_weather_suzun">{{weather.get('tpu').Temperature }}</span>#}
+			  <br />
+			  <span class="weather-item-speed-wind">
+					{#{{weather.get('tpu').WindDirection}} {{weather.get('tpu').WindPower  }} <span>м/с</span>#}
+				</span>	
+			  <br/><span class="label">Тагул</span>
+			</div>
+			<div class="weather-item weather-item-svodka"  id = "suzunWeather">
+			  <img src="/images/weather1.png" alt="">
+			  {#<span class="temp" id="static_data_weather_suzun">{{weather.get('lpu').Temperature }}</span>#}
+			  <br />
+			  <span class="weather-item-speed-wind">
+					{#{{weather.get('lpu').WindDirection}} {{weather.get('lpu').WindPower  }} <span>м/с</span>#}
+				</span>	
+			  <br/><span class="label">Лодочное</span>
+			</div>
+
+</div>
+<div class="weather-svodka-layer">
+	<div class="weather-svodka-layer-sublayer">
+		
+	</div>
+</div>

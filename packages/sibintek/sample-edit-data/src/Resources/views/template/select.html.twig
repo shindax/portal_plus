@@ -1,0 +1,14 @@
+<form id="form_del" method="get" action="{{ path('feedback_new') }}" >
+    <input type="hidden" name="candidate_id" id="candidate_id">
+    <h2>Выберите шаблон письма</h2>
+
+    <select id="template" name="template" tabindex="-1">
+        {% for template in templates %}
+            <option value="{{ template.id }}">{{ template.name }}</option>
+        {% endfor %}
+    </select>
+    <p>
+    <button type="submit">Ок</button>
+    <button class="cancel" onclick="">Отмена</button>
+
+

@@ -1,0 +1,48 @@
+/* Menu */
+
+.cpd-side-panel {
+    display: block;
+    position: relative;
+    width: 250px;
+    height: 300px;
+    background: #F9BD27;
+    /*position: absolute;*/
+    /* width: 262px; */
+    /*min-width: 100%;*/
+    /*height: 329px;*/
+    /*left: 0px;*/
+    /*top: 75px;*/
+}
+
+.cpd-side-panel ul{
+    display: contents;
+    list-style: none;
+  /*font-family: 'MontserratBold';*/
+    font-family: 'fs_elliot_cyrillicheavy';
+    font-size: 16px;
+    margin-left: 0;
+  /*line-height: 300%;*/
+    color: #FFFFFF;
+}
+
+.cpd-side-panel .cpd-menu li a{
+    line-height: 300%;
+
+    display: block;
+    text-decoration: none;
+    padding-left: 16px;
+    color: #fff;
+  /* transition: all 0.2s ease-in-out; */
+}
+
+.cpd-side-panel .cpd-menu li:hover {
+    background: #475B79;
+    color: #fff;
+    /* transform: scale(1.1); */
+}
+
+.cpd-side-panel .cpd-menu ul li a {
+    /* color: #e9e9e9; */
+    padding-left: 15px;
+}
+

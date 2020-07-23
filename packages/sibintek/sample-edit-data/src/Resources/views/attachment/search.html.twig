@@ -1,0 +1,34 @@
+{% block search %}
+    {#<form action="{{ path('attachment_index') }}" method="get">#}
+        {#<div class="form-group">#}
+            {#<input name="fullName"#}
+                   {#class="form-control search-field"#}
+                   {#placeholder="{{ 'candidate.title'|trans }}"#}
+                   {#autocomplete="off"#}
+                   {#value="{{ find.fullName }}"#}
+            {#>#}
+            {#<input name="emailAddress"#}
+                   {#class="form-control search-field"#}
+                   {#placeholder="{{ 'emailaddress.title'|trans }}"#}
+                   {#autocomplete="off"#}
+                   {#value="{{ find.emailAddress }}"#}
+            {#>#}
+            {#<input name="originName"#}
+                   {#class="form-control search-field"#}
+                   {#placeholder="{{ 'attachment.filename'|trans }}"#}
+                   {#autocomplete="off"#}
+                   {#value="{{ find.originName }}"#}
+            {#>#}
+        {#</div>#}
+        {#<button class="btn">{{ button_label|default('action.find' | trans) }}</button>#}
+    {#</form>#}
+    <form action="{{ path('attachment_index') }}">
+        <input name="name" class="search-line-3" type="search" placeholder="{{ 'candidate.title'|trans }}" value="{{ find.fullName }}">
+        <input name="name" class="search-line-3" type="search" placeholder="{{ 'emailaddress.title'|trans }}" value="{{ find.emailAddress }}">
+        <input name="name" class="search-line-3" type="search" placeholder="{{ 'attachment.filename'|trans }}" value="{{ find.originName }}">
+        {#<label class="search">Поиск...</label>#}
+        <button type="submit" class="search"></button>
+        <span class="search-bar"></span>
+    </form>
+
+{% endblock %}

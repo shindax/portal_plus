@@ -1,0 +1,45 @@
+{% block search %}
+{#    <form action="{{ path('email_address_index') }}" method="get">
+        <div class="form-group">
+            <input name="name"
+                   class="form-control search-field"
+                   placeholder="{{ 'emailaddress.title'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.name }}"
+            >
+        </div>
+        <div>
+            {{ 'form.from'|trans }}
+            <input name="fdate"
+                   type="date"
+                   class="form-control search-field"
+                   placeholder="{{ 'emailaddress.datecreate'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.fdate }}"
+            >
+            {{ 'form.to'|trans }}
+            <input name="ldate"
+                   type="date"
+                   class="form-control search-field"
+                   placeholder="{{ 'emailaddress.datecreate'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.ldate }}"
+            >
+        </div>
+        <button class="btn">{{ button_label|default('action.find' | trans) }}</button>
+    </form>#}
+    <form action="{{ path('email_address_index') }}">
+        <input name="name" class="search-line" type="search" placeholder="Поиск..." value="{{ find.name }}">
+        {#<label class="search">Поиск...</label>#}
+        <button type="submit" class="search"></button>
+
+        <span class="search-bar"></span>
+        <span class="cal">
+            <p class="text1"> {{ 'form.from'|trans }}</p>
+            <input name="fdate" class="date-line cal1" type="date" value="{{ find.fdate }}">
+            <p class="text1">{{ 'form.to'|trans }}</p>
+            <input name="ldate" class="date-line cal1" type="date" value="{{ find.ldate }}">
+        </span>
+    </form>
+
+{% endblock %}

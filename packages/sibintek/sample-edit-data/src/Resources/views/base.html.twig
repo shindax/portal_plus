@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+                <link rel="stylesheet" href="/bundles/consentpersdata/css/cpd-base.css">
+        {% endblock %}
+    </head>
+    <body>
+        <div class="layout_content clearfix">
+            <div class="layout_contentRight_container">
+                <div class="layout_contentRightBlock">
+                    {% block sideMenu %}
+                        {{ include('@ConsentPersData/sideMenu.html.twig') }}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="layout_contentLeft_container">
+                {% block topContainer %}
+                {% endblock %}
+                <div class="layout_contentLeftBlock layout_contentLeftBlock_bordered">
+                    {% block body %}
+                    {% endblock %}
+                </div>
+
+            </div>
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

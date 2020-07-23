@@ -1,0 +1,22 @@
+easy_admin:
+      design:
+        menu:
+          - { entity: 'SysUser', label: 'Сист. польз', icon: 'user-secret' }
+      entities:
+            SysUser:
+                  class: App\Entity\SysUser
+
+                  list:
+                    fields:
+                      - { property: 'userLogin', label : 'Логин' }
+                      # - { property: 'roles', label : 'Роли' }
+                      - { property: 'groupList', label : 'Группы' }
+                      - { property: 'IdAD', label : 'AD' }
+                      - { property: 'UserDomain', label : 'Домен' }
+                      - { property: 'email', label : 'email' }
+                      - { property: 'IsActive', label : 'Активен' }
+                      - { property: 'OrgUserID', label : 'Пользователь' }
+
+
+
+

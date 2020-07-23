@@ -1,0 +1,19 @@
+{#<nav id="main-nav">#}
+    {#<ul class="nav clearfix">#}
+        {% for li in main_nav %}
+            <li>
+            <a href="{{ li.href }}"{% if li.class is defined %} class="{{ li.class }}"{% endif %}>{{ li.name|raw }}</a>
+
+            {% if li.childs != false %}
+                <ul class="menu-second">
+                 {% for child in li.childs %}
+                    <li>
+                    <a href="{{ child.href }}" {% if child.class is defined %} class="{{ child.class }}"{% endif %}>{{ child.name }}</a>
+                    </li>
+                 {% endfor %}
+                </ul>
+            {% endif %}
+           </li>
+        {% endfor %}
+    {#</ul>#}
+{#</nav>#}

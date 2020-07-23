@@ -1,0 +1,35 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'emailaddress.title' | trans }}{% endblock %}
+
+{% block body %}
+    {#<h1>{{ 'emailaddress.title' | trans }}</h1>#}
+
+    {{ include('@ConsentPersData/email_address/_form.html.twig', {'button_label': 'action.save_short'|trans}) }}
+
+    {#<a href="{{ path('email_address_index') }}">{{ 'navigation.return_list' | trans }}</a>#}
+
+    {#{{ include('@ConsentPersData/email_address/_delete_form.html.twig') }}#}
+
+    {#<script src="/js/chosen.jquery.min.js" type="text/javascript"></script>#}
+    {#<script>#}
+        {#// Поиск на Ajax#}
+        {#$(document).ready(function() {#}
+
+            {#console.log('start');#}
+            {#$('#email_address_candidate_name').autocomplete({#}
+                {#minChars: 2,#}
+                {#maxHeight: 200,#}
+                 {#serviceUrl: '/candidate/search',#}
+                {#type: 'GET',#}
+                {#dataType: 'text',#}
+                {#paramName: 'q',#}
+                {#onSelect: function (suggestions) {#}
+                    {#$('#email_address_candidate_id').val(suggestions.data.id);#}
+                    {#console.log('select');#}
+                {#}#}
+            {#});#}
+        {#})#}
+     {#</script>#}
+
+{% endblock %}

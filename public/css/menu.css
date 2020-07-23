@@ -1,0 +1,118 @@
+
+div.blockMenu {
+    display: block;
+    position: relative;
+    width: 332px;
+    height: 568px;
+    background: #F9BD27;
+}
+
+
+p.text1{
+    position: absolute;
+    width: 65px;
+    height: 22px;
+    left: 15px;
+    top: 7px;
+    font-family: 'MontserratBold';
+    font-size: 20px;
+    line-height: 22px;
+    text-transform: uppercase;
+
+    color: #FFFFFF;
+}
+
+.liner{
+position: absolute;
+width: 100%;
+height: 0px;
+left: 0px;
+top: 61px;
+
+border: 1px solid #FFFFFF;
+/* transform: rotate(-0.18deg); */
+}
+
+/* Menu */
+
+.side-panel {
+    position: absolute;
+    /* width: 262px; */
+    min-width: 100%;
+    height: 329px;
+    left: 0px;
+    top: 75px;
+}
+
+.side-panel ul{
+
+  display: contents;
+  list-style: none;
+  font-family: 'MontserratBold';
+  font-size: 16px;
+  line-height: 300%;
+  color: #FFFFFF;
+}
+
+.side-panel .menu li a{
+  display: block;
+  text-decoration: none;
+  padding-left: 16px;
+  color: #fff;
+  /* transition: all 0.2s ease-in-out; */
+}
+
+.side-panel .menu li:hover {
+    background: #475B79;
+    color: #fff;
+    /* transform: scale(1.1); */
+  }
+
+.side-panel .menu ul li a {
+    /* color: #e9e9e9; */
+    padding-left: 15px;
+  }
+
+/* Иконки */
+
+.close {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    position: relative;
+    z-index: 1;
+    margin: 12px auto;
+    cursor: pointer;
+    float: right;
+}
+.close:before {
+    content: '+';
+    color: #fff;
+    position: absolute;
+    z-index: 2;
+    transform: rotate(45deg);
+    font-size: 45px;
+    font-weight: bold;
+    /* line-height: 1; */
+    top: 0;
+    left: 0;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+}
+.close:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: -6px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+    transform: scale(0.01);
+}
+.close:hover:after {
+    transform: scale(1);
+}
+.close:hover:before {
+    transform: scale(0.8) rotate(45deg);
+    color: #fff;
+}

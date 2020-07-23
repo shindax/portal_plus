@@ -1,0 +1,34 @@
+{
+    "name": "sibintek/sample-edit-data",
+    "description": "sample symfony bundle",
+    "version" : "1.0.0",	
+    "type": "symfony-bundle",
+    "require": {
+        "symfony/flex": "^1.3.1",
+        "symfony/framework-bundle": "5.0.*",
+        "symfony/orm-pack": "^1.0",
+        "friendsofsymfony/ckeditor-bundle": "^2.2",
+        "ramsey/uuid": "^4.0",
+        "ramsey/uuid-doctrine": "^1.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexander Nikitin",
+            "email": "NikitinAY@sibintek.ru"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+             "Sibintek\\ConsentPersData\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sibintek\\ConsentPersData\\Test\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^5.0"
+    }
+}

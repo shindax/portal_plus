@@ -1,0 +1,43 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}Шаблон{% endblock %}
+
+{% block body %}
+    <table class="table-3" cellspacing=0 border="0">
+        <thead>
+            <tr>
+                <th colspan="2"  class="ID-user">
+                    <h1 class="add-k">Шаблон</h1>
+                    <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href='{{ path('template_index') }}'"></button>
+                    <button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="Id3">
+            <tr>
+                <th scope="row" class="Nummber-Edit">Id</th>
+                <td class="Nummber-right">{{ template.id }}</td>
+            </tr>
+            <tr class="stroka3">
+                <th scope="row" class="Nummber-Edit">Наименование</th>
+                <td class="Family-right">{{ template.name }}</td>
+            </tr>
+            <tr>
+                <th scope="row" class="Nummber-Edit">Тема</th>
+                <td class="Family-right">{{ template.subject }}</td>
+            </tr>
+            <tr class="stroka3">
+                <th scope="row" class="Name-Edit"></th>
+                <td class="Otch-right">{{ template.body }}</td>
+            </tr>
+            <tr class="Nummber-Edit">
+                <th  scope="row" class="Name-Edit">Файлы</th>
+                <td class="Nummber-right">{{ template.filesName ? template.filesName|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {#<a href="{{ path('template_edit', {'id': template.id}) }}">edit</a>#}
+
+    {#{{ include('@ConsentPersData/template/_delete_form.html.twig') }}#}
+{% endblock %}

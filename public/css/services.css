@@ -1,0 +1,261 @@
+/* Изменить размер картинки */
+#vnmenu{
+    width: 620px;
+    /* margin-bottom: 50px; */
+    position: relative;
+    padding-left: 148px;
+}
+
+
+.vn{
+    background: url(/images/vn_system.png) no-repeat;
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+    margin-bottom: 2px;
+}
+
+.vn:hover {
+    background: url(/images/vn_system2.png) no-repeat;
+    background-size: 100% 100%;
+    height: 100px;
+    margin-bottom: 2px;
+}
+
+.ibm-lotus{
+    background: url(/images/IBM_Lotus.png);
+    background-size: 100% 100%;
+    height: 120px;
+    cursor: pointer;
+    margin-bottom: 2;
+    margin-top: 3px;
+}
+
+.ibm-lotus:hover{
+    background: url(/images/IBM_Lotus2.png);
+    background-size: 100% 100%;
+    height: 120px;
+    margin-bottom: 2;
+}
+
+.sap {
+    background: url(/images/SAP.png);
+    background-size: 100% 100%;
+    height: 100px;
+    cursor: pointer;
+    margin-bottom: 2;
+    margin-top: 3px;
+}
+
+.sap:hover {
+    background: url(/images/SAP2.png);
+    background-size: 100% 100%;
+    height: 100px;
+    margin-bottom: 2;
+}
+
+.boss-kr {
+    background: url(/images/boss_kr.png);
+    background-size: 100% 100%;
+    height: 107px;
+    cursor: pointer;
+    margin-bottom: 2;
+    margin-top: 3px;
+}
+
+.boss-kr:hover {
+    background: url(/images/boss_kr2.png);
+    background-size: 100% 100%;
+    height: 107px;
+    margin-bottom: 2;
+}
+
+.ibm-abby {
+    background: url(/images/IBM_Abby.png);
+    background-size: 100% 100%;
+    height: 140px;
+    cursor: pointer;
+    margin-bottom: 2;
+    margin-top: 3px;
+}
+
+.ibm-abby:hover {
+    background: url(/images/IBM_Abby2.png);
+    background-size: 100% 100%;
+    height: 140px;
+    margin-bottom: 2;
+}
+
+.kius {
+    background: url(/images/KIUS.png);
+    background-size: 100% 100%;
+    height: 85px;
+    cursor: pointer;
+    margin-bottom: 2;
+    margin-top: 3px;
+}
+
+.kius:hover {
+    background: url(/images/KIUS2.png);
+    background-size: 100% 100%;
+    height: 85px;
+    margin-bottom: 2;
+}
+
+.nkt {
+    background: url(/images/NKT.png);
+    background-size: 100% 100%;
+    height: 70px;
+    cursor: pointer; 
+    margin-bottom: 2;
+}
+
+.nkt:hover {
+    background: url(/images/NKT2.png);
+    background-size: 100% 100%;
+    height: 70px;
+    margin-bottom: 2;
+}
+
+.gisvn {
+    background: url(/images/GisVn.png);
+    background-size: 100% 100%;
+    height: 70px;
+    cursor: pointer;
+    margin-bottom: 2; 
+    margin-top: 3px;
+}
+
+.gisvn:hover {
+    background: url(/images/GisVn2.png);
+    background-size: 100% 100%;
+    height: 70px;
+    margin-bottom: 2; 
+}
+
+
+/* Спойлер блок div */
+
+ .vn-sm {
+        width: 352px;
+        height: 458px;
+        background: #ffefc5;
+        border-radius: 3px 3px 3px 3px;
+        display: none;
+} 
+
+#textst{
+padding-top: 10px;
+padding-left: 10px;
+}
+
+.visible {
+width: 620px;
+background: #ffefc5;
+border-radius: 3px 3px 3px 3px;
+display: none;
+padding-bottom: 12px;
+} 
+
+.align_li {
+    padding-left: 25px;
+    padding-right: 30px;
+}
+
+/* Выравнивание тексты */
+
+.st1 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 40px;
+    padding-left: 164px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+}
+
+.st2 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 38px;
+    padding-left: 130px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+    text-align: center;
+}
+
+.st3 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 40px;
+    padding-left: 160px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+    text-align: center;
+}
+
+.st4 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 40px;
+    padding-left: 160px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+    text-align: center;
+}
+
+.st5 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 35px;
+    padding-left: 170px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+    text-align: center;
+    padding-right: 19px;
+}
+
+.st6 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 24px;
+    padding-left: 170px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+    text-align: center;
+}
+
+.st7 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 25px;
+    padding-left: 167px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+    text-align: center;
+}
+
+.st8 {
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    color: #333333;
+    padding-top: 24px;
+    padding-left: 160px;
+    margin-top: 0px;
+    /* word-break: break-all; */
+    text-align: center;
+}

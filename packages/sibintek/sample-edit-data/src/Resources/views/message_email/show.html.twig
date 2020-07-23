@@ -1,0 +1,84 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'messageemail.title' | trans }}{% endblock %}
+
+{% block body %}
+    <table class="table-3" cellspacing=0 border="0">
+        <thead>
+        <tr>
+            <th colspan="2" class="ID-user">
+                <h1 class="add-k">{{ 'messageemail.title' | trans }}</h1>
+                <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href='{{ path('message_email_index') }}'"></button>
+                {#<button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>#}
+            </th>
+        </tr>
+        </thead>
+        <tbody id="Id3">
+        <tr>
+            <td scope="row" class="Nummber-Edit">ID</td>
+            <td class="Nummber-right">{{message_email.id }}</td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Name-Edit">{{ 'messageemail.subject' | trans }}</td>
+            <td class="Family-right">{{ message_email.subject }}</td>
+        </tr>
+        <tr>
+            <td scope="row" class="Name-Edit">{{ 'messageemail.body' | trans }}</td>
+            <td class="Name-right">{{ message_email.body }}</td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Name-Edit">{{ 'messageemail.datereceipt' | trans }}</td>
+            <td class="Otch-right">
+                {{ message_email.dateTimeReceived ? message_email.dateTimeReceived|date('d.m.Y H:i:s') : '' }}
+            </td>
+        </tr>
+        <tr>
+            <td scope="row" class="Name-Edit">{{ 'messageemail.datesent' | trans }}</td>
+            <td class="Otch-right">
+                {{ message_email.dateTimeSent ? message_email.dateTimeSent|date('d.m.Y H:i:s') : '' }}
+            </td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Name-Edit">{{ 'messageemail.isattachment' | trans }}</td>
+            <td class="Name-right">{{ message_email.isAttachment ? 'action.yes' | trans : 'action.no' | trans }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+{#    <h1>{{ 'messageemail.title' | trans }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ message_email.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'messageemail.subject' | trans }}</th>
+                <td>{{ message_email.subject }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'messageemail.body' | trans }}</th>
+                <td>{{ message_email.body }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'messageemail.datereceipt' | trans }}</th>
+                <td>{{ message_email.dateTimeReceived ? message_email.dateTimeReceived|date('d.m.Y H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'messageemail.datesent' | trans }}</th>
+                <td>{{ message_email.dateTimeSent ? message_email.dateTimeSent|date('d.m.Y H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'messageemail.isattachment' | trans }}</th>
+                <td>{{ message_email.isAttachment ? 'action.yes' | trans : 'action.no' | trans }}</td>
+            </tr>
+        </tbody>
+    </table>#}
+
+    {#<a href="{{ path('message_email_index') }}">{{ 'navigation.return_list' | trans }}</a>#}
+
+    {#<a href="{{ path('message_email_edit', {'id': message_email.id}) }}">{{ 'action.edit' | trans }}</a>#}
+
+    {#{{ include('@ConsentPersData/message_email/_delete_form.html.twig') }}#}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% if vni %}
+    <div class="vni-block vni-block-person">
+        {% for item in vni %}
+            <p>
+                {% if item.TYPEVNI or item.TYPEDEVICE %}
+                    <b>
+                        {% if item.TYPEVNI %}{{ item.TYPEVNI }}{% endif %}
+                        {% if item.TYPEVNI and item.TYPEDEVICE %} / {% endif %}
+                        {% if item.TYPEDEVICE %}{{ item.TYPEDEVICE }}{% endif %}
+                    </b><br>
+                {% endif %}
+                {% if item.SERIAL %}<span>{{ item.SERIAL }}</span>{% endif %}
+            </p>
+        {% endfor %}
+    </div>
+{% endif %}

@@ -1,0 +1,14 @@
+<p class="n-qst-date">Количество&nbsp;голосов:&nbsp;{{rating.count}} / Оценка {{  rating.rating }}</p>
+
+{% if rating.voted == 0 %}
+    <div class="fl"> <p class= "n-qst-date">Ваша оценка:&nbsp; &nbsp;</p></div>
+    <div class="fl" id="starRatingDiv">
+        <input name="starRating1" type="radio" class="auto-submit-star required" value="1"/>
+        <input name="starRating1" type="radio" class="auto-submit-star" value="2"/>
+        <input name="starRating1" type="radio" class="auto-submit-star" value="3"/>
+        <input name="starRating1" type="radio" class="auto-submit-star" value="4"/>
+        <input name="starRating1" type="radio" class="auto-submit-star" value="5"/>
+    </div>
+{# else %}
+    <p class= "n-qst-date">Средняя оценка: {{ rating.rating }}</p> #}
+{% endif %}

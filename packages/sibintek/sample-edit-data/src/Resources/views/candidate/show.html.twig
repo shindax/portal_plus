@@ -1,0 +1,52 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'candidate.title'| trans }}{% endblock %}
+
+{% block body %}
+    {#<h1>{{ 'candidate.title'| trans }}</h1>#}
+    {{ include('@ConsentPersData/candidate/_delete_form.html.twig') }}
+
+    <table class="table-3" cellspacing=0 border="0">
+        <thead>
+        <tr>
+            <th colspan="2" class="ID-user">
+                <h1 class="add-k">{{ 'candidate.title'| trans }}</h1>
+                <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href='{{ path('candidate_index') }}'"></button>
+                <button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>
+            </th>
+        </tr>
+        </thead>
+        <tbody id="Id3">
+        <tr>
+            <td scope="row" class="Nummber-Edit">ID</td>
+            <td class="Nummber-right">{{ candidate.id }}</td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Family-Edit">{{ 'candidate.lastname' | trans }}</td>
+            <td class="Family-right">{{ candidate.lastName }}</td>
+        </tr>
+        <tr>
+            <td scope="row" class="Name-Edit">{{ 'candidate.name' | trans }}</td>
+            <td class="Name-right">{{ candidate.firstName }}</td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Otch-Edit">{{ 'candidate.patronymic' | trans }}</td>
+            <td class="Otch-right">{{ candidate.patronymic }}</td>
+        </tr>
+        <tr>
+            <td scope="row" class="DOB-Edit">{{ 'candidate.birthday' | trans }}</td>
+            <td class="Otch-right">
+                {{ candidate.birthday ? candidate.birthday|date('d.m.Y') : '' }}
+            </td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Otch-Edit">Email</td>
+            <td class="Otch-right">{{ candidate.getEmailAddresses|join(', ') }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    {#<a href="{{ path('candidate_edit', {'id': candidate.id}) }}">{{ 'action.edit' | trans }}</a>#}
+
+
+{% endblock %}

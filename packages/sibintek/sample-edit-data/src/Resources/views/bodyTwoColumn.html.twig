@@ -1,0 +1,23 @@
+{% extends '@ConsentPersData/base.html.twig' %}
+{% block stylesheets %}
+{{ parent() }}
+    <link rel="stylesheet" href="/bundles/consentpersdata/css/cpd-menu.css">
+    <link rel="stylesheet" href="/bundles/consentpersdata/css/cpd-table.css">
+    {#<link rel="stylesheet" href="/bundles/consentpersdata/css/cpd-FontFamily.css">#}
+    <link rel="stylesheet" href="/bundles/consentpersdata/css/select2.min.css">
+    <script src="/bundles/consentpersdata/js/jquery.min.js"></script>
+    <script src="/bundles/consentpersdata/js/select2.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
+
+{% block sideMenu %}
+    {{ include('@ConsentPersData/sideMenu.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/bundles/consentpersdata/js/select2.min.js"></script>
+{% endblock %}

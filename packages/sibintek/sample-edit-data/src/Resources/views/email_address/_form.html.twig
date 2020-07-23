@@ -1,0 +1,65 @@
+{#
+{{ form_start(form) }}
+    <script>
+        $(document).ready(function() {
+            $('.select2-single').select2();
+        });
+    </script>
+    {{ form_widget(form) }}
+
+    <button class="btn">{{ button_label|default('action.save_short' | trans) }}</button>
+{{ form_end(form) }}
+#}
+{{ include('@ConsentPersData/email_address/_delete_form.html.twig') }}
+
+<script>
+    $(document).ready(function() {
+        $('.select2-single').select2();
+    });
+</script>
+<table class="table-2" cellspacing=0 border="0">
+    <thead>
+    <tr>
+        <th class="kandUserAdd" colspan="3">
+            <button type="submit" class="save" data-tooltip="Сохранить" data-tooltip-location="right" form="email_address"></button>
+            <h1 class="add-k">{{ 'emailaddress.title' | trans }}</h1>
+            <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href= '{{ path('email_address_index') }}'"></button>
+            {#<button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>#}
+        </th>
+    </tr>
+    </thead>
+    <tbody id="User2">
+    {{ form_start(form, {'attr': {'id': 'email_address'}}) }}
+    <tr>
+        <td class="F-famili" scope="row" width="26%">{{ 'emailaddress.title' | trans }}</td>
+        <td colspan="2" style="padding-top: 14px;">
+            {{ form_widget(form.name) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="N-name" scope="row" width="26%">{{ form.isspam.vars.label | trans }}</td>
+        <td colspan="2">
+            {{ form_widget(form.isspam) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="O-otch" scope="row" width="26%">{{ form.isnoreply.vars.label | trans }}</td>
+        <td colspan="2">
+            {{ form_widget(form.isnoreply) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="DOB-k" scope="row" colspan="2" width="26%">{{ form.dateregistration.vars.label | trans }}</td>
+        <td>
+            {{ form_widget(form.dateregistration) }}
+        </td>
+    </tr>
+    <tr>
+        <td class="N-name" scope="row" colspan="2" width="26%">{{ form.candidate.vars.label | trans }}</td>
+        <td>
+            {{ form_widget(form.candidate) }}
+        </td>
+    </tr>
+    </tbody>
+    {{ form_end(form) }}
+</table>

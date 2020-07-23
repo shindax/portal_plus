@@ -1,0 +1,13 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}Edit Attachment{% endblock %}
+
+{% block body %}
+    <h1>Edit Attachment</h1>
+
+    {{ include('@ConsentPersData/attachment/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('attachment_index') }}">{{ 'navigation.return_list' | trans }}</a>
+
+    {{ include('@ConsentPersData/attachment/_delete_form.html.twig') }}
+{% endblock %}

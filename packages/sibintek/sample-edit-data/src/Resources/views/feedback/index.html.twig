@@ -1,0 +1,75 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'feedback.title' | trans }}{% endblock %}
+
+{% block body %}
+    {#<h1>{{ 'feedback.title' | trans }}</h1>#}
+    {{ include('@ConsentPersData/feedback/search.html.twig') }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="7" class="kand">
+                    <h1 class="text-k">{{ 'feedback.title' | trans }}</h1>
+                </th>
+            </tr>
+            <tr>
+                <th class="ID">Id</th>
+                <th class="Name">{% if sort == 1 %}
+                        <a href="{{ path('feedback_index_paginated', {page: paginator.CurrentPage, sort: -1} + find) }} "> {{ 'feedback.email' | trans }} </a>
+                    {% else %}
+                        <a href="{{ path('feedback_index_paginated', {page: paginator.CurrentPage, sort: 1} + find) }} "> {{ 'feedback.email' | trans }} </a>
+                    {% endif %}
+                </th>
+                <th class="Name">{% if sort == 2 %}
+                        <a href="{{ path('feedback_index_paginated', {page: paginator.CurrentPage, sort: -2} + find) }} "> {{ 'feedback.subject' | trans }} </a>
+                    {% else %}
+                        <a href="{{ path('feedback_index_paginated', {page: paginator.CurrentPage, sort: 2} + find) }} "> {{ 'feedback.subject' | trans }} </a>
+                    {% endif %}
+                </th>
+                <th class="Name">{% if sort == 3 %}
+                        <a href="{{ path('feedback_index_paginated', {page: paginator.CurrentPage, sort: -3} + find) }} "> {{ 'feedback.datesend' | trans }} </a>
+                    {% else %}
+                        <a href="{{ path('feedback_index_paginated', {page: paginator.CurrentPage, sort: 3} + find) }} "> {{ 'feedback.datesend' | trans }} </a>
+                    {% endif %}
+                </th>
+                <th class="Name">{{ 'feedback.body' | trans }}</th>
+                <th class="Name">{{ 'feedback.files' | trans }}</th>
+                <th class="Edit">{{ 'action.action' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i = 1 %}
+        {% for feedback in paginator.results %}
+            {% set i = i + 1 %}
+            {% if i % 2 == 1  %}
+                <tr class="stroka2">
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>{{ feedback.id }}</td>
+                <td>{{ feedback.emailAddresses ? feedback.emailAddresses|join(', ') : '' }}</td>
+                <td>{{ feedback.subject }}</td>
+                <td>{{ feedback.dateTimeSent ? feedback.dateTimeSent|date('d.m.Y H:i') : '' }}</td>
+                {% autoescape %}
+                <td>{{ feedback.body|raw }}</td>
+                {% endautoescape %}
+                <td>{{ feedback.filesName ? feedback.filesName|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('feedback_show', {'id': feedback.id}) }}">
+                        <img class="icoEdit" src="/bundles/consentpersdata/images/icons/cpd/iconki-show2.png" alt="{{ 'action.show' | trans }}" srcset="">
+                    </a>
+                    {#<a href="{{ path('feedback_edit', {'id': feedback.id}) }}">{{ 'action.show' | trans }}</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">{{ 'action.notfound' | trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ include('@ConsentPersData/paginator.html.twig', {page_index: 'feedback_index_paginated'}) }}
+
+    <a href="{{ path('feedback_new') }}">{{ 'feedback.new' | trans }}</a>
+{% endblock %}

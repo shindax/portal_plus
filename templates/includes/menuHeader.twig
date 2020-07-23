@@ -1,0 +1,98 @@
+{# Верхнее меню #}
+<div class="layout_headerMenu_container">
+            <ul class="menu">
+                {{ render(controller('App\\Controller\\MenuController::topMenuAction')) }}
+{#
+                <li><a href="{{ server_base }}/">
+                  <div class="icon icon_home"></div></a>
+              </li>
+                <li><a href="{{ server_base }}/News">новости</a></li>
+                <li><a href="{{ server_base }}/About">Об обществе</a>
+                <ul class="menu-second">
+                  <li><a href="{{ server_base }}/Direction">Руководство</a></li>
+                  <li><a href="{{ server_base }}/Direction/Secretary">Секретари руководителей</a></li>
+                  <li><a href="{{ server_base }}/About">Информация о подразделениях</a></li>
+                  <li><a href="{{ server_base }}/search_employee/company/">Структура ООО «РН-Ванкор»</a></li>
+                  <li><a href="{{ server_base }}/employeesFace">Представитель работников ООО «РН-Ванкор»</a></li>
+                  #}
+{#<li><a href="/Employeeofthemonth/View/{{ employee_of_the_month_year }}/{{ employee_of_the_month_month }}">Лучшие работники месяца</a></li>#}{#
+
+                  <li><a href="{{ server_base }}/HallOfFame">Доска почета</a></li>
+                  <!-- <li><a href="/Awards">Летопись наград</a></li> --->
+                  <li><a href="{{ server_base }}/MS">Молодые специалисты </a></li>
+                  <li><a href="http://www.rosneft.ru/">Сайт&nbsp;«НК&nbsp;«Роснефть»</a></li>
+                  <li><a href="http://start.msk.rn.ru/">Портал&nbsp;«НК&nbsp;«Роснефть»</a></li>
+                  <li><a href="{{ server_base }}/pd/start">Кандидаты</a></li>
+                </ul>
+              </li>
+              <li><a href="{{ server_base }}/Press">Пресс-центр</a>
+                  <ul class="menu-second">                        
+                        <li><a href="{{ server_base }}/Press/Vankortoday">«РН-Ванкор» сегодня</a></li>
+                        <li><a href="{{ server_base }}/Magazine">Газета «Ванкор»</a></li>
+                        <li><a href="{{ server_base }}/Press/Video">Видеоархив</a></li>
+                        <li><a href="{{ server_base }}/Gallery">Фотоархив</a></li>
+                        #}
+{#<li><a href="/Press/Dailyphoto">Фото недели</a></li>#}{#
+
+                        <li><a href="{{ server_base }}/Manofmonth">Наши люди</a></li>
+                  </ul>
+              </li>
+              <li><a href="{{ server_base }}/Questions">Встречи с ТК</a></li>
+              <li><a href="{{ server_base }}/Itis">ИТ и связь</a>
+                  <ul class="menu-second">
+                      <li><a href="{{ server_base }}/Itis/services">Информационные системы </a></li>
+                      <li><a href="{{ server_base }}/data/file/itis/Владельцы ФР и ИС.xls" target="_blank">Владельцы файловых ресурсов и информационных систем</a></li>
+                      <li><a href="{{ server_base }}/catalog.php">Телефонный справочник</a></li>
+                      <li><a href="{{ server_base }}/Itis/dialingrules">Правила набора номеров корпоративной телефонной сети</a></li>
+                      #}
+{#<li><a href="/Itis/numberingplan">План нумерации</a></li>#}{#
+
+                      <li><a href="{{ server_base }}/Itis/cellular">Сотовая связь</a></li>
+                      #}
+{#<li><a href="/Itis/request">Заявки</a></li>#}{#
+
+                      <li><a href="{{ server_base }}/portalASP/MeetingRoom">Расписание конференц-залов</a></li>
+                  </ul>
+              </li>
+              #}
+{#
+              <li><a href="/Flights">Расписание транспорта</a>
+                  <ul class="menu-second">
+                        <li><a href="/Flights/Schedule">График вылетов</a></li>
+                        <li><a href="/Flights/Bus">Служебные автобусы</a></li>
+                  </ul>
+              </li>
+              #}{#
+
+              <li><a href="{{ server_base }}/Reception">Электронная приемная</a></li>
+              <li><a href="{{ server_base }}/cabinet">Личный кабинет</a></li>
+              <li><a href="#">
+                  <div class="icon icon_menu"></div></a>
+                <ul class="menu-second menu-second_bold">
+
+                  <li><a href="{{ server_base }}/PhotoClub">Фотоклуб</a></li>
+                  #}
+{#<li><a href="/Phonebook">Записная книга</a></li>#}{#
+
+                  
+                  <li><a href="{{ server_base }}/EnergyEfficiency">Система энергоменеджмента</a></li>
+
+                  <li><a href="http://vn-ksdo/university/default.aspx">Дистанционное обучение</a></li>
+                  <li><a href="{{ server_base }}/Infocenter">Информационный центр</a></li>
+                  <li><a href="{{ server_base }}/News/View/849">Горячая линия безопасности</a></li>
+                  
+                  <li><a href="http://vn-www.rosneft.ru/lean/">Портал инициатив</a></li>
+
+                  #}
+{#{% if adUserLevel1Id == 7 %}#}{#
+
+                    <li><a href="http://vn-kius02-new/sites/ProcessFlowArchive/default.aspx" target="_blank">Архив технологических схем</a></li>
+                  #}
+{#{% endif %}#}{#
+
+                  <li id="serenalink"><!--Грузится через Ajax в templates\header--></li>
+                </ul>
+              </li>
+#}
+            </ul>
+</div>

@@ -1,0 +1,13 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'messageemail.title' | trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'messageemail.title' | trans }}</h1>
+
+    {{ include('@ConsentPersData/message_email/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('message_email_index') }}">{{ 'navigation.return_list' | trans }}</a>
+
+    {{ include('@ConsentPersData/message_email/_delete_form.html.twig') }}
+{% endblock %}

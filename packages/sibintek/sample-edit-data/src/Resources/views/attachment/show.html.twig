@@ -1,0 +1,76 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'attachment.title' | trans }}{% endblock %}
+
+{% block body %}
+<table class="table-3" cellspacing=0 border="0">
+    <thead>
+    <tr>
+        <th colspan="2" class="ID-user">
+            <h1 class="add-k">{{ 'attachment.title' | trans }}</h1>
+            <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href='{{ path('attachment_index') }}'"></button>
+            {#<button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>#}
+        </th>
+    </tr>
+    </thead>
+    <tbody id="Id3">
+    <tr>
+        <td scope="row" class="Nummber-Edit">ID</td>
+        <td class="Nummber-right">{{ attachment.id }}</td>
+    </tr>
+    <tr class="stroka3">
+        <td scope="row" class="Name-Edit">{{ 'attachment.filenamestorage' | trans }}</td>
+        <td class="Family-right">{{ attachment.fileName }}</td>
+    </tr>
+    <tr>
+        <td scope="row" class="Name-Edit">{{ 'attachment.drive' | trans }}</td>
+        <td class="Name-right">{{ attachment.drive }}</td>
+    </tr>
+    <tr class="stroka3">
+        <td scope="row" class="Name-Edit">{{ 'attachment.path' | trans }}</td>
+        <td class="Otch-right">{{ attachment.path }}</td>
+    </tr>
+    <tr>
+        <td scope="row" class="Name-Edit">{{ 'attachment.filename' | trans }}</td>
+        <td class="Otch-right">
+            {{ attachment.originName }}
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+{#
+    <h1>{{ 'attachment.title' | trans }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ attachment.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'attachment.filenamestorage' | trans }}</th>
+                <td>{{ attachment.fileName }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'attachment.drive' | trans }}</th>
+                <td>{{ attachment.drive }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'attachment.path' | trans }}</th>
+                <td>{{ attachment.path }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'attachment.filename' | trans }}</th>
+                <td>{{ attachment.originName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('attachment_index') }}">{{ 'navigation.return_list' | trans }}</a>#}
+
+    {#<a href="{{ path('attachment_edit', {'id': attachment.id}) }}">{{ 'action.edit' | trans }}</a>#}
+
+    {#{{ include('@ConsentPersData/attachment/_delete_form.html.twig') }}#}
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'feedback.title' | trans }}{% endblock %}
+
+{% block body %}
+    <table class="table-3" cellspacing=0 border="0">
+        <thead>
+        <tr>
+            <th colspan="2" class="ID-user">
+                <h1 class="add-k">{{ 'feedback.title' | trans }}</h1>
+                <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href='{{ path('feedback_index') }}'"></button>
+                {#<button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>#}
+            </th>
+        </tr>
+        </thead>
+        <tbody id="Id3">
+        <tr>
+            <td scope="row" class="Nummber-Edit">ID</td>
+            <td class="Nummber-right">{{ feedback.id }}</td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Name-Edit">{{ 'feedback.email' | trans }}</td>
+            <td class="Family-right">{{ feedback.emailAddresses ? feedback.emailAddresses|join(', ') : '' }}</td>
+        </tr>
+        <tr>
+            <td scope="row" class="Name-Edit">{{ 'feedback.subject' | trans }}</td>
+            <td class="Name-right">{{ feedback.subject }}</td>
+        </tr>
+        <tr class="stroka3">
+            <td scope="row" class="Name-Edit">{{ 'feedback.body' | trans }}</td>
+            {% autoescape %}
+                <td class="Otch-right">{{ feedback.body|raw }}</td>
+            {% endautoescape %}
+        </tr>
+        <tr>
+            <td scope="row" class="Name-Edit">{{ 'feedback.files' | trans }}</td>
+            <td class="Otch-right">
+                {{ feedback.filesName ? feedback.filesName|join(', ') : '' }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+{#    <h1>{{ 'feedback.title' | trans }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ feedback.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'feedback.email' | trans }}</th>
+                <td>{{ feedback.emailAddresses ? feedback.emailAddresses|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'feedback.subject' | trans }}</th>
+                <td>{{ feedback.subject }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'feedback.body' | trans }}</th>
+                <td>{{ feedback.body }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'feedback.files' | trans }}</th>
+                <td>{{ feedback.files ? feedback.files|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>#}
+
+    {#<a href="{{ path('feedback_index') }}">{{ 'navigation.return_list' | trans }}</a>#}
+
+    {#<a href="{{ path('feedback_edit', {'id': feedback.id}) }}">edit</a>#}
+
+    {#{{ include('@ConsentPersData/feedback/_delete_form.html.twig') }}#}
+{% endblock %}

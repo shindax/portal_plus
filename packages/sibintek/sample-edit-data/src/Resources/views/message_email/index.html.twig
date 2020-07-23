@@ -1,0 +1,89 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'messageemail.list' | trans }}{% endblock %}
+
+{% block body %}
+    {{ include('@ConsentPersData/message_email/search.html.twig') }}
+    <div id="maindiv">
+        {#<h1>{{ 'messageemail.list' | trans }}</h1>#}
+
+        <table class="table">
+                <thead>
+                <tr>
+                    <th colspan="8" class="kand">
+                        <h1 class="text-k">{{ 'messageemail.list' | trans }}</h1>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="ID">Id</th>
+                    <th class="Name">{% if sort == 3 %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: -3} + find) }} "> {{ 'messageemail.sender' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: 3} + find) }} "> {{ 'messageemail.sender' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Name">{% if sort == 1 %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: -1} + find) }} "> {{ 'messageemail.subject' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: 1} + find) }} "> {{ 'messageemail.subject' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Name">{% if sort == 2 %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: -2} + find) }} "> {{ 'messageemail.body' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: 2} + find) }} "> {{ 'messageemail.body' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Name">{% if sort == 4 %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: -4} + find) }} "> {{ 'messageemail.datereceipt' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: 4} + find) }} "> {{ 'messageemail.datereceipt' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Name">{% if sort == 5 %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: -5} + find) }} "> {{ 'messageemail.datesent' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('message_email_index_paginated', {page: paginator.CurrentPage, sort: 5} + find) }} "> {{ 'messageemail.datesent' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Name">{{ 'messageemail.isattachment' | trans }}</th>
+                    <th class="Edit">{{ 'action.action' | trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% set i = 1 %}
+            {% for message_email in paginator.results %}
+                {% set i = i + 1 %}
+                {% if i % 2 == 1  %}
+                    <tr class="stroka2">
+                {% else %}
+                    <tr>
+                {% endif %}
+                    <td>{{ message_email.id }}</td>
+                    <td>{{ message_email.sender }}</td>
+                    <td>{{ message_email.subject }}</td>
+                    <td>{{ message_email.body }}</td>
+                    <td>{{ message_email.dateTimeReceived ? message_email.dateTimeReceived|date('d.m.Y H:i') : '' }}</td>
+                    <td>{{ message_email.dateTimeSent ? message_email.dateTimeSent|date('d.m.Y H:i') : '' }}</td>
+                    <td>{{ message_email.isAttachment ? 'action.yes' | trans : 'action.no' | trans }}</td>
+                    <td>
+                        <a href="{{ path('message_email_show', {'id': message_email.id}) }}">
+                            <img class="icoEdit" src="/bundles/consentpersdata/images/icons/cpd/iconki-show2.png" alt="{{ 'action.show' | trans }}" srcset="">
+                        </a>
+                        {#<a href="{{ path('message_email_edit', {'id': message_email.id}) }}">{{ 'action.edit' | trans }}</a>#}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">{{ 'action.notfound' | trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        {{ include('@ConsentPersData/paginator.html.twig', {page_index: 'message_email_index_paginated'}) }}
+    </div>
+
+    {#<a href="{{ path('message_email_new') }}">{{ 'messageemail.new' | trans }}</a>#}
+{% endblock %}

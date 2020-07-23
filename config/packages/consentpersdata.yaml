@@ -1,0 +1,26 @@
+# \config\packages\consentpersdata.yaml
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    app_controller:
+        namespace: Sibintek\ConsentPersData\Controller\
+        resource: '@ConsentPersDataBundle/Controller'
+        tags: ['controller.service_arguments']
+
+    Sibintek\ConsentPersData\Repository\CandidateRepository: ~
+    Sibintek\ConsentPersData\Repository\EmailAddressRepository: ~
+    Sibintek\ConsentPersData\Repository\MessageEmailRepository: ~
+    Sibintek\ConsentPersData\Repository\AttachmentRepository: ~
+    Sibintek\ConsentPersData\Repository\FeedbackRepository: ~
+    Sibintek\ConsentPersData\Repository\TemplateRepository: ~
+
+    Sibintek\ConsentPersData\Service\FileUploader:
+        arguments:
+            $targetDirectory: 'upload_dir'
+
+    Sibintek\ConsentPersData\Command\InstallCommand:
+        arguments:
+            $projectDir: '%kernel.project_dir%'

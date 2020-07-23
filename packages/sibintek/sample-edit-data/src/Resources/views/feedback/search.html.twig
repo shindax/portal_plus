@@ -1,0 +1,60 @@
+{% block search %}
+{#    <form action="{{ path('feedback_index') }}" method="get">
+        <div class="form-group">
+            <input name="email"
+                   class="form-control search-field"
+                   placeholder="{{ 'feedback.email'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.email }}"
+            >
+            <input name="subject"
+                   class="form-control search-field"
+                   placeholder="{{ 'feedback.subject'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.subject }}"
+            >
+            <input name="body"
+                   class="form-control search-field"
+                   placeholder="{{ 'feedback.body'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.body }}"
+            >
+        </div>
+        <div>
+            {{ 'form.from'|trans }}
+            <input name="fdatesent"
+                   type="date"
+                   class="form-control search-field"
+                   placeholder="{{ 'feedback.datesend'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.fdatesent }}"
+            >
+            {{ 'form.to'|trans }}
+            <input name="ldatesent"
+                   type="date"
+                   class="form-control search-field"
+                   placeholder="{{ 'feedback.datesend'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.ldatesent }}"
+            >
+        </div>
+        <button class="btn">{{ button_label|default('action.find' | trans) }}</button>
+    </form>#}
+    <form action="{{ path('attachment_index') }}">
+        <input name="email" class="search-line-3" type="search" placeholder="{{ 'feedback.email'|trans }}" value="{{ find.email }}">
+        <input name="subject" class="search-line-3" type="search" placeholder="{{ 'feedback.subject'|trans }}" value="{{ find.subject }}">
+        <input name="body" class="search-line-3" type="search" placeholder="{{ 'feedback.body'|trans }}" value="{{ find.body }}">
+        {#<label class="search">Поиск...</label>#}
+        <button type="submit" class="search"></button>
+        <span class="search-bar"></span>
+        <span class="cal">
+            <p class="text1"> {{ 'form.from'|trans }}</p>
+            <input name="fdatesent" class="date-line cal1" type="date" value="{{ find.fdatesent }}">
+            <p class="text1">{{ 'form.to'|trans }}</p>
+            <input name="ldatesent" class="date-line cal1" type="date" value="{{ find.ldatesent }}">
+        </span>
+
+    </form>
+
+
+{% endblock %}

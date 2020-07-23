@@ -1,0 +1,63 @@
+easy_admin:
+  design:
+    menu:
+      - { entity: 'OrgNews', label: 'Новости', icon: 'newspaper-o' }
+
+  formats:
+    datetime: 'd.m.Y h:i'
+    date: 'd.m.Y'
+  entities:
+        OrgNews:
+              templates:
+                  list: 'easy_admin/org_news_list.html.twig'
+                  show: 'easy_admin/org_news_show.html.twig'
+              class: App\Entity\OrgNews
+              label: 'Новости'
+              list:
+                  fields:
+                      - { property: 'title', label : 'Заголовок' }
+                      - { property: 'author_id', label : 'Автор' }
+                      - { property: 'publish_date', type: 'datetime', label : 'Дата публикации' }
+                      - { property: 'is_published', type: 'boolean', label : 'Опубликовано' }
+                      - { property: 'image', type: 'image', label : 'Картинка', base_path: '%app.path.news_images%' }
+
+                  actions:
+                    - { name: 'edit', icon: 'pencil', label: ''}
+                    - { name: 'show', icon: 'eye', label: ''}
+                    - { name: 'delete', label: '', icon: 'trash'}
+                    - { name: 'new', label: 'Добавить новость', icon: 'plus'}
+                    - { name: 'search', label: 'Найти', icon: 'search'}
+
+              edit:
+                  title: 'Редактировать новость'
+                  fields:
+                      - { property: 'title', type: 'text', label: 'Заголовок' }
+                      - { property: 'imageFile', type: 'vich_image', label : 'Изображение' }
+                      - { property: 'short_text', type: 'fos_ckeditor', label: 'Текст анонса'  }
+                      - { property: 'full_text', type: 'fos_ckeditor', label: 'Полный текст'  }
+                      - { property: 'publish_date', type: 'date', label : 'Дата публикации' }
+                      - { property: 'is_published', type: 'checkbox', label : 'Опубликовано' }
+                      - { property: 'attachments', type: 'collection', label : 'Вложения', type_options: { entry_type: 'App\Form\AttachmentType', by_reference : false }}
+              new:
+                  title: 'Добавить новость'
+                  fields:
+                    - { property: 'title', label: 'Заголовок' }
+                    - { property: 'imageFile', type: 'vich_image', label : 'Изображение' }
+                    - { property: 'short_text', type: 'fos_ckeditor' , label: 'Текст анонса'  }
+                    - { property: 'full_text', type: 'fos_ckeditor', label: 'Полный текст'  }
+                    - { property: 'publish_date', type: 'datetime', label : 'Дата публикации' }
+                    - { property: 'is_published', type: 'checkbox', label : 'Опубликовано' }
+
+
+              show:
+                  title: 'Смотреть новость'
+                  fields:
+                      - { property: 'title', label: 'Заголовок' }
+                      - { property: 'image', type: 'image', label : 'Изображение', base_path: '/uploads/'  }
+                      - { property: 'short_text', type: 'fos_ckeditor' , label: 'Текст анонса', css_class: 'rtf-div' }
+                      - { property: 'full_text', type: 'ckeditor', label: 'Полный текст', css_class: 'rtf-div'}
+                      - { property: 'is_published', type: 'boolean', label : 'Опубликовано' }
+                      - { property: 'publish_date', type: 'datetime', label : 'Дата публикации' }
+
+                  actions: [ '-edit', '-delete' ]
+

@@ -1,0 +1,11 @@
+easy_admin:
+  design:
+    menu:
+      - { entity: 'OrgUser', label: 'Пользователи', icon: 'user' }
+  entities:
+        OrgUser:
+              class: App\Entity\OrgUser
+              list:
+                title: "Список пользователей"
+
+

@@ -1,0 +1,72 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'attachment.title' | trans }}{% endblock %}
+
+{% block body %}
+    {#<h1>{{ 'attachment.title' | trans }}</h1>#}
+
+    {{ include('@ConsentPersData/attachment/search.html.twig') }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="7" class="kand">
+                    <h1 class="text-k">{{ 'attachment.title' | trans }}</h1>
+                </th>
+            </tr>
+            <tr>
+                <th class="ID">Id</th>
+                <th class="Name">{% if sort == 1 %}
+                        <a href="{{ path('attachment_index_paginated', {page: paginator.CurrentPage, sort: -1} + find) }} "> {{ 'candidate.title' | trans }} </a>
+                    {% else %}
+                        <a href="{{ path('attachment_index_paginated', {page: paginator.CurrentPage, sort: 1} + find) }} "> {{ 'candidate.title' | trans }} </a>
+                    {% endif %}
+                </th>
+                <th class="Name">{% if sort == 2 %}
+                        <a href="{{ path('attachment_index_paginated', {page: paginator.CurrentPage, sort: -2} + find) }} "> {{ 'messageemail.sender' | trans }} </a>
+                    {% else %}
+                        <a href="{{ path('attachment_index_paginated', {page: paginator.CurrentPage, sort: 2} + find) }} "> {{ 'messageemail.sender' | trans }} </a>
+                    {% endif %}
+                </th>
+                <th class="Name">{{ 'attachment.path' | trans }}</th>
+                <th class="Name">{% if sort == 3 %}
+                        <a href="{{ path('attachment_index_paginated', {page: paginator.CurrentPage, sort: -3} + find) }} "> {{ 'attachment.filename' | trans }} </a>
+                    {% else %}
+                        <a href="{{ path('attachment_index_paginated', {page: paginator.CurrentPage, sort: 3} + find) }} "> {{ 'attachment.filename' | trans }} </a>
+                    {% endif %}
+                </th>
+                <th class="Edit">{{ 'action.action' | trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% set i = 1 %}
+        {% for attachment in paginator.results %}
+            {% set i = i + 1 %}
+            {% if i % 2 == 1  %}
+                <tr class="stroka2">
+            {% else %}
+                <tr>
+            {% endif %}
+                <td>{{ attachment.id }}</td>
+                <td>{{ attachment.lastName }} {{ attachment.firstName }} {{ attachment.patronymic }}</td>
+                <td>{{ attachment.sender }}</td>
+                <td>{{ attachment.path }}</td>
+                {#<td><a href="/storage/{{ attachment.path }}{{ attachment.fileName }}">{{ attachment.originName }}</a></td>#}
+                <td><a href="{{ path('attachment_download', {id: attachment.id}) }}">{{ attachment.originName }}</a></td>
+                <td>
+                    <a href="{{ path('attachment_show', {'id': attachment.id}) }}">
+                        <img class="icoEdit" src="/bundles/consentpersdata/images/icons/cpd/iconki-show2.png" alt="{{ 'action.show' | trans }}" srcset="">
+                    </a>
+                    {#<a href="{{ path('attachment_edit', {'id': attachment.id}) }}">{{ 'action.edit' | trans }}</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {{ include('@ConsentPersData/paginator.html.twig', {page_index: 'attachment_index_paginated'}) }}
+    {#<a href="{{ path('attachment_new') }}">Create new</a>#}
+{% endblock %}

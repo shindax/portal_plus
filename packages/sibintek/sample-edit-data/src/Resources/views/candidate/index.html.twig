@@ -1,0 +1,133 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/bundles/consentpersdata/css/the-modal.css">
+{% endblock %}
+
+{% block title %}
+    {{ 'candidate.list' | trans }}
+{% endblock %}
+
+{% block pageTitle %}
+{% endblock %}
+
+{% block body %}
+<div class="modal" id="test-modal" style="display: none">
+    {{  render(controller('Sibintek\\ConsentPersData\\Controller\\TemplateController::select')) }}
+</div>
+
+<div class="cpd-wrapper">
+    {{ include('@ConsentPersData/candidate/search.html.twig') }}
+
+    <div id="maindiv">
+        {#<h1>{{ 'candidate.list' | trans }}</h1>#}
+
+        <table class="table table-1">
+            <thead>
+                <tr>
+                    <th colspan="7" class="kand">
+                        <a href="{{ path('candidate_new') }}" title="{{ 'candidate.new' | trans }}">
+                            <img class="icoUserAdd" src="/bundles/consentpersdata/images/icons/cpd/add-user.png" alt="{{ 'candidate.new' | trans }}" srcset="" />
+                        </a>
+                        <h1 class="text-k">{{ 'candidate.list' | trans }}</h1>
+                    </th>
+                </tr>
+                <tr class="stroka1">
+                    <th class="ID">Id</th>
+                    <th class="Famili">{% if sort == 1 %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: -1} + find) }} "> {{ 'candidate.lastname' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: 1} + find) }} "> {{ 'candidate.lastname' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Name">{% if sort == 2 %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: -2} + find) }} "> {{ 'candidate.name' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: 2} + find) }} "> {{ 'candidate.name' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Otchestvo">{% if sort == 3 %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: -3} + find) }} "> {{ 'candidate.patronymic' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: 3} + find) }} "> {{ 'candidate.patronymic' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="DOB">{% if sort == 4 %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: -4} + find) }} "> {{ 'candidate.birthday' | trans }} </a>
+                        {% else %}
+                            <a href="{{ path('candidate_index_paginated', {page: paginator.CurrentPage, pageSize: paginator.getPageSize, sort: 4} + find) }} "> {{ 'candidate.birthday' | trans }} </a>
+                        {% endif %}
+                    </th>
+                    <th class="Email">Email</th>
+                    <th class="Edit">{{ 'action.action' | trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% set i = 1 %}
+            {% for candidate in paginator.results %}
+                {% set i = i + 1 %}
+                {% if i % 2 == 1  %}
+                    <tr class="stroka2">
+                {% else %}
+                    <tr>
+                {% endif %}
+                    <td scope="row" class="id-nubmer">{{ candidate.id }}</td>
+                    <td>{{ candidate.lastName }}</td>
+                    <td class="name-left">{{ candidate.firstName }}</td>
+                    <td class="otch-right">{{ candidate.patronymic }}</td>
+                    <td class="DOB-center">{{ candidate.birthday ? candidate.birthday|date('d.m.Y') : '' }}</td>
+                    <td class="email-center">{{ candidate.getEmailAddresses|join(', ') }}</td>
+                    <td width="100px">
+                        <a href=# title="Обратная связь">
+                            <img candidate_id="{{ candidate.id }}" class="icoEdit trigger" src="/bundles/consentpersdata/images/icons/cpd/mail.png" alt="Обратная связь">
+                        </a>
+                        <a href="{{ path('candidate_show', {'id': candidate.id}) }}"  rel="noopener noreferrer" title="{{ 'action.show' | trans }}"><img class="icoEdit" src="/bundles/consentpersdata/images/icons/cpd/iconki-show2.png" alt="{{ 'action.show' | trans }}" srcset="">
+                        </a><a href="{{ path('candidate_edit', {'id': candidate.id}) }}"  rel="noopener noreferrer" title="{{ 'action.edit' | trans }}"><img class="icoEdit" src="/bundles/consentpersdata/images/icons/cpd/design_edit.png" alt="{{ 'action.edit' | trans }}" srcset="">
+                        </a>
+                        {#<a href="{{ path('candidate_show', {'id': candidate.id}) }}">{{ 'action.show' | trans }}</a>#}
+                        {#<a href="{{ path('candidate_edit', {'id': candidate.id}) }}">{{ 'action.edit' | trans }}</a>#}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">{{ 'action.notfound' | trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {{ include('@ConsentPersData/paginator.html.twig', {page_index: 'candidate_index_paginated'}) }}
+     </div>
+    <div>
+        {#<a href="{{ path('candidate_new') }}">{{ 'candidate.new' | trans }}</a>#}
+    </div>
+</div>
+
+    <script type="text/javascript">
+        jQuery(function($){
+            // bind event handlers to modal triggers
+            $('body').on('click', '.trigger', function(e){
+                $('#candidate_id').val($(this).attr('candidate_id'));
+                e.preventDefault();
+                $('#test-modal').modal().open();
+            });
+
+            // attach modal close handler
+            $('.modal .cancel').on('click', function(e){
+                e.preventDefault();
+                $.modal().close();
+            });
+
+            // below isn't important (demo-specific things)
+            $('.modal .more-toggle').on('click', function(e){
+                e.stopPropagation();
+                $('.modal .more').toggle();
+            });
+        });
+    </script>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/bundles/consentpersdata/js/jquery.the-modal.js"></script>
+{% endblock %}

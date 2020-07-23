@@ -1,0 +1,174 @@
+
+table.Si2x{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td.vr, th.vr {
+  border: none;
+  padding: 1px;
+}
+
+button.atuin-btn{
+  width: 100%;
+  padding: 0px 0px;
+  margin: 0px
+}
+
+.atuin-btn {
+  display: inline-flex;
+  /* margin: 10px; */
+  text-decoration: none;
+  position: relative;
+  font-size: 20px;
+  line-height: 20px;
+  /* padding: 0px 30px; */
+  color: #FFF;
+  /* font-weight: bold; */
+  /* text-transform: uppercase;  */
+  font-family: Verdana, sans-serif;
+  background: #fcce23;
+  cursor: pointer; 
+  border: none;
+}
+
+.atuin-btn:hover,
+.atuin-btn:active,
+.atuin-btn:focus {
+  color: #FFF;
+  outline: none;
+}
+
+.atuin-btn:after,
+.atuin-btn:before {
+  position: absolute;
+  height: 4px;
+  left: 50%;
+  background: #fcce23;
+  bottom: -6px;
+  content: "";
+  transition: all 280ms ease-in-out;
+  width: 0;
+}
+
+.atuin-btn:before {
+  top: -6px;
+}
+
+.atuin-btn:hover:after,
+.atuin-btn:hover:before {
+  width: 100%;
+  left: 0;
+}
+
+.text1aq {
+  font-size: 23px;
+  font-weight: 100;
+  font-family: Verdana, sans-serif;
+  color: #444444;
+  padding-left: 40px;
+  margin-top: 30px;
+  text-align: left;
+}
+
+.text2aq {
+  font-size: 23px;
+  font-weight: 100;
+  font-family: Verdana, sans-serif;
+  /* text-decoration: none; */
+  color: #444444;
+  /* padding-top: 29px; */
+  padding-left: 72px;
+  padding-right: 72px;
+  margin-top: 30px;
+  /* margin-right: 67px;*/
+}
+
+.text3aq {
+  font-size: 23px;
+  font-weight: 100;
+  font-family: Verdana, sans-serif;
+  color: #444444;
+  /* padding-top: 36px; */
+  padding-left: 45px;
+  margin-top: 30px;
+  /* word-break: break-all; */
+  text-align: left;
+}
+
+.text4aq {
+  font-size: 23px;
+  font-weight: 100;
+  font-family: Verdana, sans-serif;
+  /* text-decoration: none; */
+  color: #444444;
+  /* padding-top: 29px; */
+  margin-top: 40px;
+  /* margin-right: 67px; */
+  padding-left: 125px;
+  padding-right: 100px;
+}
+
+.text5aq {
+  font-size: 23px;
+  font-weight: 100;
+  font-family: Verdana, sans-serif;
+  color: #444444;
+  /* padding-top: 29px; */
+  padding-left: 30px;
+  padding-right: 35px;
+  margin-top: 46px;
+  /* margin-right: 67px;*/
+}
+
+img.ISqe{
+  width: 89px;
+  float: left;
+  padding-left: 0px;
+  padding-top: 18px;
+  margin-left: 10px;
+  outline: none;
+}
+
+img.Phonesqe{
+  width: 90px;
+  /* height: 100%; */
+  float: left;
+  padding-left: 0;
+  /* padding-top: 18px; */
+  margin-left: 10px;
+  margin-top: 7px;
+  outline: none;
+}
+
+img.OneNqe {
+  width: 83px;
+  height: 100%;
+  float: left;
+  padding-left: 0;
+  /* padding-top: 18px; */
+  margin-left: 10px;
+  margin-top: 7px;
+  outline: none;
+}
+
+img.sotSqe {
+  width: 90px;
+  height: 100%;
+  float: left;
+  padding-left: 0;
+  /* padding-top: 18px; */
+  margin-left: 10px;
+  margin-top: 7px;
+  outline: none;
+}
+
+img.confZqe {
+  width: 100px;
+  float: left;
+  padding-left: 0px;
+  padding-top: 18px;
+  margin-left: 10px;
+  outline: none;
+}

@@ -1,0 +1,26 @@
+<div class="cpd-Block1">
+    <div class="cpd-styled-select">
+        {{ 'form.view' | trans }}
+        <select id="selector_pages">
+            {% set pageSize = [10, 25, 50, 100] %}
+            {% for i in pageSize %}
+                <option
+                {% if paginator.getPageSize == i %}
+                    selected="selected"
+                {% endif %}
+                >{{ i }}</option>
+            {% endfor %}
+        </select> {{ 'form.record' | trans }}
+        <script>
+            $('#selector_pages').change( function () {
+                url = window.location.href;
+                if(url.indexOf("?") !== -1)
+                    separator = "&";
+                else
+                    separator = "?";
+                window.location.href = "{{ path(page_index, {page: 1, sort: sort} + find) | raw }}" + separator +
+                    "pageSize=" + $('#selector_pages').val();
+            })
+        </script>
+    </div>
+</div>

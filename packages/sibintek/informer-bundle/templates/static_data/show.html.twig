@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StaticData{% endblock %}
+
+{% block body %}
+    <h1>StaticData</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Type</th>
+                <td>{{ static_datum.type }}</td>
+            </tr>
+            <tr>
+                <th>Frequency</th>
+                <td>{{ static_datum.frequency }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ static_datum.updated ? static_datum.updated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Value</th>
+                <td>{{ static_datum.value }}</td>
+            </tr>
+            <tr>
+                <th>Success</th>
+                <td>{{ static_datum.success }}</td>
+            </tr>
+            <tr>
+                <th>LastValue</th>
+                <td>{{ static_datum.lastValue }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('static_data_index') }}">back to list</a>
+
+    <a href="{{ path('static_data_edit', {'type': static_datum.type}) }}">edit</a>
+
+    {{ include('@Informer/static_data/_delete_form.html.twig') }}
+{% endblock %}

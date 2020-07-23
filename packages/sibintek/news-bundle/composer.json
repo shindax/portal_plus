@@ -1,0 +1,34 @@
+{
+    "name": "sibintek/news-bundle",
+    "version": "0.1.0",
+    "type": "symfony-bundle",
+    "description": "Sibintek news bundle",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.3"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Sibintek\\NewsBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "sibintek\\NewsBundle\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test" : "./vendor/bin/simple-phpunit"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "5.0.*"
+        }
+    }
+}

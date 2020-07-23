@@ -1,0 +1,13 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{#{% block title %} {{ 'candidate.title'| trans }} {% endblock %}#}
+
+{% block body %}
+    {#<h1> {{ 'candidate.title'| trans }} </h1>#}
+
+    {{ include('@ConsentPersData/candidate/_form.html.twig', {'button_label': 'action.save_short'|trans}) }}
+
+    {#<a href="{{ path('candidate_index') }}">{{ 'navigation.return_list' | trans }}</a>#}
+
+    {#{{ include('@ConsentPersData/candidate/_delete_form.html.twig') }}#}
+{% endblock %}

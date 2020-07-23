@@ -1,0 +1,78 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'emailaddress.title' | trans }}{% endblock %}
+
+{% block body %}
+    {#<h1>{{ 'emailaddress.title' | trans }}</h1>#}
+
+    {#{{ include('@ConsentPersData/email_address/_delete_form.html.twig') }}#}
+
+    <table class="table-3" cellspacing=0 border="0">
+        <thead>
+        <tr>
+            <th colspan="2" class="ID-user">
+                <h1 class="add-k">{{ 'emailaddress.title' | trans }}</h1>
+                <button type="button" class="back" data-tooltip="Возврат" data-tooltip-location="left" onclick="window.location.href='{{ path('email_address_index') }}'"></button>
+                {#<button type="submit" class="delete" data-tooltip="Удалить" data-tooltip-location="right" form="form_del"></button>#}
+            </th>
+        </tr>
+        </thead>
+        <tbody id="Id3">
+            <tr>
+                <td scope="row" class="Nummber-Edit">ID</td>
+                <td class="Nummber-right">{{ email_address.id }}</td>
+            </tr>
+            <tr class="stroka3">
+                <td scope="row" class="Name-Edit">{{ 'emailaddress.title' | trans }}</td>
+                <td class="Family-right">{{ email_address.name }}</td>
+            </tr>
+            <tr>
+                <td scope="row" class="Name-Edit">{{ 'emailaddress.spam' | trans }}</td>
+                <td class="Name-right">{{ email_address.isspam ? 'action.yes' | trans : 'action.no' | trans }}</td>
+            </tr>
+            <tr class="stroka3">
+                <td scope="row" class="Name-Edit">{{ 'emailaddress.noreply' | trans }}</td>
+                <td class="Otch-right">{{ email_address.isnoreply ? 'action.yes' | trans : 'action.no' | trans }}</td>
+            </tr>
+            <tr>
+            <td scope="row" class="Name-Edit">{{ 'emailaddress.datecreate' | trans }}</td>
+            <td class="Otch-right">
+                {{ email_address.dateregistration ? email_address.dateregistration|date('d.m.Y H:i') : '' }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+{#
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ email_address.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'emailaddress.title' | trans }}</th>
+                <td>{{ email_address.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'emailaddress.spam' | trans }}</th>
+                <td>{{ email_address.isspam ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'emailaddress.noreply' | trans }}</th>
+                <td>{{ email_address.isnoreply ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'emailaddress.datecreate' | trans }}</th>
+                <td>{{ email_address.dateregistration ? email_address.dateregistration|date('d.m.Y H:i:s') : '' }}
+            </tr>
+        </tbody>
+    </table>
+#}
+
+{#    <a href="{{ path('email_address_index') }}">{{ 'navigation.return_list' | trans }}</a>
+
+    <a href="{{ path('email_address_edit', {'id': email_address.id}) }}">{{ 'action.edit' | trans }}</a>
+
+    {{ include('@ConsentPersData/email_address/_delete_form.html.twig') }}#}
+{% endblock %}

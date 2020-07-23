@@ -1,0 +1,24 @@
+easy_admin:
+      design:
+        menu:
+          - { entity: 'SysRole', label: 'Роли', icon: 'address-card-o' }
+
+      entities:
+            SysRole:
+                  class: App\Entity\SysRole
+
+                  list:
+                      label: 'Список ролей'
+                      fields:
+                          - { property: 'id', label : '#' }
+                          - { property: 'Name', label : 'Имя роли' }
+                          - { property: 'Description', label : 'Описание роли' }
+                          - { property: 'groupNames', label : 'Список групп с ролью' }
+
+                  edit:
+                      title: 'Редактирование роли'
+                      fields:
+                          - { property: 'id', label : '#', type_options: { disabled: true }}
+                          - { property: 'Name', label : 'Имя группы' }
+                          - { property: 'Description', label : 'Описание роли' }
+                          - { property: 'groupNames', label : 'Список групп куда входит роль', type_options: { disabled: true } }

@@ -1,0 +1,11 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}{{ 'feedback.new' | trans }}{% endblock %}
+
+{% block body %}
+    {#<h1>{{ 'feedback.new' | trans }}</h1>#}
+
+    {{ include('@ConsentPersData/feedback/_form.html.twig') }}
+
+    {#<a href="{{ path('feedback_index') }}">{{ 'navigation.return_list' | trans }}</a>#}
+{% endblock %}

@@ -1,0 +1,18 @@
+# \config\packages\informer.yaml
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    app_controller:
+        namespace: Sibintek\InformerBundle\Controller\
+        resource: '@InformerBundle/src/Controller'
+        tags: ['controller.service_arguments']
+
+#    Sibintek\InformerBundle\Controller\StaticDataController: ~
+#    Sibintek\InformerBundle\Controller\WeatherController: ~
+    Sibintek\InformerBundle\Repository\WeatherRepository: ~
+    Sibintek\InformerBundle\Repository\StaticDataRepository: ~
+

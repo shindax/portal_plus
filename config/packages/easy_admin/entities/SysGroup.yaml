@@ -1,0 +1,24 @@
+easy_admin:
+      design:
+        menu:
+          - { entity: 'SysGroup', label: 'Группы', icon: 'group' }
+      entities:
+        SysGroup:
+              class: App\Entity\SysGroup
+              label: 'Группы'
+
+              list:
+                  label: 'Список групп'
+                  fields:
+                      - { property: 'id', label : '#' }
+                      - { property: 'Name', label : 'Имя группы' }
+                      - { property: 'Description', label : 'Описание группы' }
+                      - { property: 'roleNames', label : 'Список ролей в группе' }
+
+              edit:
+                  title: 'Редактирование группы'
+                  fields:
+                      - { property: 'id', label : '#', type_options: { disabled: true }}
+                      - { property: 'Name', label : 'Имя группы' }
+                      - { property: 'Description', label : 'Описание группы' }
+                      - { property: 'roles', label : 'Список ролей в группе'}

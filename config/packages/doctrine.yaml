@@ -1,0 +1,44 @@
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                # configure these for your database server
+                url: '%env(resolve:DATABASE_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+            informer:
+                # configure these for your database server
+                url: '%env(resolve:DATABASE_INFORMER_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+    orm:
+        default_entity_manager: default
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                auto_mapping: true
+                connection: default
+                mappings:
+                    ConsentPersDataBundle: ~
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
+            informer:
+                naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+                connection: informer
+                mappings:
+                    InformerBundle: ~
+#                    Informer:
+#                        is_bundle: false
+#                        type: annotation
+#                        dir: '%kernel.project_dir%/src/Informer'
+#                        prefix: 'App\Informer'
+#                        alias: Informer
+
+

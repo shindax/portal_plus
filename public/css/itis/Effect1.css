@@ -1,0 +1,34 @@
+
+
+.skewBtn {
+    
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(to top, #FBC02D 0%, #FFFF00 100%);
+    transition: 0.5s;
+    font-size: 24px;
+    border-radius: 5px;
+    margin: 3px 0px;
+    border-radius: 5px;
+    height: 100px;
+    width: 98.5%;
+    outline: none;
+  }
+.skewBtn:hover {
+    border: none;
+    color: white;
+    font-size: 28px;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+}
+  
+
+/* Buttons */
+
+.Yellow {
+    border: 2px solid #FFFF00;
+}
+.Yellow:hover {
+    background: linear-gradient(to top, #FBC02D 0%, #FFFF00 100%);
+    transition: all 0.3s ease-in-out;
+}

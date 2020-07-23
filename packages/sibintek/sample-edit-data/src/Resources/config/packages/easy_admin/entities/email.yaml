@@ -1,0 +1,38 @@
+easy_admin:
+    design:
+        menu:
+          - { entity : EmailAddress, label : Email , permission : ROLE_USER1 }
+    entities:
+        EmailAddress:
+            class: Sibintek\ConsentPersData\Entity\EmailAddress
+            label: 'Список email'
+            list:
+                fields:
+                    - { property: 'name', label : 'Название' }
+                actions:
+                    - { name: 'edit', label: 'Редактировать', permission : [ ROLE_USER1, ROLE_USER2 ] }
+                    - { name: 'show', label: 'Смотреть' }
+                    - { name: 'delete', label: 'Удалить', permission : [ ROLE_USER1 ]}
+
+            edit:
+                item_permission: [ ROLE_USER1 ]
+                fields:
+                    - { property: 'name', label : 'email' }
+#                    - { property: 'email',  label : 'email' }
+#                    - { property: 'rcollection', label : 'Роли'}
+#                    - { property: 'groups', label : 'Группы'}
+
+
+            show:
+                # item_permission: ['ROLE_USER1']
+                fields:
+                    - { property: 'name', label : 'email' }
+#                    - { property: 'email',  label : 'email' }
+#                    - { property: 'rcollection', label : 'Роли'}
+#                    - { property: 'groups', label : 'Группы'}
+
+                actions:
+                    - { name: '-edit' }
+                    - { name: '-delete' }
+
+

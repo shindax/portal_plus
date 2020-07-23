@@ -1,0 +1,21 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}Hello StartPageController!{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li><a href="{{ path('candidate_index') }}">{{ 'candidate.list' | trans }}</a></li>
+        <li><a href="{{ path('email_address_index') }}">{{ 'emailaddress.list' | trans }}</a></li>
+        <li><a href="{{ path('message_email_index') }}">{{ 'messageemail.list' | trans }}</a></li>
+        <li><a href="{{ path('attachment_index') }}">{{ 'attachment.list' | trans }}</a></li>
+        <li><a href="{{ path('feedback_index') }}">{{ 'feedback.title' | trans }}</a></li>
+    </ul>
+
+</div>
+{% endblock %}

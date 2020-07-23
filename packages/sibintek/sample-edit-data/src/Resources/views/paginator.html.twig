@@ -1,0 +1,29 @@
+{% if paginator.hasToPaginate %}
+    <div class="cpd-BlockK0">
+        {{ include('@ConsentPersData/selectorPages.html.twig') }}
+        <div class="cpd-Block2">
+            <div class="cpd-pagination">
+                {% if paginator.hasPreviousPage %}
+                    <a class="previous" href="{{ path(page_index, {page: paginator.previousPage, pageSize: paginator.getPageSize, sort: sort} + find) }}" rel="previous"> {{ 'paginator.previous'|trans }}</a>
+                {% else %}
+                    <a class="disabled previous" href="#"> {{ 'paginator.previous'|trans }}</a>
+                {% endif %}
+
+                {% for i in paginator.getArrayPage %}
+                    {% if i == paginator.currentPage %}
+                        <a class="active" href="#">{{ i }}</a>
+                    {% else %}
+                        <a href="{{ path(page_index, {page: i, pageSize: paginator.getPageSize, sort: sort} + find ) }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.hasNextPage %}
+                    <a class="next" href="{{ path(page_index, {page: paginator.nextPage, pageSize: paginator.getPageSize, sort: sort} + find) }}" rel="next">{{ 'paginator.next'|trans }} </a>
+                {% else %}
+                    <a class="disabled next" href="#">{{ 'paginator.next'|trans }} </a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+{% endif %}

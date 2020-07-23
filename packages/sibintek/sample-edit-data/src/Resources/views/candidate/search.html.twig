@@ -1,0 +1,62 @@
+{% block search %}
+{#
+    <form action="{{ path('candidate_index') }}" method="get">
+        <div class="form-group">
+            <input name="lname"
+                   class="form-control search-field"
+                   placeholder="{{ 'candidate.lastname'|trans }}"
+                   autocomplete="off"
+                   autofocus
+                   value="{{ find.lname }}"
+            >
+            <input name="name"
+                   class="form-control search-field"
+                   placeholder="{{ 'candidate.name'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.name }}"
+            >
+            <input name="pat"
+                   class="form-control search-field"
+                   placeholder="{{ 'candidate.patronymic'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.pat }}"
+            >
+        </div>
+        <div>
+            {{ 'form.from'|trans }}
+            <input name="fdate"
+                   type="date"
+                   class="form-control search-field"
+                   placeholder="{{ 'candidate.birthday'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.fdate }}"
+            >
+            {{ 'form.to'|trans }}
+            <input name="ldate"
+                   type="date"
+                   class="form-control search-field"
+                   placeholder="{{ 'candidate.birthday'|trans }}"
+                   autocomplete="off"
+                   value="{{ find.ldate }}"
+            >
+        </div>
+        <button class="btn">{{ button_label|default('action.find' | trans) }}</button>
+    </form>
+#}
+
+    <form action="{{ path('candidate_index') }}">
+        <input name="name" class="search-line" type="search" placeholder="{{ 'form.find' | trans }}..." value="{{ find.name }}">
+        {#<label class="search">Поиск...</label>#}
+        <button type="submit" class="user"></button>
+
+        <span class="search-bar"></span>
+        <span class="cal">
+                    <p class="text1"> {{ 'form.from'|trans }}</p>
+                    <input name="fdate" class="date-line cal1" type="date" value="{{ find.fdate }}">
+                    <p class="text1">{{ 'form.to'|trans }}</p>
+                    <input name="ldate" class="date-line cal1" type="date" value="{{ find.ldate }}">
+                </span>
+    </form>
+
+
+{% endblock %}

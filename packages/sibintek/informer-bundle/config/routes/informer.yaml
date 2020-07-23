@@ -1,0 +1,4 @@
+# \config\routes\informer.yaml
+app_controllers:
+    resource: '@InformerBundle/src/Controller/'
+    type: annotation

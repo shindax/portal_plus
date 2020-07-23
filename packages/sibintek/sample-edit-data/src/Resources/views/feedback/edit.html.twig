@@ -1,0 +1,13 @@
+{% extends '@ConsentPersData/bodyTwoColumn.html.twig' %}
+
+{% block title %}Edit Feedback{% endblock %}
+
+{% block body %}
+    <h1>Edit Feedback</h1>
+
+    {{ include('@ConsentPersData/feedback/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('feedback_index') }}">back to list</a>
+
+    {{ include('@ConsentPersData/feedback/_delete_form.html.twig') }}
+{% endblock %}

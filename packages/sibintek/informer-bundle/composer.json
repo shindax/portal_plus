@@ -1,0 +1,35 @@
+{
+    "name": "sibintek/informer-bundle",
+    "version": "0.1.0",
+    "type": "symfony-bundle",
+    "description": "Symfony bundles",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Alexander Nikitin",
+            "email": "NikitinAY@sibintek.ru"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "doctrine/doctrine-bundle": "^2.0",
+        "doctrine/orm": "^2.7",
+        "symfony/framework-bundle": "^5.0",
+        "symfony/twig-bundle": "^5.0",
+        "symfony/yaml": "^5.0"
+    },
+    "require-dev": {
+        "symfony/browser-kit": "^5.0",
+        "symfony/phpunit-bridge": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sibintek\\InformerBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sibintek\\InformerBundle\\Test\\": "tests/"
+        }
+    }
+}
