@@ -11,7 +11,8 @@ easy_admin:
               templates:
                   list: 'easy_admin/org_news_list.html.twig'
                   show: 'easy_admin/org_news_show.html.twig'
-              class: App\Entity\OrgNews
+              class: Sibintek\NewsBundle\Entity\OrgNews
+              #class: App\Entity\OrgNews
               label: 'Новости'
               list:
                   fields:

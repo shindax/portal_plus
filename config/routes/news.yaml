@@ -1,0 +1,4 @@
+# \config\routes\news.yaml
+app_controllers:
+    resource: '@NewsBundle/Controller/'
+    type: annotation

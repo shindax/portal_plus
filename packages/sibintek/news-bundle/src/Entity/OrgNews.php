@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace Sibintek\NewsBundle\Entity;
 
-use App\Repository\OrgNewsRepository;
+use Sibintek\NewsBundle\Repository\OrgNewsRepository;
+use App\Entity\OrgUser;
 use Doctrine\ORM\Mapping as ORM;
-
 
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use App\Controller\SecurityController;
 
 /**
  * @ORM\Entity(repositoryClass=OrgNewsRepository::class)
@@ -217,3 +216,5 @@ class OrgNews
         $this->updatedAt = new \DateTime('now');
      }
 }
+
+

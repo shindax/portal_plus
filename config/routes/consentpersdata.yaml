@@ -1,0 +1,4 @@
+# \config\routes\consentpersdata.yaml
+app_controllers:
+    resource: '@ConsentPersDataBundle/Controller/'
+    type: annotation

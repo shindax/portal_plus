@@ -17,6 +17,6 @@ return [
     Sibintek\ConsentPersData\ConsentPersDataBundle::class => ['all' => true],
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
     Sibintek\InformerBundle\InformerBundle::class => ['all' => true],
-    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     Sibintek\NewsBundle\NewsBundle::class => ['all' => true],
+    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
 ];

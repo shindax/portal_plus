@@ -1,7 +1,7 @@
 <?php
 // composer require sibintek/news-bundle
 
-namespace sibintek\NewsBundle;
+namespace Sibintek\NewsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

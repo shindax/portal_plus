@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository;
+namespace Sibintek\NewsBundle\Repository;
 
-use App\Entity\OrgNews;
+use Sibintek\NewsBundle\Entity\OrgNews;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
