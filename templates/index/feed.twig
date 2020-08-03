@@ -1,0 +1,51 @@
+{# Лента обновлений на сайте #}
+{% if feed %}    
+  <div class="articles-index">
+        <div class="articles-top">
+            <div class="articles-item">
+                {% for article in feed|slice(0,1) %}
+                    {% if article.image != "" %}
+                        <div class="articles-image">
+                            <a href="{{article.link}}" alt="">                            
+                                    <img src="{{ article.image }}" alt="" width="380">
+                                
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="articles-date">{{ article.date }}</div>
+                    <a href="{{article.link}}" class="articles-title">{{ article.title }}</a>
+                            <p>
+                                {#   {{ article.intro | raw}}  #}                                
+                                {{ article.intro | truncate(375)}}
+                            </p>
+                            <div class="articles-nav"><a href="{{article.link}}" class="btn">
+                                <div class="icon icon_go"></div></a>
+                                <div class="articles-comments">
+                                        <div class="icon icon_comments"></div>{{ article.comments }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                </div>
+        </div>
+      <div class="articles-archive">
+      {% for article in feed|slice(1, 2) %}        
+            <a href="{{ article.link }}" class="articles-item">
+                <div class="articles-image">
+                        {% if article.image %}
+               			 <img src="{{ article.image }}" alt="" width="192"/>
+                        {% endif %}                        
+                </div>
+                <div class="articles-content">
+                  <div class="articles-date">{{ article.date }}</div>
+                  <div class="articles-title">{{ article.title }}</div>
+                  <p>
+                    {# {{ article.intro | raw}} #}
+                    {{ article.intro | truncate(200)}}
+                  </p>
+                </div>
+            </a>            
+        {% endfor %}
+            <a href="/News" class="btn">Больше новостей</a>
+        </div>
+</div>
+{% endif %}   

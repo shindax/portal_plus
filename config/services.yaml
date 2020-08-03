@@ -6,7 +6,6 @@
 parameters:
     app.path.news_images: /uploads
 
-
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -24,10 +23,13 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Controller\RNNewsController:
+        autowire: true
+
+
     App\Entity\:
         resource: '../src/Entity/'
         tags: ['entity.service_arguments']
-
 
     App\Twig\:
         resource: '../src/Twig/'

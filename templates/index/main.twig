@@ -1,0 +1,256 @@
+{% extends 'layout.twig' %}
+
+{% block main %}
+    <div class="index-top clearfix">
+        <div class="layout_contentRight_container">
+            <div class="layout_contentRightBlock">
+                {% include 'index/oilBanner.twig' %}
+            </div>
+        </div>
+        <div class="layout_contentLeft_container">
+            <div class="layout_contentLeftBlock">
+                <div class="slider">
+                    <div class="pagination"></div>
+                    {% include('index/topic.twig') %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layout_content_container">
+        <div class="fast-nav">
+            <a href="/Infocenter/" class="fast-nav-item">
+                <img src="images/fast-bg.jpg" alt="" class="fast-nav-bg">
+                <img src="images/fast1.png" alt="" class="fast-nav-image">
+                <span>Информационный центр ванкор</span>
+            </a>
+            <a href="http://vn-ksdo/university/default.aspx" class="fast-nav-item">
+                <img src="images/fast-bg2.jpg" alt="" class="fast-nav-bg">
+                <img src="images/fast2.png" alt="" class="fast-nav-image">
+                <span>дистанционное обучение</span>
+            </a>
+            <a href="http://vn-education.rosneft.ru" class="fast-nav-item">
+                <img src="images/fast-bg3.jpg" alt="" class="fast-nav-bg">
+                <img src="images/fast3.png" alt="" class="fast-nav-image">
+                <span>электронный Портал знаний</span>
+            </a>
+            <a href="/Contragents/" class="fast-nav-item">
+                <img src="images/fast-bg5.jpg" alt="" class="fast-nav-bg">
+                <img src="images/fast5.png" alt="" class="fast-nav-image">
+                <span>закупочная деятельность</span>
+            </a>
+        </div>
+    </div>
+    <div class="index-middle clearfix">
+        <div class="layout_contentRight_container">
+            <div class="layout_contentRightBlock layout_contentRightBlock_bordered layout_contentRightBlock_best best-employee-in-month">
+                <h2 class="title title_bordered">Лучший работник месяца</h2>
+                {% include('index/employeeofthemonth.twig') %}
+            </div>
+            <div class="layout_contentRightBlock layout_contentRightBlock_bordered layout_contentRightBlock_quote">
+                <h2 class="title title_bordered">афоризм дня</h2>
+                <div class="quote">
+                    {% for indexQ, item in phrase.quotes %}
+                        <p class="quotes{{ indexQ }}">{{ item }}</p>
+                    {% endfor %}
+
+                    <p>
+                        <span>{{ phrase.signature }}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="layout_contentRightBlock layout_contentRightBlock_bordered">
+                <h2 class="title title_bordered">последние комментарии
+                    <div class="icon icon_comments"></div>
+                </h2>
+                <div class="comments-right">
+                    <div class="comments-slider">
+                        {% include('index/comments.twig') %}
+                    </div>
+                    <div class="btn btn_prev">
+                        <div class="icon icon_bottom"></div>
+                    </div>
+                    <div class="btn btn_next">
+                        <div class="icon icon_top"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layout_contentLeft_container">
+
+            <!-- голосование было с 01.08.19 по 20.08.19 теперь убираем кнопочку
+               <div class="layout_contentLeftBlock layout_contentLeftBlock_bordered">
+                <h2 class="title title_bordered">голосование «Золотые кадры»</h2>
+                <div class="fast-nav" style="">
+                    {#<a href="/anketa/opros_10072019.php" class="fast-nav-item" style="width:800px; height:200px; font-size: 30px; background-color: lightblue" target="_blank">#}
+                    <a href="/anketa/opros_01082019.php" class="fast-nav-item" style="width:800px; height:400px; font-size: 30px; background-color: lightblue" target="_blank">
+                        <img src="images/bg-gold3.jpg" alt="" class="fast-nav-bg">
+
+                        <span style="width:750px; text-align: center; text-transform: uppercase; font-weight: bold; font-size: 32px; ">
+                            <br>
+                            Конкурс достижений<br>
+                            «10 лет – История успеха»<br>
+                            Номинация «Золотые кадры»
+                        </span>
+
+                        <span style="width:750px; text-transform: none; font-weight: bolder; font-size: 20px; color: white; text-align: center;">
+                            <br>
+                            Приглашаем Вас принять участие <br>
+                            в электронном голосовании <br>
+                            для определения победителей <br>
+                            в номинации «Золотые кадры»!<br>
+                            Голосование проводится <br>
+                            до 17:00 часов 20.08.2019.
+                        </span>
+                    </a>
+                </div>
+            </div>
+        -->
+
+            <div class="layout_contentLeftBlock layout_contentLeftBlock_bordered">
+                <h2 class="title title_bordered">новости</h2>
+                {% include('index/feed.twig') %}
+            </div>
+            <div class="layout_content_container" style="float:left">
+
+                <div class="fast-nav">
+                    <a href="/News/View/849" class="fast-nav-item">
+                        <img src="images/fast-bg4.jpg" alt="" class="fast-nav-bg">
+                        <img src="images/fast4.png" alt="" class="fast-nav-image">
+                        <span>Горячая линия безопасности</span>
+                    </a>
+                    <a href="http://vn-www.rosneft.ru/lean/" class="fast-nav-item">
+                        <img src="images/fast-bg6.jpg" alt="" class="fast-nav-bg">
+                        <img src="images/fast6.png" alt="" class="fast-nav-image">
+                        <span>портал инициатив</span>
+                    </a>
+                    <a href="/EnergyEfficiency" class="fast-nav-item" style="margin-right:0; width: 290px">
+                        <img src="images/fast-bg7.jpg" alt="" class="fast-nav-bg">
+                        <img src="images/fast7.png" alt="" class="fast-nav-image">
+                        <span>система энергоменеджмента</span>
+                    </a>
+                </div>
+            </div>
+            {% include('index/birthdayWidget.twig') %}
+        </div>
+    </div>
+
+
+
+    <!--
+     <div class="index-bottom clearfix">
+        <div class="layout_contentHalf_container">
+            <div class="layout_contentHalfBlock layout_contentHalfBlock_bordered" style="position: relative;">
+                <div >
+                    <a href="images/SnipImage.JPG" class="fancy"  >
+                      <img src="images/SnipImage.JPG" alt="" style="width: 100%; padding-top: 8%; ">
+                    </a>
+                </div>
+            </div>
+        </div>
+      -->
+
+
+    {#<div class="index-bottom clearfix">#}
+
+        <!-- Раздел Фото недели -->
+        {#<div class="layout_contentHalf_container" style="margin-bottom: 20px;">#}
+            {#<div class="layout_contentHalfBlock layout_contentHalfBlock_bordered">#}
+                {#<h2 class="title title_bordered">фото недели#}
+                    {#<div class="photo-nav">#}
+                        {#<a href="/Gallery" class="btn">фотоархив</a><a href="/Press/Video" class="btn">видеоархив</a>#}
+                    {#</div>#}
+                {#</h2>#}
+                {#<div class="photo" style="border-right: 4px solid #ffbb36;">#}
+                    {#<div class="photo-left">#}
+                        {#<a href="{{ weeklyphotos.primary.fileOriginal }}" rel="gallery" data-title-id="title-1"#}
+                           {#class="fancy">#}
+                            {#<img src="{{ weeklyphotos.primary.file }}" alt="">#}
+                        {#</a>#}
+                        {#<div id="title-1" class="fancy-title">#}
+                            {#<div class="date">14 января, 2014</div>#}
+                            {#<div class="fancy-title-content">{{ weeklyphotos.primary.altertext }}</div>#}
+                            {#<div class="fancy-title-description">Фото <a href="#">Альбинский А.</a></div>#}
+                        {#</div>#}
+                    {#</div>#}
+                    {#<div class="photo-right">#}
+                        {#{% set c = 2 %}#}
+                        {#{% for photo in weeklyphotos.secondary %}#}
+                            {#<a href="{{ photo.fileOriginal }}" rel="gallery" data-title-id="title-{{ c }}"#}
+                               {#class="photo-item fancy photo-item-{{ c }}">#}
+                                {#<img src="{{ photo.file }}" alt="">#}
+                            {#</a>#}
+                            {#<div id="title-{{ c }}" class="fancy-title">#}
+                                {#<div class="date">14 января, 2014</div>#}
+                                {#<div class="fancy-title-content">{{ file.altertext }}</div>#}
+                                {# <div class="fancy-title-description">Фото <a href="#">Альбинский А.</a></div>#}
+                            {#</div>#}
+                            {#{% set c = c + 1 %}#}
+                        {#{% endfor %}#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#</div>#}
+
+        <!-- Раздел Фотоконкурс -->
+        <!--
+        <div class="layout_contentHalf_container">
+            <div class="layout_contentHalfBlock layout_contentHalfBlock_bordered" style="position: relative;">
+                <h2 class="title title_bordered">Фотоконкурс
+                    <a href="/contest/worklist" class="btn" style="margin: 0 5px 0 5px;">Голосовать за фото</a>
+                </h2>
+                <div>
+                    <a href="images/photocontest_voting.png" class="fancy">
+                        <img src="images/photocontest_voting.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        -->
+
+        <!-- Раздел Вопрос ответ -->
+        <!--
+        <div class="layout_contentHalf_container">
+            <div class="layout_contentHalfBlock layout_contentHalfBlock_bordered">
+                <h2 class="title title_bordered">
+                    вопрос-ответ
+                    {# <a href="/questions/form/" class="btn">задать свой</a>#}
+                </h2>
+                {#{{ lastQuestion }}#}
+            </div>
+        </div>
+        -->
+
+        <!-- Раздел Самый умный -->
+        {#{% include('index/intergameWidget.twig') %}#}
+
+        <!-- Раздел С Новым годом -->
+        {# {% include('index/newYearWidget.twig') %} #}
+
+        <!-- Раздел Голосование -->
+        <!--
+        <div class="layout_contentHalf_container">
+          <div class="layout_contentHalfBlock layout_contentHalfBlock_bordered">
+              <h2 class="title title_bordered">опрос
+                <a href="/polls" {# onclick="$.fancybox.open({type: 'ajax', href: 'ask-modal.html', padding: 0, margin: 20, wrapCSS: 'popup-fancy'});return false;"#} class="btn">все опросы</a>
+              </h2>
+              {# {% include('index/pollActive.twig') %} #}
+              {# {{ poll }} #}
+          </div>
+          {#<div class="layout_contentHalfBlock layout_contentHalfBlock_bordered">#}
+              {#<h2 class="title title_bordered">опрос</h2>#}
+              {#{% include('index/pollResults.twig') %}    #}
+          {#</div>#}
+        </div>
+        -->
+
+    {#</div>#}
+
+    <div class="layout_content_container" style="margin-bottom: 20px;">
+        <div class="layout_contentBlock">
+            <h2 class="title title_bordered">вопрос-ответ</h2>
+            {{ lastQuestion }}
+        </div>
+    </div>
+{% endblock %}

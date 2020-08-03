@@ -1,0 +1,11 @@
+{% macro birthdayPerson(person) %}
+       <div class="birthday-item">            
+           <div class="liningBirthday">
+                <img src="{{person.image}}" alt="">
+           </div> 
+            <div class="birthday-content">
+                <a href="/Employee/view/{{person.employee_id}}" class="birthday-name">{{ person.name}}</a>
+            <div class="birthday-text">{{ person.title}} </div>
+                    </div>
+         </div>
+{% endmacro %}

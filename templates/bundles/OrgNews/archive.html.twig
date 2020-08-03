@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block sideMenu %}
+    <div class="layout_contentRightBlock">
+              {% include 'index/oilBanner.twig' %}
+            </div>
+            <div class="layout_contentRightBlock layout_contentRightBlock_bordered">
+              <div class="nav-title">последние новости</div>
+              <div class="articles-right">
+                {% include 'bundles/OrgNews/lastNews.html.twig' %}
+              </div>
+            </div>
+{% endblock %}
+
+{% block topContainer %}
+  <script>
+  function changeDate() {
+    var day = $("#day").val();
+    var month = $("#month option:selected").val();
+    var year = $("#year option:selected").val();
+
+    var url = "{{ path('app_homepage')}}News/Archive/";
+    if(year != 0) {
+      url += year +"/";
+      if(month != 0) {
+        url += month +"/";
+        if(day != 0) {
+          url += day + "/";
+        }
+      }
+    }
+    document.location.href = url;
+  }
+  </script>
+            <div class="layout_contentLeftBlock layout_contentLeftBlock_search"><a href="#" class="btn">найти</a>
+              <div class="search-content">
+                <input type="text" class="input">
+                <select name="" class="select">
+                  <option value="1">Новости</option>
+                </select>
+              </div>
+            </div>
+            <div class="layout_contentLeftBlock layout_contentLeftBlock_filter">
+              <div class="filter-date">
+                  <input type="text" name="day" placeholder="День" id="day"
+                  class="input" style="width:auto;margin-right: 10px;" {% if current_day %} value="{{current_day}}" {% endif %}>
+                <select name="month" data-placeholder="Месяц" class="select" id="month"  size="6">
+                    <option value="0">Месяц</option>
+                  {% for id, month in months %}
+                      <option value="{{id}}" {% if current_month == id %} selected="true" {% endif %}>{{month}}</option>
+                  {% endfor %}
+                </select>
+                <select name="year" data-placeholder="Год" class="select" id="year">
+                    <option value="0">Год</option>
+                  {% for year in years %}
+                      <option value="{{ year }}" {% if current_year == year %} selected="true" {% endif %}>{{year}}</option>
+                  {% endfor %}
+                </select>
+                <a href="javascript:changeDate()" class="btn">Показать</a>
+              </div>
+            </div>
+{% endblock %}
+
+{% block main %}
+    <div class="articles-archive">
+      {% for item in news %}
+      <div class="articles-item">
+        <div class="articles-image">
+            {% if item.getPhoto %}
+                <img src="/images/content/medium/{{ item.getPhoto }}" alt="">
+            {% endif %}
+        </div>
+        <div class="articles-content">
+          <div class="articles-date">{{item.getDate}} {#{item.date_month}#}, {#{item.date_year}#}</div>
+          <a href="/News/View/{{item.getId}}" class="articles-title">{{item.getTitle}}</a>
+          <p>{{ item.getShort_text }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {# <div class="pager">
+      <ul>
+        <li class="disabled"><a href="#">
+            <div class="icon icon_prev"></div></a></li>
+        <li><a href="#">1</a></li>
+        <li class="active"><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li class="middle">
+          <input type="text" placeholder="..." class="input">
+        </li>
+        <li><a href="#">58</a></li>
+        <li><a href="#">59</a></li>
+        <li><a href="#">60</a></li>
+        <li><a href="#">
+            <div class="icon icon_next"> </div></a></li>
+      </ul>
+    </div>#}
+  </div>
+</div>
+{% endblock %}

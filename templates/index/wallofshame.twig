@@ -1,0 +1,21 @@
+{# Доска позора #}
+{%  if wallOfShame|length > 0 %}
+<h3 class="main-news-hdr">Неисполнение поручений генерального директора</h3>
+<p style="margin-left:80px;padding-bottom:12px">{{ wallOfShame.title }}</p>
+    {%  for item in wallOfShame.objects %}
+        <div class="person-small-bday" style="display:block; margin-left: 80px">
+                 <img class="pesm-i" alt="" src="{{ item.photo }}" title="{{ item.title }}" style="height:80px">
+                     <div class="pers-inf">
+                        <p class="mb4">
+                            {% if item.employee %}
+                                <a target="_blank" href="/employee/view/{{ item.employee.employee_id }}">{{ item.title }}</a>
+                            {%  else %}   
+                                {{ item.title }}
+                           {%  endif %}
+                         </p>
+                        <p>{{  item.employee.department  }}</p>
+                        <p>{{  item.employee.title }}</p>
+                    </div>
+              </div>       
+    {%  endfor  %}
+{%  endif  %}

@@ -71,7 +71,9 @@ class MenuController extends AbstractController
     {
         return $this->render(
             'nav.html.twig',
-            ['main_nav' => $this -> getTopMenu() ]
+            [
+                'main_nav' => $this -> getTopMenu(),
+            ]
         );
     }
 

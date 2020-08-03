@@ -110,4 +110,24 @@ class SysRole
 
         return $this;
     }
+
+    public function addGroup(SysGroup $group): self
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups[] = $group;
+            $group->addRole($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroup(SysGroup $group): self
+    {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+            $group->removeRole($this);
+        }
+
+        return $this;
+    }
 }

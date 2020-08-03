@@ -15,8 +15,19 @@ class MainController extends AbstractController
     public function index()
     {
         $number = random_int(0, 100);
-        return $this->render('base.html.twig', [
-            'number' => $number,]);
+        return $this->render('base.html.twig',
+          [
+            'number' => $number,
+            'today_date' => '28 ',
+            'today_day' => 'среда',
+            'today_month' => 'июль',
+            'today_time' => '13:30',
+                        'currentUser' => [
+                'getPhoto' => 'photo',
+                'name' => 'Иванов Иван Иванович',
+                'employee_id' => 123
+            ]
+          ]);
     }
 
   	/**

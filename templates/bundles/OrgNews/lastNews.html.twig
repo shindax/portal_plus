@@ -1,0 +1,15 @@
+{% for item in lastNews %}
+    <div class="articles-item">
+      <div class="articles-image">
+        {% if item.getPhoto != "" %}
+          <a href="/rnnews/{{item.getId}}">
+            <img src="/images/content/small/{{item.getPhoto}}" alt="" width="256">
+          </a>
+        {% endif %}
+      </div>
+      <div class="articles-date">{{item.getDate}}</div><a href="/rnnews/{{item.getId}}" class="articles-title">{{item.getTitle}}</a>
+      <p>
+          {{item.getShort_text|raw}}
+      </p>
+    </div>
+{% endfor %}

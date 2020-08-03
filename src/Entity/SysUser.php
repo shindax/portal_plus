@@ -77,7 +77,7 @@ class SysUser implements UserInterface
                     $roles[] = $svalue -> getName();
         }
 
-        dump( $roles );
+        // dump( $roles );
 
         return array_unique( $roles );
     }
@@ -253,6 +253,24 @@ class SysUser implements UserInterface
             $arr [] = $value -> getName();
 
         return join(", ", $arr );
+    }
+
+    public function addGroup(SysGroup $group): self
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups[] = $group;
+        }
+
+        return $this;
+    }
+
+    public function removeGroup(SysGroup $group): self
+    {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+        }
+
+        return $this;
     }
 
 }

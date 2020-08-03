@@ -1,0 +1,32 @@
+<div class="question-item">
+    
+    {# {% if avatarUrl %}
+      <div class="liningProfile">
+        <img src="{{avatarUrl}}" alt="">
+      </div>
+    {% else %}#}
+      <img src="/images/anonym.png" alt="">
+    {#{% endif %}#}
+
+    <div class="question-content">
+        <div class="question-name">{{quest}}</div>
+        <div class="question-date">
+          {% if anonym %}
+              <b>Анонимно</b>
+          {% else %}
+            {% if employee_id %} <a href="/Employee/view/{{employee_id}}"> {% endif %}
+              <b>{{name}}</b>
+            {% if employee_id %} </a> {% endif %}
+          {% endif %}
+          {{date}} | 
+          {% if cat_id %}<a href="/questions/view/{{cat_id}}">{% endif %}
+            {{category}}
+          {% if cat_id %}</a>{% endif %}
+        </div>
+        <div class="question-text">
+          <p>{{answer}}</p>
+          <div style="clear:both;"></div>
+        </div>
+        {#<a href="#" class="btn"><div class="icon icon_go"></div></a>#}
+    </div>
+</div>

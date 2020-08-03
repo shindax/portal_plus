@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -65,6 +66,7 @@ class User implements UserInterface
     {
         $this->groups = new \Doctrine\Common\Collections\ArrayCollection();
         $this->roles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->rcollection = new ArrayCollection();
     }
 
     public function getEmail(): ?string
@@ -165,6 +167,42 @@ class User implements UserInterface
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    public function addRcollection(Role $rcollection): self
+    {
+        if (!$this->rcollection->contains($rcollection)) {
+            $this->rcollection[] = $rcollection;
+        }
+
+        return $this;
+    }
+
+    public function removeRcollection(Role $rcollection): self
+    {
+        if ($this->rcollection->contains($rcollection)) {
+            $this->rcollection->removeElement($rcollection);
+        }
+
+        return $this;
+    }
+
+    public function addGroup(Group $group): self
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups[] = $group;
+        }
+
+        return $this;
+    }
+
+    public function removeGroup(Group $group): self
+    {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+        }
+
+        return $this;
     }
 
 }

@@ -1,15 +1,3 @@
-{#<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>#}
 {% set server_base = "http://localhost:8081" %}
 <!DOCTYPE html>
 <html class="no-js">
@@ -30,16 +18,14 @@
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-<div class="portalWorkNotice">
-    Ведутся технические работы, сервисы корпоративного портала могут быть частично недоступны.
-    <a class="portalWorkNotice__close" href="#"><i class="fa fa-times" aria-hidden="true"></i></a>
-</div>
 <div class="layout_main-wrap">
     <div class="layout_main-c">
         <header class="layout_header">
+
+        {{  render(controller('App\\Controller\\DateController::getData')) }}
             <div class="layout_header_container">
                 <div class="layout_headerBlock layout_headerBlock_logo"><a href="{{ server_base }}/" class="logo"></a></div>
-                <div class="layout_headerBlock layout_headerBlock_date"  style="line-height: 1.4; padding-top: 50px; max-width: 200px;">{#{{today_date}}{{today_month}}, {{today_day}} {{today_time}}#}
+                <div class="layout_headerBlock layout_headerBlock_date"  style="line-height: 1.4; padding-top: 50px; max-width: 200px;">{{today_date}}{{today_month}}, {{today_day}} {{today_time}}
                      {#<br />Рабочее расписание: #}{#{{ weekNumber}}#}{# неделя#}
                 </div>
 
@@ -84,9 +70,9 @@
                 <div class="layout_headerBlock layout_headerBlock_lk layout_headerBlock_lk_in">
                     <a href="#/Itis/Statistics" class="lk"  >
                         <div class="liningProfile">
-                            {#<img src="{{currentUser.getPhoto}}" alt="" />#}
+                            <img src="{{currentUser.getPhoto}}" alt="" />
                         </div>
-                        {#<span>{{ currentUser.name }}</span></a>#}
+                        <span>{{ currentUser.name }}</span></a>
                     </a>
                 </div>
             </div>
@@ -122,7 +108,7 @@
 
                     <div class="layout_contentLeftBlock layout_contentLeftBlock_bordered">
                         {% block pageTitle %}
-                            <h1 class="title">
+                            <h1 class="title">НОВОСТИ
                                 {#{{ title }}#}
                                 {% block pageTitleIcon %} {% endblock %}
                             </h1>
@@ -131,8 +117,7 @@
                             {#<h2 class="title"><span>{{subTitle}}</span></h2>#}
                         {#{% endif %}#}
 
-                        {#{% block main %}#}
-                        {% block body %}
+                        {% block main %}
                         {% endblock %}
                     </div>
 

@@ -1,0 +1,21 @@
+{# Комментарии - блок #}
+
+<script src="/js/comments/commentsFrontEnd.js" language="javascript"></script>
+
+<div class="comment-title">комментарии <span>{{ comments.commentsCount }}</span></div>
+
+{% for comment in comments.comments %}
+        <div class="comment-item">
+            <div class="liningComments">
+                <img src="{{ comment.user.image }}" alt="">
+            </div>
+            <div class="comment-name">
+              <a href="/employee/view/{{ comment.user.employee_id }}">{{ comment.user.name}}</a>
+              <span>&nbsp;{{comment.dateCreate|date("d.m.Y H:i")}}</span>
+            </div>
+            <div class="comment-text">
+                {{comment.text}}
+            </div>
+        </div>
+{% endfor %}
+

@@ -1,0 +1,6 @@
+{# Нет, это не опрос. Это - человек месяца #}
+<img class="n-mnew-img" alt="{{manOfMonth.title|e}}" src="{{manOfMonth.image}}">
+{# <p class="n-rol-tit">{{ manOfMonth.type }}</p> #}
+<a  class="n-rol-link">{{ manOfMonth.title }}</a>
+<p class="n-rol-txt">{{ manOfMonth.text |striptags | raw}}</p>
+<br><a href="{{site_url}}manofmonth/view/{{ manOfMonth.id }}" class="n-rol-link-end">Далее</a>

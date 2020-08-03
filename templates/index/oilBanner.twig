@@ -1,0 +1,54 @@
+<div id="oil-banner-carousel">
+
+	<div class="banner">
+	    <div class="banner-title">добыто нефти</div>
+
+	    <div class="banner-info" style="margin-top:50px;">с начала разработки</div>
+	    <div class="banner-white"> <b>{{ oilCounter }} </b> тыс.&nbsp;т</div>
+
+	    
+	    <div class="banner-info" style="margin-top:20px;">за сутки</div>	  	
+	  	<div class="banner-white"> <b>{{ oilCounterForDay }} </b> т</div>
+
+	  	{# <div class="banner-info" style="margin-top:20px;">за сутки Сузун</div>	  	
+	  	<div class="banner-white"> <b>{{ oilSuzunYesterday }} </b> т</div> #}
+	</div>
+
+	<div class="banner">
+		{# ГАЗ Сдача в ЕСГ ОАО «Газпром» 1000000 тонн   Закачка в пласт для нужд системы ППД 1000000 тонн #}
+		<div class="banner-title" style="font-size:25px;">использовано газа</div>		
+		<div class="banner-info"  style="margin-top:35px;">с начала разработки</div>
+	    <div class="banner-info" style="font-size:17px;">Сдача в ЕСГ<br/>ОАО «Газпром»</div>
+	    <div class="banner-white"> <b>{{ gazCounterGazprom }} </b> млн м<sup>3</sup></div>	    
+
+	    <div class="banner-info" style="font-size:17px; margin-top:20px;">Закачка в пласт для нужд системы ППД</div>	  	
+	  	<div class="banner-white"> <b>{{ gazCounterPpd }} </b> млн м<sup>3</sup></div>
+	</div>			
+	{# <div class="banner">		
+		<div class="banner-title">до запуска Тагула</div>		
+		<div class="banner-info"  style="margin-top:50px;">осталось</div>		    
+	    <div class="banner-white"> <b>{{ tagulCountdown}}</b></div>	    		    
+	</div>			 #}
+</div>
+<script>
+	$(document).ready(function(){
+	
+		// Using default configuration
+	    //$('#oil-banner-carousel').carouFredSel();
+
+	    
+	    // Using custom configuration
+	    $('#oil-banner-carousel').carouFredSel({
+	        items                : 1,
+	        direction            : "down",
+	        align: "center",
+	        scroll : {
+	            items            : 1,
+	            //easing            : "elastic",
+	            duration        : 1000,
+	            pauseOnHover    : true
+	        }
+	    });
+	    
+	});
+</script>

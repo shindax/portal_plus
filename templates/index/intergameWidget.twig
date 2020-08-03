@@ -1,0 +1,66 @@
+{% import('intergame/personMacro.twig') as person %}
+<style>
+		td {
+			text-align:center;
+			vertical-align: middle;
+			margin: 5px;
+		}
+		td, th {
+			padding: 3px;
+		}
+		
+		.intergame__mainPage__body__top3__persons__person__image {
+			overflow: hidden;
+			width: 80px;
+			height: 80px;
+			border-radius: 80px;
+            margin: 10px 0;
+		}
+		.intergame__mainPage__body__top3__persons__person__image img {
+			width: 80px;
+		}
+		.intergame__mainPage__body__top3__persons__person__nameBlock {
+			position: relative;
+			top: -4px;
+		}
+        .intergame__mainPage__body__top3__persons__person {
+            display: inline-block;
+            width: 138px;
+            vertical-align: top;
+            font-size: 13px;
+        }
+        .intergame__mainPage__body__top3__persons__person__nameBlock {
+            width: 130px;
+        }
+</style>
+<div class="layout_contentHalf_container intergame__mainPage">
+    <div class="layout_contentHalfBlock layout_contentHalfBlock_bordered">
+        <h2 class="title title_bordered intergame__mainPage__title">Самый умный
+            <a href="/intergame" class="btn" style="margin: 0 5px 0 5px;">Пройти тест</a>
+        </h2>
+        <div class="intergame__mainPage__body">
+            <div class="intergame__mainPage__body__description">
+                <p>Уважаемые знатоки! Подходит к  концу 2018 год, и до финала конкурса «Самый умный» остается совсем чуть-чуть.</p>
+                <p>Последний тест — своеобразный календарь, где каждый месяц отмечен знаменательным для ООО «РН-Ванкор» событием.</p>
+                <p>Желаем каждому с успехом пройти финальное испытание, но <span style="color: red; font-weight: bold;">ВНИМАНИЕ!</span> Несмотря на общее количество баллов, претендовать на победу могут лишь те участники, которые прошли <span style="color: red; font-weight: bold;">ВСЕ</span> тесты.</p>
+                <p>Удачи! Новогодние подарки и сюрпризы уже ждут «Самых умных»!</p>
+                {#<p>Уважаемые коллеги! Приглашаем вас проверить свои знания в профессиональных и&nbsp;общеобразовательных дисциплинах! Отвечайте на вопросы тестов и зарабатывайте баллы!</p>#}
+                {#<p>Тесты обновляются ежемесячно, а все результаты сохраняются в системе и&nbsp;суммируются. По итогам года знатоки, набравшие максимальное количество баллов, получат награду – сувенирную продукцию с фирменной символикой! Удачи!</p>#}
+                <p>Тест {{ intergame.lastTicket.count }}: <b><a href="/intergame/">{{ intergame.lastTicket.name }}</a></b></p>
+            </div>
+            <div class="intergame__mainPage__body__top3">
+                <div class="intergame__mainPage__body__top3__title comments-title" style="padding-top: 10px;">
+                    <a href="/intergame/resultsAll"><i class="fas fa-trophy"></i> САМЫЕ УМНЫЕ</a>
+                </div>
+                <div class="intergame__mainPage__body__top3__persons">
+                    {% for top in intergame.topEmployees %}
+                        <div class="intergame__mainPage__body__top3__persons__person">
+                            {{ person.personBlock_4main(top.employee) }}
+                            {# {{ loop.index }} место:  #}{{ top.score_string }}
+	                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

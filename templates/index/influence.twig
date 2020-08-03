@@ -1,0 +1,6 @@
+{% if influence.image %}
+	<img class="n-mnew-img" alt="{{influence.title|e}}" src="{{influence.image}}">
+{% endif %}
+<a  class="n-rol-link">{{ influence.title }}</a>
+<p class="n-rol-txt">{{ influence.text |striptags | raw}}</p>
+<br><a href="{{site_url}}influence/view/{{ influence.id }}" class="n-rol-link-end">Далее</a>

@@ -1,0 +1,104 @@
+{# Блок Новый Год: последнее поздравление #}
+<style>
+    .layout_contentHalfBlock_NY {
+        min-height: 353px;
+        max-height: 400px;
+    }
+
+    .layout_contentHalfBlock_bordered {
+        position: relative;
+        padding: 15px 20px 0px 20px;
+    }
+
+    .nyWish-items {
+        height: 100%;
+        width: 570px;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .layout_contentHalfBlock_NY::after {
+        background-image: url('images/backgrounds/bg.jpg');
+        background-size: cover;
+        opacity: 0.5;
+        content: "";
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .nyWish-item {
+        padding: 0 20px 30px 0;
+        width: 48%;
+        position: relative;
+    }
+
+    .comment-author {
+        align-items: center;
+        display: flex;
+        font-size: 80%;
+    }
+        .comment-author-name {
+            margin-left: 10px;
+        }
+        
+        .comment-author-picture {
+        overflow: hidden;
+        border-radius: 30px;
+        bottom: 10px;
+        height: 30px;
+        width: 30px;
+        left: 10px;
+        top: auto;
+        flex: 0 0 30px;
+    }
+    .comment-author-picture img {
+        width: 30px;
+    }
+    .comment-author-name {
+        padding-left: 0px;
+    }
+    .comment-author-name a {
+        display: block;
+    }
+    .comment-text {
+        padding-bottom: 10px;
+    }
+</style>
+
+<div class="layout_contentHalf_container">
+    <div class="layout_contentHalfBlock layout_contentHalfBlock_bordered layout_contentHalfBlock_NY">
+    <h2 class="title title_bordered"><span style="color: #d18f00;">С Новым 2018 годом!</span>
+        <a href="/newYearWishes" class="btn" target="_blank">все поздравления</a>
+        <a href="/newYearWishes#write" class="btn" style="margin: 0 5px 0 5px;" target="_blank">Поздравить!</a>
+    </h2>
+    <div class="nyWish-items">
+        {% for item in lastNewYearWish %}
+            <div class="nyWish-item">
+                <div class="comment-text">
+                    {% if item.text | length > 400 %}
+                        {# {{ item.text | nl2br }} #}
+                        {{ item.text | nl2br | slice(0, 400) }}...
+                    {% else %}
+                        {{ item.text | nl2br }}
+                    {% endif %}
+                </div>
+                <div class="comment-author">
+                    <div class="comment-author-picture">
+                        <img src="{{ item.image }}" alt="">
+                    </div>
+                    <div class="comment-author-name">
+                        <a href="/employee/view/{{ item.user_id }}">{{ item.user_name}}</a>
+                        <span>{{item.date}}</span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+</div>
