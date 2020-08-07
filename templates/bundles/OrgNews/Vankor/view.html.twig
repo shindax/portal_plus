@@ -1,0 +1,88 @@
+{# Одна новость в развороте #}
+{% extends templates_path ~ "/vankor_base.html.twig" %}
+
+{% set title = "Новости" %}
+
+{% block sideMenu %}
+              <div class="nav-title">последние новости</div>
+              <div class="articles-right">
+                 {% include "bundles/OrgNews/Vankor/lastNews.html.twig" %}
+              </div>
+
+{% endblock %}
+
+{% block topContainer %}
+      <div class="layout_contentLeftBlock layout_contentLeftBlock_top-slider">
+              <div class="btn btn_prev">
+                <div class="icon icon_next"></div>
+              </div>
+              <div class="btn btn_next">
+                <div class="icon icon_prev"></div>
+              </div>
+              <div class="top-slider">
+                {% for id, item in newsDigest %}
+                    <div class="top-slider-item"><span>Последние новости:</span><a href="{{ path('vankor_news_show', {id: item.id})}}">{{ item.title}}</a></div>
+                 {% endfor %}
+               </div>
+       </div>
+{% endblock %}
+
+{% block main %}
+    <div class="people-title"><h1>{{ newsTitle|raw }}</h1><span>{{ date }}</span></div>
+    <div class="people-content">
+      <div class="people-nav">
+        <ul>
+          {#<li>
+            <div class="icon icon_eye"></div>16
+          </li>#}
+          <li>
+            <div class="icon icon_comments"></div>{{comments.commentsCount}}
+          </li>
+          <li>
+            <div class="icon icon_photo"></div>
+            {% if gallery %}
+            	{{gallery|length}}
+            	{% else %}
+            	0
+            {% endif %}
+          </li>
+          {#<li>
+            <div class="icon icon_card"></div>0
+          </li>#}
+        </ul>
+      </div>
+      <div class="people-preview" style="padding-bottom:15px">
+          {% if image %}
+            {# {% if {{ newsTitle }} != 'С Днем 8 Марта!' %} #}
+              <img src="{{ medium_img }}{{ image }}" alt="" width="100%;">
+            {# {% endif %} #}
+          {% endif %}
+      </div>
+      <div class="people-block">
+          {{ fullText|raw }}
+      </div>
+      {#
+        {% if author %}
+            <div class="people-author">
+                {{ author }}
+            </div>
+        {% endif %}
+      #}
+
+      {% if gallery %}
+      <div class="people-gallery">
+            {# фотогалерея #}
+                  {% for photo in gallery %}
+                      <a class="fancy" href="{{ photo.large }}" rel="slides"><img src=" {{ photo.small }} " /></a>
+                  {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+    <div class="comment">
+
+      {% include templates_path ~ '/comments.html.twig' %}
+
+      {% include templates_path ~ '/comment_form.html.twig' with {'comments' : comments, 'user' : currentUser } %}
+    </div>
+  {% endblock %}

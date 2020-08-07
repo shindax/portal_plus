@@ -1,0 +1,132 @@
+{# лента новостей #}
+{% extends templates_path ~ '/layout.html.twig' %}
+
+{% block Main %}
+        <div class="news-container">
+            <h1 class="text-blue">{{ pageTitle | default("Новости") }}
+                {% if nowDate['month'] or nowDate['year'] %}
+                    за
+                    {% if nowDate['month'] %}
+                        {{ months[nowDate['month']] | lower }}
+                        {{ nowDate['year'] }} года
+                        {% else %}
+                            {{ nowDate['year'] }} год
+                    {% endif %}
+                {% endif %}
+            </h1>
+            {% import ( templates_path ~ '/inList.html.twig' ) as list %}
+            {% if news | length > 1 %}
+
+                <div class="clearfix mainNews-container">
+                    {% for new in news | slice(0, 2) %}
+                        {{ list.out_main(new, loop.index, image_path ) }}
+                    {% endfor %}
+                </div>
+
+                <div class="clearfix otherNews-container">
+                    {% for new in news [2:] %}
+                        {{ list.out_other(new, loop.index, image_path ) }}
+                    {% endfor %}
+                </div>
+            {% elseif news | length == 1 %}
+                <div class="clearfix mainNews-container">
+                    {% for new in news %}
+                        {% set url='123' %}
+                        {{ list.out_one(new, url, loop.index) }}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>За этот период нет ни одной новости.</p>
+            {% endif %}
+            {% if type == 'feed' %}
+                <div class="links-row text-center top-st"><a class="btn3 all" href="{{ path('vsnk_all_news')}}">Все новости</a></div>
+            {% endif %}
+        </div>
+{% endblock %}
+
+{% block SidePanel %}
+
+    {{ parent() }}
+
+        <div class="side-box">
+            <div class="inner">
+                <div class="h5 side-title bot-sm text-blue">Календарь новостей</div>
+                {% if type == 'feed' %}
+                    <a href="{{ path('vsnk_all_news')}}" class="btn4 pull-right">Все новости</a>
+                {% endif %}
+                <div class="title">
+                    <div class="form-group">
+                            <select class="form-control" style="width: 220px;" onchange="feed(this)" name="routeToDate">
+                                <option value="">Выберите период новостей selected</option>
+                                {% for y in years|reverse %}
+                                    {% set s = '' %}
+
+                                    {%
+                                        if not nowDate['month']
+                                            and
+                                        nowDate['year']
+                                            and
+                                        nowDate['year'] == y
+                                    %}
+                                        {% set s = 'selected' %}
+                                    {% endif %}
+
+                                    <option value="{{ y }}" {{ s }}>{{ y }} год</option>
+                                    {% for m in months_vsnk|reverse %}
+
+                                        {% set s = '' %}
+                                        {% if nowDate['month'] and nowDate['year'] and nowDate['year'] == y and nowDate['month'] == m['number'] %}
+                                            {% set s = 'selected' %}
+                                        {% endif %}
+
+                                        <option value="{{ y }}/{{ m['number'] }}" {{ s }}>{{ y }} год, {{ m['name'] }}</option>
+                                    {% endfor %}
+                                {% endfor %}
+                            </select>
+                    </div>
+                </div>
+                {% if calendar %}
+                <div class="n-cl" style="left: -10px; position: relative; top: 20px;">
+                    <div class="n-c-con">
+                        <strong class="text-blue" style="margin-left: 10px;">
+                            {% if nowDate['year'] %}
+                                {{ nowDate['year'] }} год
+                            {% endif %}
+                            {% if nowDate['month'] %}
+                                , {{ months[nowDate['month'] ] }}
+                            {% endif %}
+                        </strong>
+                        <table border="0" class="calendar" style=" margin-top: 10px;">
+                            <tbody>
+                                <tr>
+                                    <th>Пн</th>
+                                    <th>Вт</th>
+                                    <th>Ср</th>
+                                    <th>Чт</th>
+                                    <th>Пт</th>
+                                    <th class="weekend">Сб</th>
+                                    <th class="weekend">Вс</th>
+                                </tr>
+                                <tr>{{ calendar|raw }}</tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+<script>
+function feed( el )
+{
+    let val = $( el ).find('option:selected').val()
+    if( val )
+    {
+        let url = "{{ path('vsnk_all_news')}}/" + val ;
+        document.location.href = url;
+    }
+}
+</script>
+
+{% endblock %}
+

@@ -22,10 +22,10 @@
     <div class="layout_main-c">
         <header class="layout_header">
 
-        {{  render(controller('App\\Controller\\DateController::getData')) }}
+        {# {  render(controller('App\\Controller\\DateController::getData')) } #}
             <div class="layout_header_container">
                 <div class="layout_headerBlock layout_headerBlock_logo"><a href="{{ server_base }}/" class="logo"></a></div>
-                <div class="layout_headerBlock layout_headerBlock_date"  style="line-height: 1.4; padding-top: 50px; max-width: 200px;">{{today_date}}{{today_month}}, {{today_day}} {{today_time}}
+                <div class="layout_headerBlock layout_headerBlock_date"  style="line-height: 1.4; padding-top: 50px; max-width: 200px;">{{today_date}} {{today_month}}, {{today_day}} {{today_time}}
                      {#<br />Рабочее расписание: #}{#{{ weekNumber}}#}{# неделя#}
                 </div>
 
@@ -46,8 +46,7 @@
                 </span><span class="weather-city">ванкор</span></div>
                     <div class="weather-svodka-link" id="weather-svodka-link">Сводка по погоде</div>
                 </div>
-                {% include('includes/weatherSvodka.twig') %}
-
+                {% include('bundles/OrgNews/Vankor/weatherSvodka.html.twig') %}
 
                 <div class="layout_headerBlock layout_headerBlock_kurs">
                     <div class="kurs-item"><b>USD</b> <span id="currencyUSD">{#{{ currency_usd [:5] }}#}
@@ -70,7 +69,7 @@
                 <div class="layout_headerBlock layout_headerBlock_lk layout_headerBlock_lk_in">
                     <a href="#/Itis/Statistics" class="lk"  >
                         <div class="liningProfile">
-                            <img src="{{currentUser.getPhoto}}" alt="" />
+                            <img src="{{currentUser.photo}}" alt="" />
                         </div>
                         <span>{{ currentUser.name }}</span></a>
                     </a>
@@ -91,7 +90,7 @@
                     <div class="sep">     </div>+7 (391) <b>200-88-00</b>
                 </div>
             </div>
-            {% include('includes/menuHeader.twig') %}
+            {% include('bundles/OrgNews/Vankor/menuHeader.html.twig') %}
         </header>
         {% block layoutContainer %}
             <div class="layout_content clearfix">
@@ -105,11 +104,14 @@
                     {% block topContainer %}
                     {% endblock %}
 
-
                     <div class="layout_contentLeftBlock layout_contentLeftBlock_bordered">
                         {% block pageTitle %}
-                            <h1 class="title">НОВОСТИ
-                                {#{{ title }}#}
+                            <h1 class="title">
+
+                                {% if title is defined %}
+                                    {{ title }}
+                                {% endif %}
+
                                 {% block pageTitleIcon %} {% endblock %}
                             </h1>
                         {% endblock %}
@@ -127,7 +129,7 @@
     </div>
     <footer class="layout_footer">
         <div class="layout_footer_container">
-            {% include('includes/menuFooter.twig') %}
+            {% include('bundles/OrgNews/Vankor/menuFooter.html.twig') %}
         </div>
     </footer>
     {% block Scripts %}
@@ -147,7 +149,7 @@
                 $("a[href$=rar]").append('&nbsp;<div class="icon icon_doc">RAR</div>');
             });
         </script>
-        {% include('includes/scripts.twig') %}
+        {% include('bundles/OrgNews/Vankor/scripts.html.twig') %}
     {% endblock %}
 
       {% block jsInclude %}

@@ -1,0 +1,103 @@
+{% extends templates_path ~ '/vankor_base.html.twig' %}
+
+{% block sideMenu %}
+{# Боковой слайдер с нефтью #}
+      <div class="layout_contentRightBlock">
+            {% include templates_path ~ '/oilBanner.html.twig' %}
+            </div>
+            <div class="layout_contentRightBlock layout_contentRightBlock_bordered">
+              <h2 class="title title_bordered">последние комментарии
+                <div class="icon icon_comments"></div>
+              </h2>
+              <div class="comments-right">
+                <div class="comments-slider">
+                    {% if comments %}
+                        {% for comment in comments %}
+
+                            <div class="comments-item">
+                                <div class="comments-title">{{ comment.text }}</div>
+                                <div class="comments-theme">Написал
+                                        <a href="/Employee/View/{{ comment.employeeId }}">{{comment.employeeName}} </a>
+                                        в теме <a href="{{ path('vankor_news_show', {id: comment.targetId})}}">{{comment.title}}</a></div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="btn btn_prev">
+                  <div class="icon icon_bottom"></div>
+                </div>
+                <div class="btn btn_next">
+                  <div class="icon icon_top"></div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
+{# block sideMenu #}
+
+{% block topContainer %}
+{# Слайдер с 5-ю последними новостями #}
+    <div class="layout_contentLeftBlock layout_contentLeftBlock_top-slider">
+
+{# Кнопки переключения последних новостей #}
+       <div class="btn btn_prev">
+                  <div class="icon icon_next"></div>
+       </div>
+      <div class="btn btn_next">
+        <div class="icon icon_prev"></div>
+      </div>
+
+        <div class="top-slider">
+          {% for id, item in digest %}
+              <div class="top-slider-item"  style="width:800px;"><span>Последние новости:</span><a href=""{{ path('vankor_news_show', {id: item.id})}}"">{{ item.title}}</a></div>
+           {% endfor %}
+      </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+{# Вывод двух главных новостей #}
+              <div class="articles-top">
+                  {% for item in news|slice(0,2) %}
+
+                <div class="articles-item">
+                  {% if item.image != "" %}
+                  <div class="articles-image">
+                      <a href="{{ path('vankor_news_show', {id: item.id}) }}">
+                        <img src="{{ small_img }}{{item.image}}" alt="" width="463">
+                      </a>
+                  </div>
+                  {% endif %}
+                  <div class="articles-date">{{item.publishDate }}</div><a href="{{ path('vankor_news_show', {id: item.id})}}" class="articles-title">{{ item.title }}</a>
+                  <p>{{item.shortText|raw }}</p>
+                  <div class="articles-nav">
+                    <a href="{{ path('vankor_news_show', {id: item.id}) }}" class="btn">
+                      <div class="icon icon_go"></div>
+                    </a>
+                      <div class="articles-comments">
+                        <div class="icon icon_comments"></div>{{ item.countComments}}
+                      </div>
+                  </div>
+                </div>
+                  <!-- div class="articles-item" -->
+                {% endfor %}
+              </div><!-- div class="articles-top" -->
+
+{# Вывод остальных 9-ти ( после 1-й ) новостей #}
+              <div class="articles">
+                  {% set c = 1 %}
+                  {% for item in news|slice(2,9) %}
+                    <div class="articles-item {% if c == 2 %}articles-item_middle{% endif %}">
+                        <div class="articles-image"><a href="{{ path('vankor_news_show', {id: item.id})}}"><img src="{{ medium_img }}{{ item.image }}" alt="" width="308"></a></div>
+                      <div class="articles-date">{{ item.publishDate}}</div><a href="{{ path('vankor_news_show', {id: item.id})}}" class="articles-title">{{ item.title }}</a>
+                      <p>
+                           {{ item.shortText|raw }}
+                      </p>
+                    </div>
+                    {% if c == 3 %}
+                        {% set c = 0 %}
+                    {% endif %}
+                    {% set c = c + 1 %}
+                {% endfor %}
+              </div>
+              <div class="centered"><a href="{{ path('vankor_news_archive') }}" class="btn">Архив новостей </a></div>
+{% endblock %}

@@ -1,0 +1,26 @@
+/*@import "new-style.css" handheld;*/
+
+p.n-rol-link
+{
+    font-size:14px;
+    font-family:Arial;
+    color:#E0642C;
+}
+p.n-rol-tit
+{
+    margin:0;
+    padding:0;
+    font-size:16px;
+    font-family:Trebuchet MS;
+}
+p.n-mcom-txt
+{
+    font-family: Arial;
+    font-size:12px;
+    color:#000;
+    padding:0;
+    margin:0;
+    /* self-property*/
+    text-align: justify;
+    font-size: 14px;
+}

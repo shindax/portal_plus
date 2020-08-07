@@ -1,0 +1,77 @@
+{% macro out_main(news, index, image_path) %}
+	{% if index % 2 == 0 %}
+		{% set putFloat = "right" %}
+	{% else %}
+		{% set putFloat = "left" %}
+	{% endif %}
+
+	<div class="news-item news-main col-md-6 pull-{{ putFloat }}">
+		{% if news.image %}
+		{# <div class="pic"><img src="{{ news.image }}" alt=""></div> #}
+		<div class="pic" style="
+			background-image: url('{{ image_path }}/{{ news.image }}');
+			position: relative;
+			height: 300px;
+			background-size: cover;
+			width: 100%;
+			background-position: center;"></div>
+		{% endif %}
+		<div class="text-container">
+			<div class="date">{{ news.publishDate | date('d.m.Y') }}</div>
+			<div class="head"><a href="{{ path( 'vsnk_news_show', {id: news.id})}}">{{ news.title }}</a></div>
+			<div class="text">
+				<span class="text-wrapper">{{ news.shortText | raw}}</span>
+			</div>
+		</div>
+	</div>
+{% endmacro %}
+
+{% macro out_other(news, index, image_path) %}
+	{% if index % 2 == 0 %}
+		{% set direct = "left" %}
+	{% else %}
+		{% set direct = "right" %}
+	{% endif %}
+
+	<div class="news-item news-sub table">
+		{% if direct == "left" %}
+		<div class="td pic col-md-6" style="background-image: url('{{ image_path }}/{{ news.image }}')"></div>
+		{% endif %}
+
+		<div class="td text-container col-md-6 {% if direct == "right" %}text-right{% endif %}">
+			<div class="date">{{ news.publishDate | date('d.m.Y') }}</div>
+			<div class="head">
+				<a href="{{ path( 'vsnk_news_show', {id: news.id})}}">
+					<span class="text-wrapper">{{ news.title }}</span>
+					{# <span class="comments-qty"> <i class="comments-ico"></i><span class="qty">2</span></span> #}
+					<span class="ico-more"></span>
+				</a>
+			</div>
+		</div>
+
+		{% if direct == "right" %}
+		<div class="td pic col-md-6" style="background-image: url('{{ image_path }}/{{ news.image }}')"></div>
+		{% endif %}
+	</div>
+{% endmacro %}
+
+{% macro out_one(news, index) %}
+	<div class="news-item news-main">
+		{% if news.image is defined %}
+		<div class="pic" style="
+			background-image: url('{{ medium_img }}{{ news.image }}');
+			position: relative;
+			height: 300px;
+			background-size: cover;
+			width: 100%;
+			background-position: center;"></div>
+		{% endif %}
+		<div class="text-container">
+			<div class="date">{{ news.publishDate | date('d.m.Y') }}</div>
+			<div class="head"><a href="{{ path( 'vsnk_news_show', {id: news.id})}}">{{ news.title }}</a></div>
+			<div class="text">
+				<span class="text-wrapper">{{ news.shortText | raw }}</span>
+			</div>
+		</div>
+	</div>
+{% endmacro %}

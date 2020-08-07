@@ -1,0 +1,17 @@
+{% for item in lastNews %}
+    <div class="articles-item">
+      <div class="articles-image">
+        {% if item.image != "" %}
+          <a href="{{ path('vankor_news_show', {id: item.id})}}">
+            <img src="{{ small_img }}{{item.image}}" alt="" width="256">
+          </a>
+        {% endif %}
+      </div>
+      <div class="articles-date">{{item.publishDate|date('d.m.Y')}}</div>
+      <a href="{{ path('vankor_news_show', {id: item.id})}}" class="articles-title">{{item.title}}</a>
+      <p>
+          {{item.shortText|raw}}
+      </p>
+    </div>
+{% endfor %}
+

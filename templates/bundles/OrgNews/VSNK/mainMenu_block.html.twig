@@ -1,0 +1,31 @@
+{# Повторяющиеся блоки основного и футера меню #}
+<li>
+    <a href="/corporateCode">Наш кодекс</a>
+    <ul>
+        {% include( templates_path ~ '/corporateCodeMenu.html.twig') %}
+    </ul>
+</li>
+<li>
+    <a href="/socialPrograms">СОЦИАЛЬНЫЕ ПРОГРАММЫ</a>
+    <ul>
+        {% include( templates_path ~ '/socialProgramsMenu.html.twig') %}
+    </ul>
+</li>
+<li>
+    <a href="/corporateCulture">КОРПОРАТИВНАЯ КУЛЬТУРА</a>
+    <ul>
+        {% include( templates_path ~ '/corporateCultureMenu.html.twig') %}
+    </ul>
+</li>
+<li>
+    <a href="/pressCenter">ПРЕСС-ЦЕНТР</a>
+    <ul>
+        {% include( templates_path ~ '/pressCenterMenu.html.twig') %}
+    </ul>
+</li>
+<li>
+    <a href="/reception">ЭЛЕКТРОННАЯ ПРИЕМНАЯ</a>
+    <ul>
+        {% include( templates_path ~ '/receptionMenu.html.twig') %}
+    </ul>
+</li>

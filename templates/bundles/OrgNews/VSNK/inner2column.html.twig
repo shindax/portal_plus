@@ -1,0 +1,28 @@
+{# % extends root_layout % #}
+{% extends templates_path ~ '/vsnk_base.html.twig' %}
+
+{% block Styles %}
+    <link rel="stylesheet" href="/Extension/jquery-ui/jquery-ui.css">
+{% endblock %}
+
+
+{% block Scripts %}
+  <script type="text/javascript" src="/js/tree.js"></script>
+  <script type="text/javascript" src="/Extension/fancy/jquery.mousewheel-3.0.6.pack.js"></script>
+  <script type="text/javascript" src="/Extension/fancy/jquery.fancybox-thumbs.js"></script>
+{% endblock %}
+
+{% block Page %}
+
+<section id="page">
+	<div class="container notFront-content">
+		<div class="content-container">
+			{% block Main %}{% endblock %}
+		</div>
+		<div class="side-panel">
+			{% block SidePanel %}{% endblock %}
+		</div>
+	</div>
+</section>
+</section>
+{% endblock %}

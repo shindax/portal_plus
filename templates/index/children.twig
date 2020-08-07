@@ -1,9 +1,0 @@
-{# конкурс новогодний #}
-
-<p class="n-rol-txt" style="padding-bottom: 10px; margin-top:0">Дед Мороз не только дарит подарки. Говорят, он еще умеет исполнять желания детей, может сделать так, чтобы в следующем году сбылись их мечты. Мы спросили детей сотрудников Ванкорнефти: какие свои желания и мечты вы бы попросили исполнить Деда Мороза?</p>
-{% if children.image_small %}
-	<img class="n-mnew-img" alt="{{children.getTitle|e}}" src="{{children.image_small}}">
-{% endif %}
-<a  class="n-rol-link">{{ children.getTitle }}</a>
-<p class="n-rol-txt">{{ children.getShort_text |striptags | nl2br}}</p>
-<br><a href="{{site_url}}children" class="n-rol-link-end">Продолжение</a>

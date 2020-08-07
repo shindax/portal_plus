@@ -1,0 +1,52 @@
+{# Шаблон футера #}
+<footer>
+    <div class="clearfix container">
+        <div class="table">
+            <div class="footer-content td">
+                <style>
+                    .social-container a.vk:before {position:relative;top:2px;}
+                    .social-container a.insta:before {position:relative;top:4px;}
+                </style>
+                <div class="social-container" style="color: white;">
+                    <a class="insta" target="_blank" style="width: 235px;">@vsnk_vostsibneftegaz</a>
+                    <a class="vk" target="_blank" style=" ">Эвенкия. Горячее сердце холодного края</a>
+                </div>
+                <ul class="footer-nav">
+                    {% include( templates_path ~ '/mainMenu_block.html.twig') %}
+                </ul>
+            </div>
+
+            <div class="footer-side td">
+                <div class="footer-search">
+                    {# <form>
+                        <input class="search-field" type="text" placeholder="поиск по сайту">
+                        <button class="ico go"></button>
+                    </form> #}
+                    <form action="/search_employee/search/" method="GET" id="footer_employee_search">
+                        <div class="search-box">
+                            <button class="ico go-catalog" type="submit"></button>
+                            <input class="search-field" id="footer_employee" name="footer_employee" placeholder="Найти сотрудника" type="text">
+                        </div>
+                    </form>
+                </div>
+                <ul class="footer-links">
+                    {# <li class="avia"><a href="/plan/bus.php"><i class="ico"></i>Дежурный автотранспорт</a></li> #}
+                    {% include( templates_path ~ '/leftAndFooterMenu_block.html.twig') %}
+                    <li class="hotline"><a href="/safetyWork/monitor"><i class="ico"></i>Экран безопасности</a></li>
+                    <!--
+                    <li class="catalog"><a href="/search_employee/company/"><i class="ico"></i>СПРАВОЧНИК СОТРУДНИКОВ</a></li>
+                    <li class="avia"><a href="/plan/plan.php"><i class="ico"></i>АВИАЦИОННЫЕ ПЕРЕВОЗКИ</a></li>
+                    <li class="avia"><a href="/plan/bus.php"><i class="ico"></i>РАСПИСАНИЕ АВТОБУСОВ</a></li>
+                    <li class="support"><a href="/Itis/tech_support"><i class="ico"></i>ТЕХНИЧЕСКАЯ ПОДДЕРЖКА</a></li>
+                    <li class="ethics"><a href="/ethicsСode"><i class="ico"></i>КОДЕКС ДЕЛОВОЙ ЭТИКИ</a></li>
+                    <li class="hotline"><a href="/hotlinesecurity"><i class="ico"></i>ГОРЯЧАЯ ЛИНИЯ БЕЗОПАСНОСТИ</a></li>
+                    -->
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="copyright">&#169;<script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script> АО «ВОСТОЧНО-СИБИРСКАЯ НЕФТЕГАЗОВАЯ КОМПАНИЯ»</div>
+
+    </div>
+</footer>

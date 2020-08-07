@@ -1,0 +1,172 @@
+{# Одна новость в развороте #}
+{% extends templates_path ~ "/innerSingle.html.twig" %}
+
+{% block Styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block Scripts %}
+    {{ parent() }}
+
+	<script>
+		$(document).ready(function(){
+			$('a[href^="#"], a[href^="."]').click( function(){
+				var scroll_el = $(this).attr('href');
+				if ($(scroll_el).length != 0) {
+					$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
+				}
+				return false;
+			});
+		});
+	</script>
+
+	<!-- FlexSlider -->
+	<script src="/Extension/FlexSlider/jquery.flexslider.js" defer></script>
+
+	<script type="text/javascript">
+
+		$(window).load(function(){
+			$('.side-slider').flexslider({
+				animation: "slide",
+				animationLoop: true,
+				//itemWidth: 272,
+				itemMargin: 0,
+				pausePlay: false,
+				slideshow: false,
+				direction: "vertical",
+				minItems: 5,
+				start: function(slider){
+					$('body').removeClass('loading');
+				}
+			});
+		});
+
+		$(window).load(function() {
+			// The slider being synced must be initialized first
+			$('#carousel').flexslider({
+				animation: "slide",
+				controlNav: false,
+				animationLoop: true,
+				slideshow: false,
+				itemWidth: 50,
+				asNavFor: '#slider',
+				start: function(slider){
+					$('body').removeClass('loading');
+				}
+			});
+
+			$('#slider').flexslider({
+				animation: "slide",
+				controlNav: false,
+				animationLoop: true,
+				slideshow: false,
+				prevText: " ",
+				nextText: " ",
+				sync: "#carousel",
+				start: function(slider){
+					$('body').removeClass('loading');
+				}
+			});
+		});
+
+	</script>
+
+{% endblock %}
+
+{% block Main %}
+
+	<div class="newsArticle-container">
+
+		<div class="flex-box article-headLine">
+			<div class="col-md-6 clearfix article-head">
+				<h1 class="text-blue">{{ title | default("Новости") }}</h1>
+				<div class="info-row"><span class="date">{{ date }}</span> </div>
+
+				<div class="article-slider">
+					<div id="carousel" class="flexslider">
+						<ul class="slides">
+							{% if image %}
+								<li style="background-image: url({{ original_img }}{{ image }});"></li>
+							{% endif %}
+							{% if gallery %}
+								{% for photo in gallery %}
+									<li style="background-image: url({{ photo.small }});"></li>
+								{% endfor %}
+							{% endif %}
+						</ul>
+					</div>
+
+					<div id="slider" class="flexslider">
+						<ul class="slides">
+							{% if image %}
+								<li style="background-image: url({{ original_img}}{{ image }});">
+
+								<a href="{{ original_img }}{{ image }}" data-fancybox="gallery" style="
+														    width: 550px;
+														    position:  absolute;
+														    height: 400px;
+														    margin-left:  50px;
+														">&nbsp;</a></li>
+							{% endif %}
+							{% if gallery is defined %}
+								{% for photo in gallery %}
+									<li style="background-image: url({{ photo.large }});"><a href="{{ photo.large }}" data-fancybox="gallery" style="
+													    width: 550px;
+													    position:  absolute;
+													    height: 400px;
+													    margin-left:  50px;
+													">&nbsp;</a></li>
+								{% endfor %}
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="side-panel col-md-6 no-border">
+
+				<div class="side-box news-list">
+					<div class="inner">
+						<a href="{{ path( 'vsnk_all_news' )}}" class="btn4 pull-right">Все новости</a>
+						<div class="h5 side-title bot-sm">Новости</div>
+
+						{% for item in newsDigest %}
+							<div class="item1">
+								<div class="date">{{ item.publishDate|date("d.m.Y") }}</div>
+								<div class="title news-title"><a href="{{ path( 'vsnk_news_show', {id: item.id})}}">{{item.title}}</a></div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="article-body both">
+
+			{{ shortText | raw }}
+
+			{# Файлы #}
+			{% if files is defined %}
+				<h3>Документы</h3>
+
+                <ul style="list-style: inside;">
+					{% for name, href in files %}
+						{% if "pdf" in href %}
+							{% set target = "data-fancybox='gallery'" %}
+						{% else %}
+							{% set target = "target='_blank'" %}
+						{% endif %}
+
+						<li>
+							<a href="/data/files/{{ href }}" {{ target }}>{{ name }}</a>
+						</li>
+					{% endfor %}
+                </ul>
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html, charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Корпоративный портал АО &laquo;Востсибнефтегаз&raquo;</title>
+
+	<link rel="stylesheet" type="text/css" href="{{ css_path }}/FontAwesome.css">
+	<link rel="stylesheet" type="text/css" href="/Extension/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{{ css_path }}/style.css">
+	<link rel="stylesheet" type="text/css" href="{{ css_path }}/style-additional.css">
+
+	<!-- Для погодных иконок в шапке -->
+	<link rel="stylesheet" type="text/css" href="/Extension/weather-icons-master/css/weather-icons.min.css">
+
+	<link rel="stylesheet" href="/Extension/jquery-ui/jquery-ui.css">
+
+	<!-- Стили с наследуемых страниц -->
+	{% block Styles %}
+	{% endblock %}
+	<!-- Styles -->
+</head>
+<body class="front loading">
+	<div style="position: relative;">
+		<div class="main-bg">
+			<div class="bg-left" style="background-image: url(/images/portal/bg/bg-left2.jpg)"></div>
+			<div class="bg-right" style="background-image: url(/images/portal/bg/bg-right2.jpg)"></div>
+
+            {#
+            <style>
+                .bg-left, .bg-right {
+                    position: fixed !important;
+                    background-size: cover;
+                }
+                .bg-left {background-position: left!important;}
+                .bg-right {background-position: right!important;}
+            </style>
+			<div class="bg-left" style="background-image: url(/images/portal/bg/60a1681e1e814f6465ee220bac006872.jpg)"></div>
+			<div class="bg-right" style="background-image: url(/images/portal/bg/60a1681e1e814f6465ee220bac006872.jpg)"></div>
+			#}
+		</div>
+
+		<div id="wrapper">
+			<!-- HEADER -->
+			{% include( templates_path ~ '/header.html.twig') %}
+			<!-- HEADER -->
+
+			<!-- Main menu -->
+			{% include( templates_path ~ '/mainMenu.html.twig') %}
+			<!-- Main menu -->
+
+			<!-- PAGE -->
+			{% block Page %}
+			{% endblock %}
+			<!-- PAGE -->
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+    {% include( templates_path ~  '/footer.html.twig') %}
+	<!-- /FOOTER -->
+
+	{# Подключаем скрипты: #}
+	{# Подключенные скрипты #}
+
+	<script src="/js/portal/jquery-1.10.2.min.js"></script>
+	{# <script src="/js/portal/jquery-3.2.1.min.js"></script> #}
+	<script src="/js/portal/jquery.autocomplete.js"></script>
+    <script src="/js/portal/jquery.ba-throttle-debounce.min.js"></script>
+    <script src="/Extension/FlexSlider/jquery.flexslider-min.js"></script>
+
+	{# Блок fancyBox3 #}
+	<link rel="stylesheet" href="/Extension/fancyBox3/jquery.fancybox.min.css" />
+	<script src="/Extension/fancyBox3/jquery.fancybox.min.js"></script>
+
+	<script type="text/javascript" src="/js/tree.js"></script>
+	<script type="text/javascript" src="/Extension/fancy/jquery.mousewheel-3.0.6.pack.js"></script>
+{#	<script type="text/javascript" src="/Extension/fancy/jquery.fancybox-thumbs.js"></script>#}
+
+	{# :Подключаем скрипты #}
+
+	{# Блок bootstrap4 #}
+	{# <script src="/Extension/bootstrap/js/jquery-3.2.1.slim.min.js"></script> #}
+	<script src="/Extension/bootstrap/js/popper.min.js"></script>
+	<script src="/Extension/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="/Extension/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="/Extension/bootstrap-datepicker/locales/bootstrap-datepicker.ru.min.js"></script>
+    <link rel="stylesheet" href="/Extension/bootstrap-datepicker/css/bootstrap-datepicker.min.css" />
+
+    {# Свои скрипты #}
+	<script src="{{ js_path }}/vsnk-scripts.js"></script>
+
+    {# Скрипты с наследуемых страниц #}
+    {% block Scripts %}{% endblock %}
+
+</body>
+</html>

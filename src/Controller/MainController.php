@@ -22,11 +22,6 @@ class MainController extends AbstractController
             'today_day' => 'среда',
             'today_month' => 'июль',
             'today_time' => '13:30',
-                        'currentUser' => [
-                'getPhoto' => 'photo',
-                'name' => 'Иванов Иван Иванович',
-                'employee_id' => 123
-            ]
           ]);
     }
 

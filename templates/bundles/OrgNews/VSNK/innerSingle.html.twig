@@ -1,0 +1,11 @@
+{% extends templates_path ~ '/layout.html.twig' %}
+
+{% block Page %}
+    <section id="page">
+        <div class="container notFront-content">
+            <div class="container-1col">
+                {% block Main %}{% endblock %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,39 @@
+/* table */
+.txt-center { text-align:center;}
+.txt-right { text-align:right;}
+.txt-left { text-align:left;}
+.attention { padding-top:15px!important; padding-bottom:15px!important; text-align:center; font-weight:bold; color:#602900;}
+#page.not-front, #page.not-front td { font-size:14px;}
+
+.table1 table { margin-bottom:20px; width:100%; border-spacing:0;}
+	.table1 th { font-weight: bold; }
+	.table1 td:nth-of-type(1) { width:40%;}
+	.table1 td:nth-of-type(2) { width:60%;}
+	.table1 td { padding:5px 10px; box-sizing:border-box; vertical-align:top;}
+	.table1 tr:nth-child(2n+1) td { background:#fff;}
+	.table1 tr:nth-child(2n) td { background:#f7f7f7;}
+	.table1 .comment { display:block; font-size:12px; color:#999; font-style:italic;}
+	.table1 li { margin-bottom:3px; padding-left:20px;}
+	.table1 li input { margin:0 8px 0 -20px;}
+	.table1 select { padding:5px; width:40%;}
+	.table1 textarea { box-sizing:border-box; padding:6px; width:80%; height:150px;}
+	.table1 .undertable-txt { margin-bottom:15px; font-family:'Europe-Bold';}
+
+.but3, .but2 { border:0; text-align:center; letter-spacing: 0.05em; color:#fff; cursor:pointer; border-radius:3px; background:#6985af;}
+	.but3:hover, .but2:hover { background:#3a5a8a;}
+.but2 { float:right; padding:8px 24px; font-size:15px;}
+	.but2 .icon-lock { padding-right:8px;}
+.but3 { padding:10px 32px; font-size:12px; font-weight:bold; text-transform:uppercase;}
+
+/* --   BUTTONS & ICONS & SEPS   --------------------------------------------------------------- */
+a.icon-circle-arrow-right, span.icon-circle-arrow-right { margin-left:3px; color:#f99d1c!important;}
+.but1 { padding:4px 14px; font-size:13px; letter-spacing:.05em; text-align:center; cursor:pointer; border-radius:3px; border:0; background:#ffc600;}
+.but1:hover { background:#f99d1c;}
+.cool-question .email { display:inline-block; vertical-align:middle; width:44px; height:40px; background:url(../images/sprite.png) -100px -150px no-repeat;}
+.cool-question .email:hover { background-position:-100px -100px;}
+.cool-question .call { display:inline-block; vertical-align:middle; margin-left:10px; width:44px; height:44px; background:url(../images/sprite.png) -150px -150px no-repeat;}
+.cool-question .call:hover { background-position:-150px -100px;}
+
+.muted { color: #777; }
+
+button { padding: 1px 6px; }

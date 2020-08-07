@@ -1,0 +1,67 @@
+{# Шаблон хеадера #}
+<header>
+    <div class="container clearfix">
+
+        <a href="/" id="logo"><img src="/images/portal/logo.png" alt="ВСНК"></a>
+        <div class="header-content pull-right">
+            <div class="date-time pull-left">
+                <div class="time time_refresh_auto">{{today_time}}</div>
+                <div class="date">{{today_date}}<br>{{today_day}}</div>
+            </div>
+
+            <div class="weather">
+                <div class="weather1">
+                    <div class="weather-ico">
+                        <i class="wi wi-owm-{#{ weather.get('Красноярск').Type['number'] }#}"></i>
+                    </div>
+                    <div class="weather-info">
+                        {#{ weather.get('Красноярск').Temperature }#}&#176;C<br>
+                        <br>
+                    </div>
+                    <div class="place title" style="text-align: center">Красноярск</div>
+                </div>
+
+                <div class="weather2">
+                    <div class="weather-ico">
+                        <i class="wi wi-owm-"></i>
+                    </div>
+                    <div class="weather-info">
+                        <br>
+                    </div>
+                    <div class="place title" style="text-align: center">Байкит</div>
+                </div>
+            </div>
+
+            <div class="rate">
+                <div class="rate1">
+                    <span class="currency-ico">$</span>
+                    <span class="value">
+                    </span>
+                </div>
+                <div class="rate2">
+                    <span class="currency-ico">€</span>
+                    <span class="value">
+                    </span>
+                </div>
+                <div class="title">Курс валют</div>
+            </div>
+
+            <div class="barrelPrice">
+                <div><span>$</span></div>
+                <div class="title">цена за баррель</div>
+            </div>
+
+            <div class="user">
+                <div class="name title">
+                    {% if currentUser.name %}
+                        <a href="/employeephoto">{{ currentUser.name }}</a>
+                    {% endif %}
+                </div>
+                <div class="avatar" style="background-image: url('');"></div>
+            </div>
+            <!--div class="user not-authorized">
+                <a class="login-link" href="#">Войти</a>
+            </div-->
+        </div>
+    </div>
+</header>

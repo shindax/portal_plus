@@ -8,7 +8,9 @@
 /public/images/
 /public/upload_dir/
 /public/uploads/
+/public/css/fonts/
 /var/
+/1/
 /vendor/
 ###< symfony/framework-bundle ###
 

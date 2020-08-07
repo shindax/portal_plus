@@ -1,0 +1,11 @@
+{% extends templates_path ~ '/inner2column.html.twig' %}
+
+{% block SidePanel %}
+	{% if title %}
+		{# <h4 class="side-nav__title">{{ title }}</h4> #}
+		<h4 class="side-nav__title">Пресс-центр</h4>
+	{% endif %}
+	<ul class="side-nav">
+		{% include( templates_path ~ '/pressCenterMenu.html.twig' ) %}
+	</ul>
+{% endblock %}

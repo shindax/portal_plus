@@ -1,0 +1,22 @@
+{# Шаблон главного меню #}
+<nav id="main-nav">
+    <a class="nav-control md-hidden" onclick="{# jQuery('#main-nav').toggleClass('open'); #}"><span></span><span></span><span></span><span></span></a>
+    <ul class="nav clearfix">
+        <li>
+            <a href="/search_employee/company/">СПРАВОЧНИК СОТРУДНИКОВ</a>
+        </li>
+        {% include( templates_path ~ '/mainMenu_block.html.twig') %}
+        <li>
+            <a class="control"><span><span></span><span></span><span></span><span></span></span></a>
+            <ul>
+                <li><a href="http://vsnk-as19:81/cgis">Корпоративная геоинформационная система</a></li>
+                <li><a href="/section/view/426">Шаблоны чек-листов для закупок и карточка согласования расчета НМЦ в SAP</a></li>
+                <li><a href="/section/view/430">Тарифы и ценовые нормативы</a></li>
+                <li><a href="/section/view/431">Полезные документы и памятки</a></li>
+                <li><a href="/section/view/469">Методологические документы по расчету и согласованию НМЦ</a></li>
+                <li><a href="/invoice">Счета-фактуры</a></li>
+                <li><a href="/aways">Регистрация отсутствий</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
