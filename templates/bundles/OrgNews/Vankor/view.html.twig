@@ -80,9 +80,7 @@
 
     </div>
     <div class="comment">
-
       {% include templates_path ~ '/comments.html.twig' %}
-
       {% include templates_path ~ '/comment_form.html.twig' with {'comments' : comments, 'user' : currentUser } %}
     </div>
   {% endblock %}

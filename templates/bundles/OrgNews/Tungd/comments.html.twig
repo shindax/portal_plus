@@ -1,0 +1,17 @@
+{# Комментарии - блок #}
+<script src="{{ js_path }}/commentsFrontEnd.js" language="javascript"></script>
+
+<div class="comments-box">
+    <a href="javascript:viewAllComments('{{ form.target_id }}','{{ form.target_type | e('js')}}')">
+        Всего комментариев: {{ form.commentsCount }}
+    </a>
+    {% include(templates_path ~ '/comments_form.html.twig') %}
+        <div id="commentsArea">
+        {% import( templates_path ~ '/comment_macro.html.twig') as comments %}
+
+        {% for comment in form.comments %}
+                {{ comments.comment(comment.targetId, comment.targetType, comment.dateCreate, comment.getText, comment.user) }}
+        {% endfor %}
+
+        <div>
+</div>

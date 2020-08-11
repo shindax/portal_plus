@@ -70,24 +70,25 @@
 {% endblock %}
 
 {% block main %}
+
     <div class="articles-archive">
 
       {% for item in news %}
 
       <div class="articles-item">
         <div class="articles-image">
-            {% if item.photo %}
+            {% if item.image %}
              <a href="{{ path('vankor_news_show', { id: item.id }) }}">
-                <img src="{{ small_img }}{{ item.photo }}" alt="">
+                <img src="{{ small_img }}{{ item.image }}" alt="">
               </a>
             {% endif %}
         </div>
 
         <div class="articles-content">
-          <div class="articles-date">{{item.publish_date}} {{ months_in_date[item.month] }} {{item.year}}</div>
+          <div class="articles-date">{{ item.publishDate | date("d.m.Y") }} {{ months_in_date[ item.month ] }} {{ item.year }}</div>
           <a href="{{ path('vankor_news_show', { id: item.id }) }}"
           class="articles-title">{{item.title|raw}}</a>
-          <p>{{ item.short_text | raw }}</p>
+          <p>{{ item.shortText | raw }}</p>
         </div>
       </div>
       {% endfor %}

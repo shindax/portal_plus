@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Таас-Юрях Нефтегазодобыча</title>
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+
+
+	<link href='{{ css_path }}/fonts/fonts.css' rel='stylesheet' type='text/css'>
+	<link href='{{ css_path }}/main.css' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" type="text/css" href="{{ css_path }}/template-styles.css">
+	<link rel="stylesheet" type="text/css" href="{{ css_path }}/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ css_path }}/FontAwesome.css">
+	<link rel="stylesheet" type="text/css" href="{{ css_path }}/jquery.autocomplete.css" />
+	<link href="/Extension/fancy/jquery.fancybox.css" rel="stylesheet" type="text/css"/>
+	<link href="/Extension/fancy/jquery.fancybox-thumbs.css" rel="stylesheet" type="text/css"/>
+
+
+	<script src="{{ js_path }}/jquery.min.js"></script>
+	<script src="/Extension/jquery-ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{{ js_path }}/jquery.placeholder.min.js"></script>
+    <script src="{{ js_path }}/masonry.pkgd.js"></script>
+    <script src="{{ js_path }}/jquery.autocomplete.js"></script>
+
+	<script>
+  		$(function() {
+	    	$( "#radio" ).buttonset();
+	    	$( "input[type=submit], .button" ).button();
+			$( "select" ).selectmenu();
+
+
+        	$("#employee").autocomplete("/?task=autocomplete&f=findEmployee&ajax=1", {
+                delay:200,
+                minChars:3,
+                autoFill:false,
+                selectFirst: false,
+                cacheLength: 0,
+                max: 100
+	        });
+
+	        $("a.fancy").fancybox({
+			  	'opacity':false,
+		  		'transitionIn':'elastic',
+		  		'transitionOut':'fade'
+			});
+
+			// $.get("/index.php", { task: 'incidents', f: 'viewLink', ajax: 1 }, function (data) { $("li#serenalink").html(data); });
+
+			// поиск по нажатию enter
+			$("#employee").keyup(function(event){
+          		if(event.keyCode == 13){
+              $("form#employee_search").submit();
+          	}
+        });
+
+	  	});
+
+		function go(location) {
+			document.location.href = location;
+		}
+
+
+  </script>
+</head>
+
+<body>
+	{% block Header %}
+	<!-- HEADER -->
+	<header>
+		<div class="outer">
+			<div class="clearfix inner" style="z-index: 100;">
+
+				<a href="/" id="logo"><img src="/images/logo_tungd.png" width="467" height="119"></a>
+
+				<div>
+					{% if access_to_streams is defined %}
+					<div class="date">
+						<a class="office" href="/streams">Он-лайн<br>камеры</a>
+					</div>
+					{% endif %}
+
+					<div class="date">{{today_date}}<br>{{today_day}} {{today_time}}</div>
+					<!-- <div class="currency" style="display:none;">
+						&#36; <span id="currencyDollar">{{ currency_usd }}</span><br/>
+						&euro; <span id="currencyEuro">{{ currency_euro }}</span>
+					</div>
+					<div class="weather" style="display:none;">
+						СБНГКМ  <span id = "fieldWeather" style="font-size:1.1em">{{ weather_remote }}</span> <br />
+						г. Ленск <span id = "lenskWeather" style="font-size:1.1em">{{ weather_lensk }}</span>
+						г. Иркутск <span id = "irkutskWeather" style="font-size:1.1em">{{ weather_irkutsk }}</span>
+					</div> -->
+					<a class="office" href="/Itis/Statistics"><span class="ico"></span>Личный кабинет</a>
+				</div>
+
+				<nav id="nav">
+
+					<!-- {% if holiday_view_show is defined %}
+						<div class="nav-new-year" style="
+						      background-image: url(images/new_year/ukrasheniya.png);
+						      position: absolute;
+						      width: 100%;
+						      height: 100%;
+						      top: -50px;
+						"></div>
+					{% endif %} -->
+
+					<ul>
+						<li><a href="/About">Об&nbsp;обществе</a>
+							<ul>
+								<li><a href="/Search_employee/company/">Структура</a></li>
+                        		<li><a href="/About">Информация&nbsp;о&nbsp;подразделениях</a></li>
+                        		<li><a href="/ms">Совет&nbsp;молодых&nbsp;специалистов</a></li>
+                        		<li><a href="/BankProposals">Банковские&nbsp;предложения</a></li>
+{#                        		<li><a href="/Vacancy">Вакансии</a></li>#}
+                        		<li><a href="http://www.rosneft.ru/" class="n-main-m">ПАО&nbsp;«НК&nbsp;«Роснефть»</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="/Direction">Руководство</a>
+							<ul>
+								<li><a href="/Secretary">Помощники руководителей</a></li>
+								<li><a href="/Reception">Электронная приемная руководителей</a></li>
+							</ul>
+						</li>
+						<li><a href="/About">Информация<br />о&nbsp;подразделениях</a>
+						<ul>
+								{% for item in departments_menu %}
+									<li><a href="/catalog/view/{{item.id}}">{{item.name}}</a></li>
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="/News">Новости</a></li>
+						<li>
+							<a href="/PressNew">Пресс&mdash;центр</a>
+							<ul>
+								<li><a href="/pressNew/news">Новости</a></li>
+								<li><a href="/pressNew/massmedia/">СМИ о нас</a></li>
+							 	<li><a href="/pressNew/newspapper">Газета «Нефтяник Алмазного края»</a></li>
+							 	<li><a href="/pressNew/aboutyourself/">Расскажи о себе!</a></li>
+							    <li><a href="/gallery/photooftheweek">Фото</a></li>
+							    <li><a href="/pressNew/video">Видео</a></li>
+							</ul>
+						</li>
+							<li><a href="/airlift/schedule/">Транспорт</a>
+						<ul>
+						<li><a href="/airlift/transportation/">График вылетов</a></li>
+							<li><a href="/Bus">Служебные автобусы</a></li>
+							<li><a href="/airlift/docs/">Документы по авиаперевозкам</a></li>
+							<li><a href="/airlift/safety/">Техника безопасности<br />при перевозках на вертолете</a></li>
+							</ul>
+							</li>
+						{#
+						<li><a href="/Adverts">Объявления</a>
+							<ul>
+								<li><a href="/Adverts/Form">Написать объявление</a></li>
+							</ul>
+						</li>
+						#}
+						<li><a href="/Itis/Services">Информационные<br />системы</a>
+							<ul>
+								<li><a href="/Itis/tech_support">Техническая поддержка</a></li>
+								<li><a href="/Itis/rninform">Отзыв о работе ИК СИБИНТЕК</a></li>
+								<li><a href="/Itis/applications">Типовые заявки</a></li>
+								<li><a href="/employeephoto/">Смена&nbsp;фотографии&nbsp;</a></li>
+								{#<li><a href="/Itis/feedback">Опрос удовлетворённости пользователей</a></li>#}
+							</ul>
+						</li>
+						<li><a href="/LaborProtection">Информация<br />ПБОТОС</a>
+							<ul>
+								<li><a href="/LaborProtection/SecurityCulture">Культура безопасности труда</a></li>
+								<li id="serenalink"></li>
+								<li><a href="/data/files/Pages/Золотые Правила Безопасности Труда.pdf" target="_blank">Золотые правила безопасности</a></li>
+								<li><a href="/education">Дистанционное обучение	</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="/Lean/addNewLean">Рационализаторская<br />деятельность</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<!-- /HEADER -->
+	{% endblock %}
+	<!-- PAGE -->
+	{% block Page %}
+	{% endblock %}
+	<!-- /PAGE -->
+	{% if holiday_view_show is defined %}
+
+		{#<div class="new-year-ukrashenie" style="#}
+			{#position: fixed;#}
+			{#bottom: 20px;#}
+			{#left: 20px;#}
+			{#background: url('/images/new_year/vetochka.png') no-repeat;#}
+			{#/*background-size: 300px auto;*/#}
+			{#background-size: 80%;#}
+			{#height: 200px;#}
+			{#width: 300px;#}
+			{#z-index: 99;#}
+		{#"></div>#}
+
+		{#<div class="new-year-ukrashenie" style="#}
+			{#position: fixed;#}
+			{#bottom: 20px;#}
+			{#right: 20px;#}
+			{#background: url('/images/new_year/elka.png') no-repeat;#}
+			{#/*background-size: 300px auto;*/#}
+			{#background-size: 80%;#}
+			{#height: 200px;#}
+			{#width: 150px;#}
+			{#z-index: 99;#}
+		{#"></div>#}
+
+		{#<div style="#}
+			{#position: fixed;#}
+			{#top: 10px;#}
+			{#left: 10px;#}
+			{#background: url('/images/9may_2018_1.gif') no-repeat;#}
+			{#background-size: 250px auto;#}
+			{#height: 300px;#}
+			{#width: 300px;#}
+			{#z-index: 99;#}
+		{#"></div>#}
+
+		{#<div style="#}
+			{#position: fixed;#}
+			{#bottom: 10px;#}
+			{#right: 10px;#}
+			{#background: url('/images/9may_2018_2.gif') no-repeat;#}
+			{#background-size: 130px auto;#}
+			{#height: 280px;#}
+			{#width: 130px;#}
+			{#z-index: 99;#}
+		{#">#}
+		{#</div>#}
+
+		{#<a class="single_image" rel="group" href="/images/oboi/elections/emblema.jpg"><img src="" alt="" />#}
+			{#<div class="new-year-ukrashenie" style="position:fixed;z-index: 999; bottom: 10px; left: 10px;">#}
+				{#<img src="/images/oboi/elections/87359048.jpg" class="img-responsive" style="width:300px;">#}
+			{#</div>#}
+		{#</a>#}
+
+	{% endif %}
+	<!-- FOOTER -->
+	<footer>
+		<div class="outer">
+			<div class="inner">
+				<div class="table">
+					<div class="td td1">
+						<div class="title"><a href="/About/">Об обществе</a></div>
+						<ul>
+							<li><a href="/Direction">Руководство</a></li>
+							<li><a href="/Secretary">Секретари руководителей</a></li>
+							<li><a href="/Reception">Электронная приемная руководителей</a></li>
+							<li><a href="/Search_employee/company/">Структура</a></li>
+							<li><a href="/About">Информация о подразделениях</a></li>
+							<li><a href="/Ms">Молодые специалисты</a></li>
+{#							<li><a href="/Vacancy">Вакансии</a></li>#}
+						</ul>
+					</div>
+					<div class="td td2">
+						<div class="title"><a href="#">Пресс-Центр</a></div>
+						<ul>
+							<li><a href="/News">Архив новостей</a></li>
+							<li><a href="/Press/Video">Видеоахив</a></li>
+							<li><a href="/gallery/photooftheweek">Фотоархив</a></li>
+							<li><a href="/Adverts">Объявления</a></li>
+						</ul>
+					</div>
+					<div class="td td3">
+						<div class="title"><a href="/Itis">ИТ и связь</a></div>
+						<ul>
+							<li><a href="/itis/tech_support">Служба&nbsp;технической&nbsp;поддержки</a></li>
+							<li><a href="/Itis/services">Информационные системы</a></li>
+							<li><a href="/itis/_getPhonesData">Телефонный справочник</a></li>
+							<li><a href="/itis/rninform">Отзывы&nbsp;о&nbsp;работе&nbsp;«СИБИНТЕК»</a></li>
+							<li><a href="/itis/applications">Типовые заявки</a></li>
+							{% if vc_instruction_file is defined %}
+                                <li><a href="{{ vc_instruction_file }}">Инструкция по использованию<br>программных персональных ВКС</a></li>
+                            {% endif %}
+						</ul>
+					</div>
+					<div class="td td4">
+						<div class="title"><a href="/airlift/schedule/">Транспорт</a></div>
+						<ul>
+							<li><a href="/airlift/schedule/">Расписание полетов</a></li>
+							<li><a href="/airlift/transportation/">График вылетов</a></li>
+							<li><a href="/Bus">Служебные автобусы</a></li>
+							<li><a href="/airlift/docs/">Документы по авиаперевозкам</a></li>
+							<li><a href="/airlift/safety/">Техника безопасности<br />при перевозках на вертолете</a></li>
+
+						</ul>
+					</div>
+					<div class="td td5">
+						<div class="title"><a href="/Itis/Statistics">Личный кабинет</a></div>
+						<div class="title"><a href="/Search_employee/Search">Найти сотрудника</a></div>
+						<ul>
+							<li><a href="/Questions">Вопрос-ответ</a></li>
+							<li><a href="/HotlineSecurity">Горячая линия безопасности</a></li>
+							<li><a href="/LaborProtection">Информация ПБОТОС</a></li>
+							<li><a href="{# {tkrs_dir} #}">График производства ТКРС</a></li>
+						</ul>
+					</div>
+				</div>
+				{% if holiday_view_show is defined %}
+			<!-- 	<div style="text-align:center">
+					<img src="/images/holidays/23/3.png" style="height:90px"/>
+				</div> -->
+				{% endif %}
+				<div class="copyright">
+				©<script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script> ООО «Таас-Юрях Нефтегазодобыча»</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /FOOTER -->
+  <!-- jQuery -->
+
+  <!-- FlexSlider -->
+  <script defer src="{{ js_path }}/jquery.flexslider.js"></script>
+
+  <script type="text/javascript">
+    $(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: false,
+        itemWidth: 203,
+        itemMargin: 0,
+        pausePlay: true,
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+
+  </script>
+
+    <style>
+        html{
+            overflow: auto;
+        }
+
+       .blocker {
+           z-index: 150;
+       }
+
+       .gold-rules {
+           font-size: 14px;
+
+       }
+       .gold-rules__header {
+           font-size: 30px;
+           margin-bottom: 15px;
+       }
+       .gold-rules__fieldset {
+           padding: 10px 0;
+           margin: 10px 0;
+       }
+
+       .ui-button {
+           margin-bottom: .4em;
+       }
+
+       .gold-rules__notify {
+           display: none;
+           font-size: 22px;
+           font-weight: bolder;
+       }
+       .gold-rules__notify-success {
+           color: #00c503;
+       }
+       .gold-rules__notify-failure {
+           color: #ac0000;
+       }
+       .gold-rules__close {
+           display: none;
+       }
+    </style>
+
+
+
+
+
+{#  <!-- Syntax Highlighter -->
+  <script type="text/javascript" src="js/shCore.js"></script>
+  <script type="text/javascript" src="js/shBrushXml.js"></script>
+  <script type="text/javascript" src="js/shBrushJScript.js"></script>
+
+  <!-- Optional FlexSlider Additions -->
+  <script src="js/jquery.easing.js"></script>
+  <script src="js/jquery.mousewheel.js"></script>
+  {#<script defer src="js/demo.js"></script> #}
+  <script type="text/javascript" src="/Extension/fancy/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".single_image").fancybox();
+});
+</script>
+
+	<!-- Кастомные скрипты для страниц портала -->
+	<script type="text/javascript" src="{{ js_path }}/portal.js" defer></script>
+
+
+  {% block Scripts %}
+  {% endblock %}
+
+</body>
+</html>

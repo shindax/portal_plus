@@ -1,0 +1,34 @@
+{% extends templates_path ~ "/layout.html.twig" %}
+
+{% block Scripts %}
+  <link rel="stylesheet" href="/Extension/jquery-ui/jquery-ui.css">
+  <script type="text/javascript" src="/js/tree.js"></script>
+  <script type="text/javascript" src="/Extension/fancy/jquery.mousewheel-3.0.6.pack.js"></script>
+  <script type="text/javascript" src="/Extension/fancy/jquery.fancybox-thumbs.js"></script>
+{% endblock %}
+
+{% block Page %}
+<div id="outer">
+    <section id="page" class="not-front">
+      <div class="clearfix inner">
+  <!-- PAGE -->
+  <!-- content -->
+        <div class="content-sec">
+          {% block searchForm %}
+          {% endblock %}
+            <aside class="side">
+                {% block leftMenu %}
+                {% endblock %}
+            </aside>
+			{% block Main %}
+			{% endblock %}
+		  </div>
+  <!-- /PAGE -->
+  		</div>
+       <!-- /content -->
+		</div>
+	</section>
+</div>
+{% endblock %}
+
+

@@ -7,13 +7,13 @@
     <title>Корпоративный портал ООО &laquo;РН-Ванкор&raquo;</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/main.css{#?{{filemtimeMainCss}}#}">
-    <link href="/css/fonts/fonts1.css" rel="stylesheet" type="text/css">
-    <link href="/css/fonts/fonts2.css" rel="stylesheet" type="text/css">
-    <link href="/css/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
-    <link href="/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="/Extension/fontawesome-free-5.0.6/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/css/vankor/normalize.css">
+    <link rel="stylesheet" href="/css/vankor/main.css{#?{{filemtimeMainCss}}#}">
+    <link href="/css/vankor/fonts/fonts1.css" rel="stylesheet" type="text/css">
+    <link href="/css/vankor/fonts/fonts2.css" rel="stylesheet" type="text/css">
+    <link href="/css/vankor/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+    <link href="/css/vankor/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Extension/fontawesome-free-5.0.6/css/vankor/fontawesome-all.min.css">
     <script src="/js/jquery.min.js"></script>
     {% block stylesheets %}{% endblock %}
 </head>
@@ -69,7 +69,7 @@
                 <div class="layout_headerBlock layout_headerBlock_lk layout_headerBlock_lk_in">
                     <a href="#/Itis/Statistics" class="lk"  >
                         <div class="liningProfile">
-                            <img src="{{currentUser.photo}}" alt="" />
+                            <img src="{{currentUser.employeeImage}}" alt="" />
                         </div>
                         <span>{{ currentUser.name }}</span></a>
                     </a>

@@ -6,7 +6,10 @@ function go(href) {
 $(document).ready(function() {
         jQuery.support.cors = true;
 
-        $.get("/index.php", {task: 'incidents', f : 'viewLink', ajax : 1}, function(data) { $("div#menu ul li#serenalink").html(data);});
+        // $.get("/index.php", {task: 'incidents', f : 'viewLink', ajax : 1}, function(data) { $("div#menu ul li#serenalink").html(data);});
+
+
+
         $("#employee").autocomplete("/?task=autocomplete&f=findEmployee&ajax=1", {
                 delay:200,
                 minChars:4,
@@ -42,6 +45,6 @@ $(document).ready(function() {
 	});
 
 
-        
+
 
     });

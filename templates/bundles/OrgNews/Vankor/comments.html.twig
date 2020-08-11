@@ -1,6 +1,7 @@
 {# Комментарии - блок #}
 
-<script src="/js/vankor/comments/commentsFrontEnd.js" language="javascript"></script>
+<script src="{{ js_path }}commentsFrontEnd.js" language="javascript"></script>
+
 <div class="comment-title">комментарии <span>{{ comments.commentsCount }}</span></div>
 
 {% for comment in comments.comments %}

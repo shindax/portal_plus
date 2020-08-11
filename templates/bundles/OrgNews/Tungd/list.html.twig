@@ -1,0 +1,53 @@
+{# лента новостей #}
+{% extends templates_path ~ '/inner.html.twig' %}
+
+{% block Main %}
+    <div class="main-content-sec">
+        <h1><span>{{ pageTitle | default("Новости") }}</span></h1>
+    {% if news   %}
+    <div class="news-list">
+        {% set c = 1 %}
+        {% import ( templates_path ~ '/inList.html.twig') as list %}
+        {% for new in news %}
+            {% if c == 1 %}
+                <div class="clearfix row">
+            {% endif %}
+            {{ list.out(new, path('tungd_news_show', { 'id' : new.id }), months_in_date )}}
+
+            {% if c == 2 %}
+                </div>
+                {% set c = 0 %}
+            {% endif %}
+            {% set c = c + 1 %}
+        {% endfor %}
+        {% if c ==  1 %}
+            </div>
+        {% endif %}
+    </div>
+    {% else %}
+        <p>В выбранном месяце новостей нет</p>
+    {% endif %}
+    </div>
+{% endblock %}
+
+
+{% block leftMenu %}
+    {# печатаем года #}
+    <div class="title">
+    {% for year in years %}
+            <a class="{% if year == current_year %} active {% endif %}" href="{{ path('tungd_all_news') }}/{{year}}">{{ year }}</a>
+    {% endfor %}
+    </div>
+
+    <ul class="side-nav">
+        {# а теперь месяца #}
+        {% for key, month in months %}
+              <li>
+                <a href="{{ path('tungd_all_news') }}/{{ current_year }}/{{ key }}"
+                 class="{% if key == today_month %} n-news-blink {% else %} n-news-link {%endif%}">
+                    {{ month }}
+                </a>
+              </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

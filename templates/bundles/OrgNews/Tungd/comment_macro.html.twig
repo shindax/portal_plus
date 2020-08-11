@@ -1,0 +1,11 @@
+{# Список комментариев #}
+{% macro comment(id, type, date, text, user) %}
+        <div class="comment-line">
+			<div class="personal-foto"><img src="{{ user.image }}" width="320"></div>
+			<div class="comment">
+				<a {% if user.employeeId != 0 %} href="/employee/view/{{ user.employeeId }} {% endif %}" class="name">{{ user.name }}</a>
+				<span class="point">{{ user.name }}</span> <span class="data">[{{date | date("d.m.Y")}}]</span>
+				<div class="text">{{text | raw }}</div>
+			</div>
+		</div>
+{% endmacro %}

@@ -1,0 +1,20 @@
+{# Форма для комментов #}
+
+<script src="{{ js_path }}commentsFrontEnd.js" language="javascript"></script>
+<div id="addCommentArea" class="comment-add">
+    <div class="personal-foto">
+        <img src="{# { form.employeeImage } #}" width="110">
+    </div>
+    <textarea id="addComment" name="text" cols="" rows="" placeholder="Добавить комментарий"></textarea>
+    <div class=" but-row txt-right">
+
+  <input class="but3" value="отправить" data-target-id="{{ targetId }}" data-target-type="{{ targetType | replace({'\\' : '\\\\'}) }}" data-path="{{ path('ajax_add_comment') }}" data-employee-id="{{ user.employeeId }}" data-employee-name="{{ user.name }}" type="button">
+
+    </div>
+
+  <div id="retroaction" style="font-weight:bold; padding-top:5px">
+  	<p class="hidden" id="comment_ok" style="color:green; font-weight:bold;">Спасибо! Мы проверим комментарий и разместим его в ближайшее время</p>
+	<p class="hidden" id="comment_is_empty" style="color:red;font-weight:bold;">Необходимо ввести текст комментария</p>
+  </div>
+
+</div>

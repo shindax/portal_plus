@@ -1,0 +1,72 @@
+{# Одна новость в развороте #}
+{% extends templates_path ~ "/inner.html.twig" %}
+
+{% block Main %}
+  <div class="main-content-sec">
+    <div class="clearfix news-item">
+  <h1><span>{{ pageTitle | default("Новости") }}</span></h1>
+
+    <div class="date">{{ date }}</div>
+    <div class="title">{{ newsTitle }}</div>
+    <div class="text">
+    {% if image %}
+          <a href="{{ image }}" class="fancy">
+            <img src="{{ original_img }}{{image }}" align="left" class="image" />
+          </a>
+     {% endif %}
+      {{ fullText | raw }}
+     </div>
+
+     {% if author is defined %}
+                <div style="float:right"><p>{{ author }}</p></div>
+      {% endif %}
+
+     {# фотогалерея #}
+     {% if gallery %}
+           <h3 style="clear:both; padding-top:15px">Фотографии</h3>
+               <div class="photo-slides">
+                   {% for photo in gallery %}
+                        <a class="ps-l fancy pb" href="{{ photo.original }}" rel="slides">
+                          <img class="ps-i" src=" {{ photo.small }} " />
+                        </a>
+               {% endfor %}
+              </div>
+              <div class="clearfix"></div>
+    {% endif %}
+    {# Файлы #}
+
+    {# % if gallery %}
+           <h3 style="padding-top:15px;padding-bottom:5px">Документы</h3>
+               {% for name, href in gallery %}
+                <p><a href="/data/files/{{ href }}" >{{ name }}</a></p>
+               {% endfor %}
+              <div class="clearfix"></div>
+    {% endif % #}
+
+    <div class="clearfix"></div>
+   {# Блок комментариев #}
+   {% include(templates_path ~ '/comments.html.twig') with { 'form' : comments, 'user' : currentUser } %}
+ </div>
+</div>
+{% endblock %}
+
+{% block leftMenu %}
+        <div class="title">
+          <a>Архив</a>
+        </div>
+         <div class="title">
+             {% for year in years %}
+                <a class="{% if year == current_year %} active {% endif %}" href="{{ path('tungd_all_news') }}/{{year}}">{{ year }}</a>
+            {% endfor %}
+        <br />
+           <a href="{{ path('tungd_all_news') }}/{{ current_year }}/{{  current_month | number_format }}" class="n-news-blink">{{ months[current_month | number_format ] }} </a>
+        </div>
+        <div class="n-cl">
+        <div class="n-c-con">
+           <table border="0" class="calendar">
+                <tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th class="weekend">Сб</th><th  class="weekend">Вс</th></tr>
+                <tr>
+                {{ calendar | raw }}
+                </tr>
+            </table>
+{% endblock %}

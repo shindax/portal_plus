@@ -1,6 +1,6 @@
 {# Форма для комментов #}
 
-<div class="comment-content"><img src="{{ user.photo }}" alt="">
+<div class="comment-content"><img src="{{ user.employeeImage }}" alt="">
   <textarea id="addComment" name="" cols="30" rows="10" placeholder="Текст комментария ..." class="textarea"></textarea>
 
   <input class="btn" value="отправить" data-target-id="{{ targetId }}" data-target-type="{{ targetType | replace({'\\' : '\\\\'}) }}" data-path="{{ path('ajax_add_comment') }}" data-employee-id="{{ user.employeeId }}" data-employee-name="{{ user.name }}" type="button">

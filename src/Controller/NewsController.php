@@ -18,11 +18,24 @@ use Symfony\Component\Routing\RouterInterface;
 abstract class NewsController extends AbstractController
 {
 	const TARGET_TYPE = "Entities\\content";
-
 	const SMALL_IMG_PATH = "/images/content/small";
 	const MEDIUM_IMG_PATH = "/images/content/medium";
 	const LARGE_IMG_PATH = "/images/content/large";
 	const ORIGINAL_IMG_PATH = "/images/content/original";
+
+    protected $catalog_section_id;
+    protected $templates_path;
+    protected $css_path;
+    protected $js_path;
+
+    public function __construct( $templates_path, $css_path, $js_path, $catalog_section_id )
+    {
+        $this -> templates_path = $templates_path;
+        $this -> css_path = $css_path;
+        $this -> js_path = $js_path;
+        $this -> catalog_section_id = $catalog_section_id;
+    }
+
 
 	public function getDigest( int $count )
 	{
@@ -36,7 +49,7 @@ abstract class NewsController extends AbstractController
 		            ->getQuery()
 		            ->getResult();
 	}
-	public function getNews( int $catalogSection, int $count, int $year = 0 , int $month = 0 , int $day = 0 )
+	public function getNews( int $count, int $year = 0 , int $month = 0 , int $day = 0 )
 	{
 		$queryBuilder = $this->getDoctrine()
 		            		 ->getManager()
@@ -47,11 +60,14 @@ abstract class NewsController extends AbstractController
 		                    content.title,
 		                    content.shortText,
 		                    content.publishDate,
+                            day(content.publishDate) AS day,
+                            month(content.publishDate) AS month,
+                            year(content.publishDate) AS year,
 		                    photos.name AS image
 		                    ')
 		            ->from(RNContent::class, 'content')
 		            ->leftJoin(RNPhotos::class, 'photos', 'with', 'content.id = photos.typeId')
-		            ->andWhere('content.catalogSection = '. $catalogSection )
+		            ->andWhere('content.catalogSection = '. $this -> catalog_section_id )
 		            ->andWhere('photos.main = 1');
 
         if( $year )
@@ -108,28 +124,26 @@ abstract class NewsController extends AbstractController
 		            ->findByTypeId( $id );
 	}
 
-    public function newsByDate(
-    	$catalog_section_id,
-    	$template,
-    	$templates_path,
-    	$css_path,
-        $js_path,
-        $url_path, // переход с календаря
-
-        $newsCount = 11,
-    	$lastNewsCount = 3,
-    	$year = 0,
-    	$month = 0,
-    	$day = 0 ): Response
+    public function newsByDate( $options ): Response
     {
-    	$nowDate = [ 'year' => $year , 'month' => + $month ];
+        $template = isset( $options["template"] ) ? $options["template"] : "";
+        $calendar_path = isset( $options["calendar_path"] ) ? $options["calendar_path"] : "";
+        $newsCount = isset( $options["news_count"] ) ? $options["news_count"] : 0;
+        $lastNewsCount = isset( $options["last_news_count"] ) ? $options["last_news_count"] : 0;
+        $year = isset( $options["year"] ) ? $options["year"] : 0;
+        $month = isset( $options["month"] ) ? $options["month"] : 0;
+        $day = isset( $options["day"] ) ? $options["day"] : 0;
 
+        if( $year == 0 )
+            $year = date("Y");
+
+    	$nowDate = [ 'year' => $year , 'month' => $month ];
         $calendar = 0 ;
 
-        if( strlen( $url_path ) && $month )
+        if( strlen( $calendar_path ) && $month )
         {
-          $path = $this->generateUrl( $url_path )."/$year/$month";
-          $calendar =  $this -> getCalendar( $year, $month, $catalog_section_id, $path );
+          $path = $this->generateUrl( $calendar_path )."/$year/$month";
+          $calendar =  $this -> getCalendar( $year, $month, $path );
         }
 
             if( $year || $month || $day )
@@ -150,7 +164,7 @@ abstract class NewsController extends AbstractController
                 ->from(RNContent::class, 'content')
                 ->leftJoin(RNPhotos::class, 'photos', 'with', 'content.id = photos.typeId')
                 ->andWhere('photos.main = 1')
-                ->andWhere("content.catalogSection = $catalog_section_id "  );
+                ->andWhere("content.catalogSection = ".$this ->catalog_section_id );
 
                 if( $year )
                     $queryBuilder = $queryBuilder ->andWhere("year( content.publishDate ) = $year");
@@ -164,22 +178,7 @@ abstract class NewsController extends AbstractController
                                           ->getResult();
             }
             else
-                $news = $this -> getNews( $catalog_section_id, $newsCount );
-
-            $months_in_date = [
-                            1 => "января",
-                            2 => "февраля",
-                            3 => "марта",
-                            4 => "апреля",
-                            5 => "мая",
-                            6 => "июня",
-                            7 => "июля",
-                            8 => "августа",
-                            9 => "сентября",
-                            10 => "октября",
-                            11 => "ноября",
-                            12 => "декабря",
-                        ];
+                $news = $this -> getNews( $newsCount );
 
                     $month_arr = [
                     [
@@ -232,26 +231,21 @@ abstract class NewsController extends AbstractController
                     ],
                   ];
 
-            $years = range( 2011, 2020 );
-            $data = $this -> getData( $catalog_section_id );
-
-            dump( $news );
-
-            return $this->render( $templates_path.$template,
+            return $this->render( $this -> templates_path.$template,
             [
-                'templates_path' => $templates_path,
+                'templates_path' => $this -> templates_path,
                 'title' => 'Архив новостей',
                 'news' => $news,
-                'lastNews' => $this -> getNews( $catalog_section_id, $lastNewsCount ),
+                'lastNews' => $this -> getNews( $lastNewsCount ),
 
                 'current_day' => $day,
                 'current_month' => $month,
                 'current_year' => $year,
 
-                'months_in_date' => $months_in_date,
-                'years' => $years,
-                'css_path' => $css_path,
-                'js_path' => $js_path,
+                // 'months_in_date' => $months_in_date,
+                'years' => range( 2014, 2020 ),
+                'css_path' => $this -> css_path,
+                'js_path' => $this -> js_path,
 
                 'nowDate' => $nowDate,
                 'image_path' => self :: SMALL_IMG_PATH,
@@ -262,40 +256,48 @@ abstract class NewsController extends AbstractController
         );
     }
 
-
-    public function news_show( string $template, string $templates_path, int $catalog_section_id, string $news_count, int $last_news_count, string $css_path, string $js_path, int $comments_count, int $digest_count, int $id ): Response
+    public function newsShow( $options ): Response
     {
-    	$curnews = $this->getDoctrine()
+        $template = isset( $options['template'] ) ?  $options['template'] : "";
+        $news_count = isset( $options['news_count'] ) ?  $options['news_count'] : 0;
+        $last_news_count = isset( $options['last_news_count'] ) ?  $options['last_news_count'] : 0;
+        $comments_count = isset( $options['comments_count'] ) ?  $options['comments_count'] : 0;
+        $digest_count = isset( $options['digest_count'] ) ?  $options['digest_count'] : 0;
+        $id  = isset( $options['id'] ) ?  $options['id'] : 0;
+        $calendar_path = isset( $options['calendar_path'] ) ?  $options['calendar_path'] : "";
+
+        $curnews = $this->getDoctrine()
             ->getRepository(RnContent::class)
             ->find( $id );
 
-    	$raw_comments = $this->getDoctrine()
+        $raw_comments = $this->getDoctrine()
             ->getRepository(RnComments::class)
             ->findBy( [ "targetId" => $id, "isModered" => 1 ] );
 
-    	$gallery = $this->getDoctrine()
+        $gallery = $this->getDoctrine()
             ->getRepository(RnPhotos::class)
             ->findByTypeId( $id );
 
         $image = $curnews -> getPhoto();
         foreach ($gallery as $key => $picture)
         {
-        	$gallery[$key] -> large = self :: LARGE_IMG_PATH . $picture -> getName();
-        	$gallery[$key] -> small = self :: SMALL_IMG_PATH . $picture -> getName();
+            $gallery[$key] -> large = self :: LARGE_IMG_PATH ."/". $picture -> getName();
+            $gallery[$key] -> small = self :: SMALL_IMG_PATH ."/". $picture -> getName();
+            $gallery[$key] -> original = self :: ORIGINAL_IMG_PATH ."/". $picture -> getName();
 
-        	if( $picture -> getMain() )
-        	{
-        		$image = $picture -> getName();
-        		unset( $gallery[$key] );
-        	}
+            if( $picture -> getMain() )
+            {
+                $image = $picture -> getName();
+                unset( $gallery[$key] );
+            }
         }
 
-        $data = $this -> getData( $catalog_section_id, $news_count, $comments_count, $digest_count );
+        $data = $this -> getData( $news_count, $comments_count, $digest_count );
 
         $comments['comments'] = $raw_comments;
         foreach ($comments['comments'] as $key => $value) {
             $comments['comments'][$key] -> user =                [
-                    "image" => "",
+                    "image" => "/images/anonim.jpg",
                     "employeeId" => 123,
                     "name" => "name",
                 ];
@@ -310,31 +312,42 @@ abstract class NewsController extends AbstractController
             if( $value['id'] == $id )
                 unset( $news[$key] );
 
-        return $this->render( $templates_path.$template, [
+        $current_day = date_format( $curnews -> getPublishDate(), 'd');
+        $current_month = date_format( $curnews -> getPublishDate(), 'm');
+        $current_year = date_format( $curnews -> getPublishDate(), 'Y');
 
-                'templates_path' => $templates_path,
+        if( strlen( $calendar_path ) )
+            $calendar_path = $this->generateUrl($calendar_path);
+
+        return $this->render( $this -> templates_path.$template, [
+
+                'templates_path' => $this -> templates_path,
                 'newsTitle' => $curnews -> getTitle(),
                 'fullText' => $curnews -> getFullText(),
                 'shortText' => $curnews -> getShortText(),
-                'date' => date_format( $curnews -> getPublishDate(), 'd.m.Y'),
+                'date' => "$current_day.$current_month.$current_year",
                 'targetId' => $curnews -> getId(),
                 'targetType' => self :: TARGET_TYPE,
 
-        		'image' => $image,
-        		'gallery' => $gallery,
-        		'comments' => $comments,
-            	'lastNews' => array_slice( $news, 0, $last_news_count ),
-            	'newsDigest' => $data['digest'],
+                'image' => $image,
+                'gallery' => $gallery,
+                'comments' => $comments,
+                'lastNews' => array_slice( $news, 0, $last_news_count ),
+                'newsDigest' => $data['digest'],
+                'css_path' => $this -> css_path,
+                'js_path' => $this -> js_path,
+                'years' => range( 2014, 2020 ),
+                'current_year' => $current_year,
+                'current_month' => $current_month,
+                'calendar' =>  $this -> getCalendar( $current_year, $current_month, $calendar_path."/$current_year/$current_month" ),
+            ]);
+    } // public function news_show(
 
-            	'css_path' => $css_path,
-            	'js_path' => $js_path,
-		    ]);
-    }
 
-    public function getData( $catalog_section_id, $news_count = 10 , $comments_count = 10 , $digest_count = 5 )
+    public function getData( $news_count = 10 , $comments_count = 10 , $digest_count = 5 )
     {
         $digest = $this -> getDigest( $digest_count );
-        $news = $this -> getNews( $catalog_section_id, $news_count );
+        $news = $this -> getNews( $news_count );
         $comments = $this -> getComments( $comments_count );
 
         foreach ( $news as $key => $value )
@@ -351,7 +364,11 @@ abstract class NewsController extends AbstractController
          return [ 'digest' => $digest, 'comments' => $comments , 'news' => $news ];
     }
 
-    public function newsAddComment( Request $request, RouterInterface $router ): Response
+
+    /**
+     * @Route("/ajax_add_comment", name="ajax_add_comment", methods={"POST"})
+    */
+    public function addComment( Request $request, RouterInterface $router ): Response
     {
         $result = false;
 
@@ -383,13 +400,20 @@ abstract class NewsController extends AbstractController
         return new Response( $result );
     }
 
-    public function news_index( $catalog_section_id, $template, $templates_path, $news_count, $comments_count = 10 , $digest_count = 3 ): Response
+     public function newsIndex( $options ): Response
     {
-		$data = $this -> getData( $catalog_section_id, $news_count, $comments_count, $digest_count );
+         $template = isset( $options["template"] ) ? $options["template"] : "";
+         $news_count = isset( $options["news_count"] ) ? $options["news_count"] : 0;
+         $comments_count = isset( $options["comments_count"] ) ? $options["comments_count"] : 0;
+         $digest_count  = isset( $options["digest_count"] ) ? $options["digest_count"] : 3;
 
-        return $this-> render( $templates_path.$template,
+		$data = $this -> getData( $news_count, $comments_count, $digest_count );
+
+        return $this-> render( $this -> templates_path.$template,
             [
-                'templates_path' => $templates_path,
+                'templates_path' => $this -> templates_path,
+                'css_path' => $this -> css_path,
+                'js_path' => $this -> js_path,
                 'title' => 'Новости',
                 'news' => $data['news'],
                 'comments' => $data['comments'],
@@ -397,7 +421,7 @@ abstract class NewsController extends AbstractController
             ]);
     }
 
-    public function getCalendar( $year = 2020, $month = 1, $catalogSection, $path = '' )
+    public function getCalendar( $year = 2020, $month = 1, $path = '' )
     {
       $days = array_flip( array_column( $this->getDoctrine()
                    ->getManager()
@@ -407,7 +431,7 @@ abstract class NewsController extends AbstractController
                    ->leftJoin(RNPhotos::class, 'photos', 'with', 'content.id = photos.typeId')
                    ->andWhere("year( content.publishDate ) = $year")
                    ->andWhere("month( content.publishDate ) = $month")
-                   ->andWhere('content.catalogSection = '. $catalogSection )
+                   ->andWhere('content.catalogSection = '. $this -> catalog_section_id )
                    ->andWhere('photos.main = 1')
                    ->getQuery()
                    ->getResult(), 'day' ));

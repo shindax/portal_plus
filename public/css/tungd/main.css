@@ -1,0 +1,407 @@
+/*
+	99Lime.com HTML KickStart by Joshua Gatcke
+	kickstart-layout.css
+
+	// Google Fonts
+*/
+
+/*---------------------------------
+	IMPORTS
+-----------------------------------*/
+/* @import url(http://fonts.googleapis.com/css?family=Arimo:400,700);
+
+/*---------------------------------
+	OVERRIDES
+-----------------------------------*/
+
+/*---------------------------------
+	LAYOUT
+-----------------------------------*/
+/* Основные элементы */
+root {
+    display: block;
+}
+
+.nomp {
+    padding:0;
+    margin: 0;
+}
+
+.photoDiv {
+    width: 160px;
+    height:120px;
+    padding:0;
+    margin:0;
+    overflow:hidden;
+}
+#footer{
+        text-align:center;
+        padding:20px;
+        margin:20px 0 0 0;
+        background:#efefef;
+        border-top:1px solid #ccc;
+        color:#999;
+        font-size:0.8em;
+        text-shadow:0px 1px 1px #fff;
+}
+
+#link-top{
+        float:right;
+        color:#666;
+        text-decoration:none;
+        display: inline-block;
+        padding:5px 10px;
+        background:#e5e5e5;
+        line-height:100%;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+}
+
+.h1 {
+      font-size: 16pt;
+      font-family: tahoma;
+      padding: 10px 25px;
+      }
+
+.h2 {
+      font-size: 16pt;
+      padding-bottom:10px;
+      }
+
+.tophr{
+    width: 97%;
+    border:none;
+    height:1px;
+    line-height:1px;
+}
+
+#maindiv {
+            padding:15px;
+            background-color: #FFF;
+            vertical-align:top;
+            text-align:left;
+            display:block;
+            clear:both;
+}
+
+/* Строка меню сверху */
+#menudiv {
+            padding:25px 10px 10px 10px;
+            background-color: #fff;
+            border: 0px solid #000;
+            overflow: hidden;
+}
+
+
+
+#menutable {
+            text-align:center;
+            vertical-align:middle;
+}
+
+#username
+{
+        padding: 5px 25px;
+        font-size:12px;
+        line-height:20px;
+        clear:both;
+}
+
+
+  .icon {
+      text-align:center;
+      overflow:hidden
+  }
+
+  .iconimg {
+      padding:0 0 1px 0 !important;
+      width: 36px;
+      height:36px;
+  }
+
+ .iconlnk {
+      font-family: Arial;
+      font-size:12px !important;
+      font-weight: bold !important;
+      margin: 0 !important;
+  }
+
+  .iconlnk:hover {
+      /* text-decoration: underline;*/
+  }
+
+  .icon div {
+      width:100%;
+      text-align:center;
+      display: block;
+      clear: both;
+  }
+
+  .icon:hover {
+      /* background-color: #f0f0f0; */
+  }
+
+
+/* Стандартные таблицы */
+.stdtable {
+    border-collapse: collapse;
+    padding: 10px 0;
+    border: 1px solid #000;
+}
+.stdtable th {
+    font-weight: bold;
+    color:#000;
+    text-align:center;
+    vertical-align:middle;
+    padding:5px;
+    font-family: Arial;
+    border: 1px solid #999;
+    font-size:10pt;
+    background-color: #C8C8FF;
+}
+.stdtable td {
+    border: 1px solid #999;
+}
+
+.formTable {
+    border-collapse: collapse;
+    padding: 10px 0;
+    border: 0px solid #000;
+}
+.formTable th {
+    font-weight: bold;
+    color:#000;
+    text-align:right;
+    vertical-align:middle;
+    padding:5px;
+    font-family: Arial;
+    border: 1px solid #999;
+    font-size:10pt;
+    background-color: #C8C8FF;
+}
+.formTable td {
+    border: 0;
+}
+
+/* Срочность */
+.priority1
+{
+    background-color: #ff50a8;
+    font-weight:bold;
+}
+.priority2
+{
+    background-color: #ff3366;
+    font-weight: bold;
+}
+
+/* Статусы */
+.status0 {
+    background-color: #ffc0c0 !important;
+}
+.status1 {
+    background-color: #ffc40d !important;
+}
+.status2 {
+    background-color: #c8c8ff !important;
+}
+.status3 {
+    background-color: #dff0d8 !important;
+}
+.status4 {
+    background-color: #e8e8e8 !important;
+}
+
+/* Таблица с заявками */
+.appTable
+{
+    width:100%;
+    border: 1px solid #999;
+    border-collapse: collapse;
+}
+.appTable th {
+    text-align:center;
+    color:#333;
+    padding: 5px 0;
+    background-color: #eee;
+    border:  1px solid #999;
+}
+
+.appTable td {
+     border:  1px solid #333;
+}
+
+/* Отображение заявки */
+.appView
+{
+    width:auto;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+.appView th {
+    text-align:center;
+    color:#333;
+    padding: 2px;
+    background-color: #c8c8ff;
+    border:  1px solid #333;
+}
+
+.appView td {
+    border:  1px solid #333;
+}
+/* мелкая кнопка */
+.smallbtn
+{
+    font-size:11px;
+    text-align:left;
+}
+
+#com_wrapper {
+    display:block;
+}
+
+.bl {
+    display:block;
+    float:left;
+    padding: 3px;
+    display: inline;
+}
+
+.clrl {
+    clear:right;
+}
+.cb {
+    clear:both;
+}
+.cl {
+    clear: left;
+}
+.blr {
+    display:block;
+    float:right;
+}
+
+.copyrights {
+    display:block;
+    float:left;
+    background-color: #fff;;
+    border-style: solid;
+    border: 0;
+    padding: 40px 25px 20px;
+    clear:both;
+
+}
+
+
+.noborder {
+    border: 0;
+}
+.noborder td {
+    border:0
+}
+
+.minus
+{
+    width:15px;
+    display:block;
+    float: left;
+    line-height:25px;
+    background: url("/images/b_minus.png") no-repeat left bottom;
+}
+
+.plus
+{
+    width:15px;
+    display:block;
+    float: left;
+    line-height:25px;
+    background: url("/images/b_plus.png") no-repeat left bottom;
+}
+
+
+  /* page navigator */
+
+  /* page nav link */
+
+  .page-nav {
+    margin: 2.6em 0 0 0;
+  }
+
+  .pn-l,.pn-l:link,.pn-l:visited {
+    color: #000;
+    display: inline-block;
+    font-size: 1.2em;
+    line-height: 100%;
+    margin: 0 0 0 .4em;
+    padding: .15em .4em;
+    vertical-align: middle;
+  }
+
+  .pn-l-a,.pn-l-a:link,.pn-l-a:visited,.pn-l:hover {
+    background-color: #FCD51E;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .pn-l-lr,.pn-l-lr:link,.pn-l-lr:visited {
+    background:none;
+    font-size: 1.8em;
+    padding: .15em .3em .25em .3em;
+    text-decoration: none;
+  }
+
+  .pn-l-lr:hover {background-color: #FCD51E}
+
+  .pn-l-t,.pn-l-t:link ,.pn-l-t:visited {
+    font-size: 1.3em;
+  }
+
+  .pn-l-t:hover {
+     background:none;
+     font-weight: normal
+  }
+
+
+  /* end page navigator */
+
+  .p10{
+      padding: 10px 0;
+  }
+
+  .highlight
+  {
+      background-color: #F0F0CC !important;
+      cursor:pointer;
+  }
+
+  .r
+  {
+      color:#ff0000;
+      font-size:1.4em;
+      font-weight: bold;
+  }
+
+  .ordered
+  {
+      color: #777 !important;
+  }
+
+  .stdIcon {
+      padding: 0 5px;
+  }
+
+  .menuItem {
+      width:70px;
+      text-align:center
+  }
+
+  .application_button {
+      padding:0;
+      margin: 10px;
+  }
+
+#page #retroaction p.hidden {
+  display: none !IMPORTANT;
+}

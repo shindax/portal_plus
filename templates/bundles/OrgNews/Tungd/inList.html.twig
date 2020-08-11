@@ -1,0 +1,17 @@
+{% macro out(news, url, months_in_date) %}
+<div class="item">
+        <div class="date">
+        {{news.day}} {{ months_in_date[ news.month ]}}
+        </div>
+
+         {# {% if news.commentsCount != 0 %}
+                    <p class="n-news-tx-b">[{{news.commentsCount}}]</p>
+         {% endif %} #}
+       <a href="{{ url }}">
+       <span class="title">{{ news.title }}</span>
+       {% if news.image %}
+          <span class="foto"><img alt="" src="/images/content/medium/{{ news.image }}" /></span>
+       {% endif %}
+       </a>
+</div>
+{% endmacro %}

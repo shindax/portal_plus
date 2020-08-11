@@ -51,13 +51,13 @@ class EventSubscriber implements EventSubscriberInterface
         date_default_timezone_set('Asia/Krasnoyarsk');
 
         $this->twig->addGlobal('today_date', date("d"));
+        $this->twig->addGlobal('today_year', date("Y"));
         $this->twig->addGlobal('today_day', $week_day[ + date("w") ]);
         $this->twig->addGlobal('today_month', $months[ + date("m")]);
         $this->twig->addGlobal('today_time', date("H:i"));
         $this->twig->addGlobal('currentUser', [
-                    'photo' => 'photo',
-                    // 'getPhoto' => 'photo',
-                    'employeeImage' => 'photo',
+                    // 'photo' => 'photo',
+                    'employeeImage' => '/images/employeeImage.jpg',
                     'name' => 'Иванов Иван Иванович',
                     'employeeId' => 123
                 ]);
@@ -67,6 +67,41 @@ class EventSubscriber implements EventSubscriberInterface
         $this->twig->addGlobal('oilCounterForDay', '41173');
         $this->twig->addGlobal('gazCounterGazprom', '33200');
         $this->twig->addGlobal('gazCounterPpd', '8622');
+
+
+// Tungd
+        $this->twig->addGlobal('currency_usd', '73');
+        $this->twig->addGlobal('currency_euro', '90');
+        $this->twig->addGlobal('weather_remote', 'weather_remote');
+        $this->twig->addGlobal('weather_lensk', 'weather_lensk');
+        $this->twig->addGlobal('weather_irkutsk', 'weather_irkutsk');
+
+        $this->twig->addGlobal('departments_menu', [
+            [ 'id' => 0, 'name' => 'Подразделение 1'],
+            [ 'id' => 1, 'name' => 'Подразделение 2'],
+            [ 'id' => 2, 'name' => 'Подразделение 3'],
+            [ 'id' => 3, 'name' => 'Подразделение 4'],
+        ]);
+
+
+            $months_in_date = [
+                            1 => "января",
+                            2 => "февраля",
+                            3 => "марта",
+                            4 => "апреля",
+                            5 => "мая",
+                            6 => "июня",
+                            7 => "июля",
+                            8 => "августа",
+                            9 => "сентября",
+                            10 => "октября",
+                            11 => "ноября",
+                            12 => "декабря",
+                        ];
+
+
+        $this->twig->addGlobal( 'months_in_date', $months_in_date );
+
 
         Autologin::autologin( $_SERVER['AUTH_USER'], $this -> controller );
     }

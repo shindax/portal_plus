@@ -1,0 +1,53 @@
+{# лента новостей #}
+{% extends templates_path ~ '/inner.html.twig' %}
+
+{% block Main %}
+    <div class="main-content-sec">
+        <h1><span>{{ pageTitle | default("Новости") }}</span></h1>
+    {% if newsList   %}
+    <div class="news-list">
+        {% set c = 1 %}
+        {% import ('news/inList.twig') as list %}
+        {% for news in newsList %}
+            {% if c == 1 %}
+                <div class="clearfix row">
+            {% endif %}
+            {{ list.out(news, url) }}
+
+            {% if c == 2 %}
+                </div>
+                {% set c = 0 %}
+            {% endif %}
+            {% set c = c + 1 %}
+        {% endfor %}
+        {% if c ==  1 %}
+            </div>
+        {% endif %}
+    </div>
+    {% else %}
+        <p>В выбранном месяце новостей нет</p>
+    {% endif %}
+    </div>
+{% endblock %}
+
+
+{% block leftMenu %}
+    {# печатаем года #}
+    <div class="title">
+    {% for year in years %}
+            <a class="{% if year == currentYear %} active {% endif %}" href="{{site_url}}news/feed/{{year}}">{{ year }}</a>
+    {% endfor %}
+    </div>
+
+    <ul class="side-nav">
+        {# а теперь месяца #}
+        {% for month in months %}
+              <li>
+                <a href="{{site_url}}news/feed/{{currentYear}}/{{month.number}}"
+                 class="{% if month.number == currentMonth %} n-news-blink {% else %} n-news-link {%endif%}">
+                    {{month.name}}
+                </a>
+              </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
