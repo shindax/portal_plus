@@ -7,7 +7,9 @@
           </a>
         {% endif %}
       </div>
+
       <div class="articles-date">{{item.publishDate|date('d.m.Y')}}</div>
+
       <a href="{{ path('vankor_news_show', {id: item.id})}}" class="articles-title">{{item.title}}</a>
       <p>
           {{item.shortText|raw}}

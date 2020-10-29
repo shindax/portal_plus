@@ -12,7 +12,6 @@ class EasyAdminExtension extends AbstractExtension
     private $authorizationChecker;
     private $entity;
 
-
     public function __construct(AuthorizationCheckerInterface $authorizationChecker)
     {
         $this->authorizationChecker = $authorizationChecker;

@@ -16,6 +16,7 @@ easy_admin:
               label: 'Новости'
               list:
                   fields:
+                      - { property: 'id', label : 'id' }
                       - { property: 'title', label : 'Заголовок' }
                       - { property: 'author_id', label : 'Автор' }
                       - { property: 'publish_date', type: 'datetime', label : 'Дата публикации' }

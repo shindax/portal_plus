@@ -1,6 +1,6 @@
 {% extends '/bundles/EasyAdminBundle/src/default/list.html.twig' %}
 
 {% block item_actions %}
-{% set _list_item_actions = _list_item_actions|filter_admin_actions(item) %}
-{{ parent() }}
+	{% set _list_item_actions = _list_item_actions|filter_admin_actions(item) %}
+	{{ parent() }}
 {% endblock %}

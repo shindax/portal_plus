@@ -1,5 +1,5 @@
 <?php
-$_SERVER['AUTH_USER'] = "user";
+$_SERVER['AUTH_USER'] = "user2";
 
 use App\Kernel;
 use Symfony\Component\ErrorHandler\Debug;

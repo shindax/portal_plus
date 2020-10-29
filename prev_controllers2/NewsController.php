@@ -13,16 +13,22 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 use App\Controller\BaseDoctrineController;
-use App\Controller\QueryOptions;
+use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class NewsController extends BaseDoctrineController
 {
+      public function debug( $arg )
+      {
+          echo "<pre>";
+          print_r( $arg );
+          echo "</pre>";
+      }
+
 	const CATALOG_SECTION_ID = 26;
 	const TARGET_TYPE = "Entities\\content";
 	const SMALL_IMG_PATH = "/images/content/small";
 	const MEDIUM_IMG_PATH = "/images/content/medium";
-	// const LARGE_IMG_PATH = "/images/content/large";
-    const LARGE_IMG_PATH = "/images/content/original";
+	const LARGE_IMG_PATH = "/images/content/large";
 	const ORIGINAL_IMG_PATH = "/images/content/original";
 	const MIN_YEAR = 2014;
 	const LIST_TEMPLATE = "list.html.twig";
@@ -48,16 +54,14 @@ abstract class NewsController extends BaseDoctrineController
 
 	public function getDigest( int $count )
 	{
-      $queryOptions = [
-                    "select" => "content",
-                    "from" => [ RNContent::class, 'content' ],
-                    "where" => [
-                                    'content.catalogSection = '. self :: CATALOG_SECTION_ID
-                                ],
-                    "order_by" => [ 'content.id', 'DESC' ],
-                    "max_results" => $count
-                ];
-          return  $this -> GetVerboseBaseData( $queryOptions ) ;
+          $this -> entity = RnContent::class;
+          $this -> alias = "rn_cont";
+          $this -> orderBy = "rn_cont.id";
+          $this -> dir = "DESC";
+          $this -> maxResults = 5;
+          $this -> where[] = 'rn_cont.catalogSection = '. self :: CATALOG_SECTION_ID ;
+
+          return $this -> GetBaseData();
 	}
 
 	public function getNews( int $count, int $year = 0 , int $month = 0 , int $day = 0 ): Array
@@ -66,24 +70,8 @@ abstract class NewsController extends BaseDoctrineController
     if( ! $count )
        $count = 1;
 
-      $queryOptionsObject = new QueryOptions;
-      $queryOptionsObject -> addSelect( "content" )
-                          -> addSelect( "photos" )
-                          -> addFrom( RNContent::class, 'content' )
-                          -> addJoin( RNPhotos::class, 'photos', 'content.id = photos.typeId' )
-                          -> addWhere( 'content.catalogSection = '. self :: CATALOG_SECTION_ID )
-                          -> addWhere( "photos.main = 1" )
-                          -> addOrderBy( 'content.id', 'DESC' )
-                          -> addMaxResults( $count );
 
-    if( $year )
-        $queryOptionsObject -> addWhere( "year( content.publishDate ) = $year");
-    if( $month )
-        $queryOptionsObject -> addWhere( "month( content.publishDate ) = $month");
-    if( $day )
-        $queryOptionsObject -> addWhere( "day( content.publishDate ) = $day");
-
-      $queryOptions = [
+      $queryOption = [
                     "select" => "content, photos",
                     "from" => [ RNContent::class, 'content' ],
                     "join" => [
@@ -94,24 +82,52 @@ abstract class NewsController extends BaseDoctrineController
                                     ]
                                 ],
                     "where" => [
-                                    'content.catalogSection = '. self :: CATALOG_SECTION_ID
+                                    'content.catalogSection = '. self :: CATALOG_SECTION_ID,
+                                    'photos.main = 1'
                                 ],
                     "order_by" => [ 'content.id', 'DESC' ],
                     "max_results" => $count
 
                 ];
 
-        $this -> addWhere( $queryOptions, "photos.main = 1");
 
         if( $year )
-            $this -> addWhere( $queryOptions, "year( content.publishDate ) = $year");
-        if( $month )
-            $this -> addWhere( $queryOptions, "month( content.publishDate ) = $month");
-        if( $day )
-            $this -> addWhere( $queryOptions, "day( content.publishDate ) = $day");
+            $queryOption["where"][] = "year( content.publishDate ) = $year";
 
-        $result =  $this -> GetVerboseBaseData( $queryOptions ) ;
-        $result =  $this -> GetVerboseBaseDataWithQueryOptions( $queryOptionsObject ) ;
+        if( $month )
+            $queryOption["where"][] = "month( content.publishDate ) = $month";
+
+        if( $day )
+            $queryOption["where"][] = "year( content.publishDate ) = $day";
+
+		// $queryBuilder = $this->getDoctrine()
+		//             		 ->getManager()
+		//             		 ->createQueryBuilder();
+		//  $queryBuilder
+  //                   ->select('content, photos')
+		//             ->from(RNContent::class, 'content')
+		//             ->leftJoin(RNPhotos::class, 'photos', 'with', 'content.id = photos.typeId')
+		//             ->andWhere('content.catalogSection = '. self :: CATALOG_SECTION_ID )
+		//             ->andWhere('photos.main = 1');
+
+  //       if( $year )
+  //           $queryBuilder = $queryBuilder ->andWhere("year( content.publishDate ) = $year");
+  //       if( $month )
+  //           $queryBuilder = $queryBuilder ->andWhere("month( content.publishDate ) = $month");
+  //       if( $day )
+  //           $queryBuilder = $queryBuilder ->andWhere("day( content.publishDate ) = $day");
+
+		// $queryBuilder = $queryBuilder->orderBy('content.id', 'DESC');
+		// $queryBuilder = $queryBuilder->setMaxResults( $count );
+
+  //       $result = $queryBuilder
+  //                   ->getQuery()
+  //                   ->getResult( \Doctrine\ORM\Query::HYDRATE_ARRAY );
+
+        $result =  $this -> GetUnifiedBaseData( $queryOption ) ;
+
+        $this -> debug( $result[0] );
+        die;
 
         $result_arr = [];
         $key = 0 ;
@@ -134,22 +150,17 @@ abstract class NewsController extends BaseDoctrineController
 
 	public function getComments( int $count )
 	{
-      $queryOptions = [
-                    "select" => "comment, content",
-                    "from" => [ RNComments::class, 'comment' ],
-                    "join" => [
-                                    [
-                                        RNContent::class,
-                                        'content',
-                                        'content.id = comment.targetId'
-                                    ]
-                                ],
-                    "where" => [ 'comment.isModered = 1' ],
-                    "order_by" => [ 'comment.id', 'DESC' ],
-                    "max_results" => $count
-                ];
-
-      $result =  $this -> GetVerboseBaseData( $queryOptions ) ;
+		$result = $this->getDoctrine()
+					->getManager()
+		            ->createQueryBuilder()
+		            ->select('comment, content')
+		            ->from(RNComments::class, 'comment')
+		            ->leftJoin(RNContent::class, 'content', 'with', 'content.id = comment.targetId')
+		            ->andWhere('comment.isModered = 1')
+		            ->orderBy('comment.id', 'DESC')
+		            ->setMaxResults( $count )
+		            ->getQuery()
+		            ->getResult( \Doctrine\ORM\Query::HYDRATE_ARRAY );
 
         $result_arr = [];
         $key = 0 ;
@@ -196,31 +207,82 @@ abstract class NewsController extends BaseDoctrineController
           $calendar =  $this -> getCalendar( $year, $month, $path );
         }
 
-        $news = $this -> getNews( $newsCount, $year, $month, $day );
-        $month_arr = $this -> getmonthArr();
+            if( $year || $month || $day )
+            {
+                $queryBuilder = $this->getDoctrine()
+                ->getManager()
+                ->createQueryBuilder()
+                // ->select('
+                //         content.id AS id,
+                //         content.shortText,
+                //         content.title AS title,
+                //         content.publishDate,
+                //         day(content.publishDate) AS day,
+                //         month(content.publishDate) AS month,
+                //         year(content.publishDate) AS year,
+                //         photos.name AS image
+                //         ')
+                ->select('content', 'photos')
+                ->from(RNContent::class, 'content')
+                ->leftJoin(RNPhotos::class, 'photos', 'with', 'content.id = photos.typeId')
+                ->andWhere('photos.main = 1')
+                ->andWhere("content.catalogSection = ". self :: CATALOG_SECTION_ID );
 
-        return $this->render( $this -> templates_path.$template,
-        [
-            'templates_path' => $this -> templates_path,
-            'title' => 'Архив новостей',
-            'news' => $news,
-            'lastNews' => $this -> getNews( $lastNewsCount ),
+                if( $year )
+                    $queryBuilder = $queryBuilder ->andWhere("year( content.publishDate ) = $year");
+                if( $month )
+                    $queryBuilder = $queryBuilder ->andWhere("month( content.publishDate ) = $month");
+                if( $day )
+                    $queryBuilder = $queryBuilder ->andWhere("day( content.publishDate ) = $day");
 
-            'current_day' => $day,
-            'current_month' => $month,
-            'current_year' => $year,
+                $news = $queryBuilder->orderBy('content.id', 'DESC')
+                                          ->getQuery()
+                                          ->getResult( \Doctrine\ORM\Query::HYDRATE_ARRAY );
 
-            'years' => range( self :: MIN_YEAR, date("Y") ),
-            'css_path' => $this -> css_path,
-            'js_path' => $this -> js_path,
+                $news_arr = [];
+                $key = 0 ;
 
-            'nowDate' => $nowDate,
-            'image_path' => self :: SMALL_IMG_PATH,
-            'type' => 'feed',
-            'months_vsnk' => $month_arr,
-            'calendar' => $calendar,
-        ]
-     );
+                for( $i = 0 ; $i < count( $news ) ; $i += 2 )
+                {
+                    $news_arr[$key]["id"] = $news[$i]["id"];
+                    $news_arr[$key]["shortText"] = $news[$i]["shortText"];
+                    $news_arr[$key]["title"] = $news[$i]["title"];
+                    $news_arr[$key]["day"] = $news[$i]["publishDate"] ->format('j');
+                    $news_arr[$key]["month"] = $news[$i]["publishDate"] ->format('n');
+                    $news_arr[$key]["year"] = $news[$i]["publishDate"] ->format('Y');
+                    $news_arr[$key]["image"] = $news[ $i + 1 ]["name"];
+                    $key ++ ;
+                }
+
+                $news = $news_arr;
+            }
+            else
+                $news = $this -> getNews( $newsCount );
+
+                    $month_arr = $this -> getmonthArr();
+
+            return $this->render( $this -> templates_path.$template,
+            [
+                'templates_path' => $this -> templates_path,
+                'title' => 'Архив новостей',
+                'news' => $news,
+                'lastNews' => $this -> getNews( $lastNewsCount ),
+
+                'current_day' => $day,
+                'current_month' => $month,
+                'current_year' => $year,
+
+                'years' => range( self :: MIN_YEAR, date("Y") ),
+                'css_path' => $this -> css_path,
+                'js_path' => $this -> js_path,
+
+                'nowDate' => $nowDate,
+                'image_path' => self :: SMALL_IMG_PATH,
+                'type' => 'feed',
+                'months_vsnk' => $month_arr,
+                'calendar' => $calendar,
+            ]
+        );
     } // public function newsByDate
 
 
@@ -234,7 +296,7 @@ abstract class NewsController extends BaseDoctrineController
         $id = $this -> getOption( $options, "id", 0 );
         $calendar_path = $this -> getOption( $options, "calendar_path", "" );
 
-        $curnews = $this -> GetBaseDataFind( $id, RnContent::class );
+        $curnews = $this -> GetBaseDataFind( $id, RnContent::class);
 
         $raw_comments = $this->GetBaseDataFindBy( $id, RnComments::class, [ "targetId" => $id, "isModered" => 1 ]);
 
@@ -243,10 +305,9 @@ abstract class NewsController extends BaseDoctrineController
         $image = $curnews -> getPhoto();
         foreach ($gallery as $key => $picture)
         {
-            $picture_name = $picture -> getName();
-            $gallery[$key] -> large = self :: LARGE_IMG_PATH ."/$picture_name";
-            $gallery[$key] -> small = self :: SMALL_IMG_PATH ."/$picture_name";
-            $gallery[$key] -> original = self :: ORIGINAL_IMG_PATH ."/$picture_name";
+            $gallery[$key] -> large = self :: LARGE_IMG_PATH ."/". $picture -> getName();
+            $gallery[$key] -> small = self :: SMALL_IMG_PATH ."/". $picture -> getName();
+            $gallery[$key] -> original = self :: ORIGINAL_IMG_PATH ."/". $picture -> getName();
 
             if( $picture -> getMain() )
             {
@@ -275,10 +336,9 @@ abstract class NewsController extends BaseDoctrineController
             if( $value['id'] == $id )
                 unset( $news[$key] );
 
-        $publish_date = $curnews -> getPublishDate();
-        $current_day = date_format( $publish_date, 'd');
-        $current_month = date_format( $publish_date, 'm');
-        $current_year = date_format( $publish_date, 'Y');
+        $current_day = date_format( $curnews -> getPublishDate(), 'd');
+        $current_month = date_format( $curnews -> getPublishDate(), 'm');
+        $current_year = date_format( $curnews -> getPublishDate(), 'Y');
 
         if( strlen( $calendar_path ) )
             $calendar_path = $this->generateUrl($calendar_path);
@@ -365,6 +425,7 @@ abstract class NewsController extends BaseDoctrineController
 
      public function newsIndex( $options ): Response
     {
+         // $template = $this -> getOption( $options, "template", "" );
          $template = self :: INDEX_TEMPLATE;
 
          $news_count = $this -> getOption( $options, "news_count", 0 );
@@ -387,7 +448,7 @@ abstract class NewsController extends BaseDoctrineController
     public function getCalendar( $year, $month , $path = '' )
     {
 
-      $queryOptions = [
+      $queryOption = [
                     "select" => "day( content.publishDate ) AS day",
                     "from" => [ RNContent::class, "content"],
                     "join" => [
@@ -405,7 +466,7 @@ abstract class NewsController extends BaseDoctrineController
                                 ],
                 ];
 
-      $result =  $this -> GetVerboseBaseData( $queryOptions ) ;
+      $result =  $this -> GetUnifiedBaseData( $queryOption ) ;
       $days = array_flip( array_column( $result, 'day'));
       $str = "";
       // Вычисляем число дней в текущем месяце
@@ -414,13 +475,13 @@ abstract class NewsController extends BaseDoctrineController
       $day_count = 1;
       // 1. Первая неделя
       $num = 0;
-      for( $i = 0; $i < 7; $i ++ )
+      for($i = 0; $i < 7; $i++)
       {
         // Вычисляем номер дня недели для числа
         $dayofweek = date('w', mktime(0, 0, 0, $month, $day_count, $year ));
 
         // Приводим к числа к формату 1 - понедельник, ..., 6 - суббота
-        $dayofweek -= 1;
+        $dayofweek = $dayofweek - 1;
 
         if($dayofweek == -1)
             $dayofweek = 6;
