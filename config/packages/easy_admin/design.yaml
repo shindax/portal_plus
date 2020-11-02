@@ -3,3 +3,6 @@ easy_admin:
       form_theme:
             - '@EasyAdmin/form/bootstrap_4.html.twig'
             - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+      templates:
+          menu: 'easy_admin/easyadmin_menu.html.twig'
+          layout: 'easy_admin/easyadmin_layout.html.twig'

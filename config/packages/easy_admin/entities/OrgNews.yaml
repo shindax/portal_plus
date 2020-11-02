@@ -1,7 +1,7 @@
 easy_admin:
   design:
     menu:
-      - { entity: 'OrgNews', label: 'Новости', icon: 'newspaper-o' }
+      - { entity: 'OrgNews', label: 'Новости', icon: 'newspaper-o', permission: [ 'ROLE_USER1' ]}
 
   formats:
     datetime: 'd.m.Y h:i'
@@ -11,8 +11,8 @@ easy_admin:
               templates:
                   list: 'easy_admin/org_news_list.html.twig'
                   show: 'easy_admin/org_news_show.html.twig'
-              class: Sibintek\NewsBundle\Entity\OrgNews
-              #class: App\Entity\OrgNews
+              #class: Sibintek\NewsBundle\Entity\OrgNews
+              class: App\Entity\OrgNews
               label: 'Новости'
               list:
                   fields:
@@ -61,5 +61,7 @@ easy_admin:
                       - { property: 'is_published', type: 'boolean', label : 'Опубликовано' }
                       - { property: 'publish_date', type: 'datetime', label : 'Дата публикации' }
 
-                  actions: [ '-edit', '-delete' ]
+                  actions: [ '-edit' ]
 
+
+#, '-delete'

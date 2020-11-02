@@ -5,9 +5,9 @@ doctrine:
             default:
                 # configure these for your database server
                 url: '%env(resolve:DATABASE_URL)%'
-                driver: 'pdo_mysql'
-                server_version: '5.7'
-                charset: utf8mb4
+#                driver: 'pdo_mysql'
+#               server_version: '5.7'
+#                charset: utf8mb4
             informer:
                 # configure these for your database server
                 url: '%env(resolve:DATABASE_INFORMER_URL)%'

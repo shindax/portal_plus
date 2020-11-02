@@ -1,8 +1,9 @@
 # d:/OSPanel/domains/portal_plus/config/packages/security.yaml
 # config/packages/security.yaml
 security:
+    access_denied_url: /
     role_hierarchy:
-        # ROLE_ADMIN:       [ ROLE_USER1, ROLE_USER2 ]
+#        ROLE_ADMIN:       [ ROLE_USER1, ROLE_USER2 ]
         # ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     encoders:
       App\Entity\User:
@@ -26,6 +27,10 @@ security:
                 entity:
                     class: 'App\Entity\SysUser'
                     property: 'email'
+
+    access_control:
+        # change '/admin' by the URL used by your Dashboard
+        - { path: ^/admin, roles: ROLE_ADMIN }
 
 #    access_control:
 #        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

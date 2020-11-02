@@ -23,14 +23,29 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\EventListener\OrgNewsEntityListener:
+        arguments: ["@security.token_storage"]
+        tags:
+            -
+                name: 'doctrine.event_listener'
+                event: 'postPersist'
+                priority: 500
+                connection: 'default'
+            -
+                name: 'doctrine.event_listener'
+                event: 'postUpdate'
+                priority: 500
+                connection: 'default'
+            -
+                name: 'doctrine.event_listener'
+                event: 'preUpdate'
+                priority: 500
+                connection: 'default'
+
     App\Controller\RNNewsController:
         autowire: true
-
 
     App\Entity\:
         resource: '../src/Entity/'
         tags: ['entity.service_arguments']
 
-    App\Twig\:
-        resource: '../src/Twig/'
-        tags: ['twig.extension']

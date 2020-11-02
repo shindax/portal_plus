@@ -1,0 +1,13 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block parent %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header_logo %}
+    <a class="logo" href="{{ path('app_homepage') }}">
+        <img src="/images/logo.png" />
+    </a>
+{% endblock header_logo %}
+
+{% block header_custom_menu %}{% endblock header_custom_menu %}
